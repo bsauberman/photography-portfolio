@@ -13,7 +13,7 @@
   <nav class="nav nav--hero">
     <a href="#" class="nav__name">Ben Sauberman</a>
     <ul class="nav__links">
-      <li><a href="#work">Work</a></li>
+      <li><a href="#work">Photography</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#notes">Notes</a></li>
     </ul>
@@ -26,7 +26,7 @@
 
   <!-- Mobile Nav -->
   <div class="mobile-nav">
-    <a href="#work">Work</a>
+    <a href="#work">Photography</a>
     <a href="#about">About</a>
     <a href="#notes">Notes</a>
   </div>
@@ -55,9 +55,7 @@
     <p class="section__label">Selected Work</p>
     <div class="filters">
       <button class="filters__btn filters__btn--active" data-filter="all">All</button>
-      <button class="filters__btn" data-filter="landscape">Landscape</button>
-      <button class="filters__btn" data-filter="trail">Trail</button>
-      <button class="filters__btn" data-filter="travel">Travel</button>
+      <button class="filters__btn" data-filter="highway-1">May '26 - Highway 1, CA</button>
     </div>
     <div id="gallery" class="gallery"></div>
   </section>
@@ -66,18 +64,19 @@
   <section id="about" class="section about">
     <p class="section__label">About</p>
     <div class="about__inner">
-      <img
-        class="about__photo"
-        src="images/highway-1/DSCF9292-thumb.webp"
-        alt="Ben Sauberman"
-        loading="lazy"
-      />
+      <a class="about__photo-link" href="images/highway-1/DSCF9292-full.webp" target="_blank">
+        <img
+          class="about__photo"
+          src="images/highway-1/DSCF9292-thumb.webp"
+          alt="Ben Sauberman"
+          loading="lazy"
+        />
+      </a>
       <div>
         <p class="about__text">
           Ben Sauberman is a software engineer and outdoor enthusiast based in Boulder, Colorado.
-          He shoots on a Fujifilm X-E4 with a 27mm pancake lens — a compact setup built for
-          trail running, climbing, backpacking, and travel. His photography focuses on landscapes,
-          coastlines, alpine environments, and the quiet moments found on the trail.
+          He shoots on a Fujifilm X-E4 with a 27mm pancake lens; a compact setup to capture
+          adventures on the trail and road.
         </p>
         <p class="about__gear">Fujifilm X-E4 · TTArtisan 27mm f/2.8</p>
       </div>
@@ -99,7 +98,7 @@
   <footer class="footer">
     <div class="footer__inner">
       <span class="footer__copy">&copy; 2026 Ben Sauberman</span>
-      <a class="footer__link" href="mailto:hello@bensauberman.com">hello@bensauberman.com</a>
+      <a class="footer__link" href="mailto:bsauberman@gmail.com">bsauberman@gmail.com</a>
       <a class="footer__link" href="https://instagram.com/bensauberman" target="_blank" rel="noopener">@bensauberman</a>
     </div>
   </footer>

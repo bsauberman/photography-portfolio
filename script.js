@@ -94,12 +94,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderGallery(items) {
     gallery.innerHTML = '';
-    items.forEach((photo, i) => {
+    let i = 0;
+    while (i < items.length) {
+      const photo = items[i];
       const sizeClass = photo.size || 'medium';
+      const nextPhoto = items[i + 1];
+      const nextSize = nextPhoto ? (nextPhoto.size || 'medium') : '';
 
+      // Pair consecutive portrait photos side by side
+      if (sizeClass === 'tall' && nextSize === 'tall') {
+        const pair = document.createElement('div');
+        pair.className = 'gallery__pair';
+
+        pair.appendChild(createGalleryItem(photo, i));
+        pair.appendChild(createGalleryItem(nextPhoto, i + 1));
+        gallery.appendChild(pair);
+        i += 2;
+      } else {
+        gallery.appendChild(createGalleryItem(photo, i));
+        i++;
+      }
+    }
+
+    function createGalleryItem(photo, index) {
+      const sizeClass = photo.size || 'medium';
       const item = document.createElement('div');
       item.className = `gallery__item gallery__item--${sizeClass}`;
-      item.dataset.index = i;
+      item.dataset.index = index;
 
       const liked = getLiked();
       const isLiked = liked[photo.id] ? ' gallery__like--liked' : '';
@@ -141,9 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el) el.textContent = count || '';
       });
 
-      item.addEventListener('click', () => openLightbox(i));
-      gallery.appendChild(item);
-    });
+      item.addEventListener('click', () => openLightbox(index));
+      return item;
+    }
   }
 
   function observeGallery() {
@@ -162,9 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Filters
   const filterMap = {
     'all': () => true,
-    'landscape': p => ['highway-1', 'boulder', 'pacific-northwest'].includes(p.collection),
-    'trail': p => ['chicago-basin', 'boulder'].includes(p.collection),
-    'travel': p => ['slovenia', 'south-korea'].includes(p.collection),
+    'highway-1': p => p.collection === 'highway-1',
   };
 
   filtersContainer.addEventListener('click', (e) => {
