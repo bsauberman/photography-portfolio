@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       photos = data;
 
-      const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
-      if (path && filterMap[path]) {
-        const btn = filtersContainer.querySelector(`[data-filter="${path}"]`);
+      const initialFilter = getCollectionFromPath();
+      if (initialFilter !== 'all') {
+        const btn = filtersContainer.querySelector(`[data-filter="${initialFilter}"]`);
         if (btn) { btn.click(); return; }
       }
 
@@ -189,6 +189,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Filters
+  const basePath = window.location.pathname.includes('/photography-portfolio')
+    ? '/photography-portfolio' : '';
+
+  function getCollectionFromPath() {
+    const path = window.location.pathname
+      .replace(basePath, '')
+      .replace(/^\//, '')
+      .replace(/\/$/, '');
+    return path && filterMap[path] ? path : 'all';
+  }
+
   let activeCollection = 'all';
 
   const filterMap = {
@@ -202,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filter = e.target.dataset.filter;
     activeCollection = filter;
 
-    const path = filter === 'all' ? '/' : '/' + filter;
+    const path = filter === 'all' ? basePath + '/' : basePath + '/' + filter;
     history.pushState(null, '', path);
 
     filtersContainer.querySelectorAll('.filters__btn').forEach(btn => {
@@ -217,8 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('popstate', () => {
-    const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
-    const filter = path && filterMap[path] ? path : 'all';
+    const filter = getCollectionFromPath();
     const btn = filtersContainer.querySelector(`[data-filter="${filter}"]`);
     if (btn) btn.click();
   });
