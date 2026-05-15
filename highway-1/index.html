@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="../" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ben Sauberman — Highway 1</title>
+  <meta name="description" content="Highway 1, CA — May 2026. Shot on Fujifilm X-E4." />
+  <meta property="og:title" content="Ben Sauberman — Highway 1" />
+  <meta property="og:description" content="Highway 1, CA — May 2026. Shot on Fujifilm X-E4." />
+  <meta property="og:image" content="https://bensauberman.com/images/hero.webp" />
+  <meta property="og:url" content="https://bensauberman.com/highway-1" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav nav--hero">
+    <a href="#" class="nav__name">Ben Sauberman</a>
+    <ul class="nav__links">
+      <li><a href="#work">Photography</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#notes">Notes</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav">
+    <a href="#work">Photography</a>
+    <a href="#about">About</a>
+    <a href="#notes">Notes</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img
+      class="hero__image"
+      src="images/hero.webp"
+      alt="Pacific Coast"
+      onerror="this.outerHTML='<div class=\'hero__placeholder\'>Add hero.webp to /images</div>'"
+    />
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1 class="hero__title">Ben Sauberman</h1>
+      <p class="hero__subtitle">Landscape &amp; Trail Photography</p>
+    </div>
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="section">
+    <p class="section__label">Selected Work</p>
+    <div class="filters">
+      <button class="filters__btn filters__btn--active" data-filter="all">All</button>
+      <button class="filters__btn" data-filter="highway-1">May '26 - Highway 1, CA</button>
+      <button class="filters__btn" data-filter="apple-park">May '26 - Apple Park, CA</button>
+    </div>
+    <div id="gallery" class="gallery"></div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section about">
+    <p class="section__label">About</p>
+    <div class="about__inner">
+      <a class="about__photo-link" href="images/highway-1/DSCF9292-full.webp" target="_blank">
+        <img
+          class="about__photo"
+          src="images/highway-1/DSCF9292-thumb.webp"
+          alt="Ben Sauberman"
+          loading="lazy"
+        />
+      </a>
+      <div>
+        <p class="about__text">
+          Ben Sauberman is a software engineer and outdoor enthusiast based in Boulder, Colorado.
+          He shoots on a Fujifilm X-E4 with a 27mm pancake lens; a compact setup to capture
+          adventures on the trail and road.
+        </p>
+        <p class="about__gear">Fujifilm X-E4 · TTArtisan 27mm f/2.8</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notes / Guestbook -->
+  <section id="notes" class="section notes">
+    <p class="section__label">Notes</p>
+    <form class="notes__form" id="notes-form">
+      <input class="notes__input notes__input--name" type="text" placeholder="Your name" maxlength="50" />
+      <textarea class="notes__input notes__input--message" placeholder="Leave a note..." maxlength="500" rows="3"></textarea>
+      <button class="notes__submit" type="submit">Post</button>
+    </form>
+    <div class="notes__list" id="notes-list"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__copy">&copy; 2026 Ben Sauberman</span>
+      <a class="footer__link" href="mailto:bsauberman@gmail.com">bsauberman@gmail.com</a>
+      <a class="footer__link" href="https://instagram.com/bensauberman" target="_blank" rel="noopener">@bensauberman</a>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox">
+    <button class="lightbox__close">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev">&lsaquo;</button>
+    <div class="lightbox__content">
+      <img class="lightbox__img" src="" alt="" />
+      <div class="lightbox__info">
+        <p class="lightbox__title"></p>
+        <p class="lightbox__details"></p>
+        <button class="lightbox__like" id="lightbox-like">
+          <svg class="lightbox__like-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span class="lightbox__like-count" id="lightbox-like-count"></span>
+        </button>
+      </div>
+    </div>
+    <button class="lightbox__nav lightbox__nav--next">&rsaquo;</button>
+  </div>
+
+  <script src="firebase-config.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
