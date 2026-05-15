@@ -87,9 +87,17 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(r => r.json())
     .then(data => {
       photos = data;
+
+      const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+      if (path && filterMap[path]) {
+        const btn = filtersContainer.querySelector(`[data-filter="${path}"]`);
+        if (btn) { btn.click(); return; }
+      }
+
       galleryPhotos = photos.filter(p => !p.hero);
       renderGallery(galleryPhotos);
       observeGallery();
+      loadNotes();
     });
 
   function renderGallery(items) {
@@ -181,6 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Filters
+  let activeCollection = 'all';
+
   const filterMap = {
     'all': () => true,
     'highway-1': p => p.collection === 'highway-1',
@@ -190,6 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
   filtersContainer.addEventListener('click', (e) => {
     if (!e.target.matches('.filters__btn')) return;
     const filter = e.target.dataset.filter;
+    activeCollection = filter;
+
+    const path = filter === 'all' ? '/' : '/' + filter;
+    history.pushState(null, '', path);
 
     filtersContainer.querySelectorAll('.filters__btn').forEach(btn => {
       btn.classList.toggle('filters__btn--active', btn.dataset.filter === filter);
@@ -199,6 +213,14 @@ document.addEventListener('DOMContentLoaded', () => {
     galleryPhotos = filtered;
     renderGallery(filtered);
     observeGallery();
+    loadNotes();
+  });
+
+  window.addEventListener('popstate', () => {
+    const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+    const filter = path && filterMap[path] ? path : 'all';
+    const btn = filtersContainer.querySelector(`[data-filter="${filter}"]`);
+    if (btn) btn.click();
   });
 
   // Nav scroll
@@ -315,24 +337,71 @@ document.addEventListener('DOMContentLoaded', () => {
     return div.innerHTML;
   }
 
-  if (firebaseReady) {
-    const q = query(collection(db, 'notes'), orderBy('timestamp', 'desc'), limit(50));
-    onSnapshot(q, (snapshot) => {
-      notesList.innerHTML = '';
-      if (snapshot.empty) {
-        notesList.innerHTML = '<p class="notes__empty">No notes yet. Be the first.</p>';
-        return;
+  let notesUnsubscribe = null;
+
+  function loadNotes() {
+    if (notesUnsubscribe) notesUnsubscribe();
+
+    if (activeCollection === 'all') {
+      notesForm.style.display = 'none';
+      if (!document.querySelector('.notes__pick')) {
+        const pick = document.createElement('div');
+        pick.className = 'notes__pick';
+        pick.innerHTML = `
+          <label class="notes__pick-label">Leave a note on</label>
+          <select class="notes__pick-select">
+            <option value="" disabled selected>Select a collection</option>
+            ${Array.from(filtersContainer.querySelectorAll('.filters__btn'))
+              .filter(btn => btn.dataset.filter !== 'all')
+              .map(btn => `<option value="${btn.dataset.filter}">${btn.textContent}</option>`)
+              .join('')}
+          </select>
+        `;
+        pick.querySelector('select').addEventListener('change', (e) => {
+          const btn = filtersContainer.querySelector(`[data-filter="${e.target.value}"]`);
+          if (btn) btn.click();
+        });
+        notesForm.parentNode.insertBefore(pick, notesForm.nextSibling);
       }
-      snapshot.forEach(doc => notesList.appendChild(renderNote(doc.data())));
-    });
-  } else {
-    const localNotes = JSON.parse(localStorage.getItem('notes') || '[]');
-    if (localNotes.length === 0) {
-      notesList.innerHTML = '<p class="notes__empty">No notes yet. Be the first.</p>';
     } else {
-      localNotes.forEach(n => notesList.appendChild(renderNote(n)));
+      notesForm.style.display = '';
+      const pick = document.querySelector('.notes__pick');
+      if (pick) pick.remove();
+    }
+
+    if (firebaseReady) {
+      const q = query(collection(db, 'notes'), orderBy('timestamp', 'desc'), limit(50));
+      notesUnsubscribe = onSnapshot(q, (snapshot) => {
+        notesList.innerHTML = '';
+        const notes = [];
+        snapshot.forEach(doc => notes.push(doc.data()));
+
+        const filtered = activeCollection === 'all'
+          ? notes
+          : notes.filter(n => (n.collection || 'highway-1') === activeCollection);
+
+        if (filtered.length === 0) {
+          notesList.innerHTML = '<p class="notes__empty">No notes yet. Be the first.</p>';
+          return;
+        }
+        filtered.forEach(n => notesList.appendChild(renderNote(n)));
+      });
+    } else {
+      const localNotes = JSON.parse(localStorage.getItem('notes') || '[]');
+      const filtered = activeCollection === 'all'
+        ? localNotes
+        : localNotes.filter(n => (n.collection || 'highway-1') === activeCollection);
+
+      notesList.innerHTML = '';
+      if (filtered.length === 0) {
+        notesList.innerHTML = '<p class="notes__empty">No notes yet. Be the first.</p>';
+      } else {
+        filtered.forEach(n => notesList.appendChild(renderNote(n)));
+      }
     }
   }
+
+  loadNotes();
 
   notesForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -344,7 +413,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const noteData = {
       name: nameInput.value.trim() || '',
       message,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      collection: activeCollection === 'all' ? 'highway-1' : activeCollection
     };
 
     const submitBtn = notesForm.querySelector('.notes__submit');
