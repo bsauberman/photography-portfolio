@@ -430,5 +430,113 @@
     "camera": "f/5, 1/280s, ISO 640",
     "filmSimulation": "Classic Negative",
     "size": "tall"
+  },
+  {
+    "id": "sb-trailhead",
+    "file": "images/south-boulder-trails/DSCF9650-thumb.webp",
+    "fileFull": "images/south-boulder-trails/DSCF9650-full.webp",
+    "collection": "south-boulder",
+    "title": "Trailhead",
+    "location": "South Boulder, CO",
+    "date": "May 18 2026",
+    "camera": "27mm · Classic Negative",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sb-cow-meadow",
+    "file": "images/south-boulder-trails/DSCF9660-thumb.webp",
+    "fileFull": "images/south-boulder-trails/DSCF9660-full.webp",
+    "collection": "south-boulder",
+    "title": "Meadow Rest",
+    "location": "South Boulder, CO",
+    "date": "May 18 2026",
+    "camera": "27mm · Classic Negative",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sb-foggy-peak",
+    "file": "images/south-boulder-trails/DSCF9670-thumb.webp",
+    "fileFull": "images/south-boulder-trails/DSCF9670-full.webp",
+    "collection": "south-boulder",
+    "title": "Foggy Peak",
+    "location": "South Boulder, CO",
+    "date": "May 18 2026",
+    "camera": "27mm · Classic Negative",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sb-boulder-trail",
+    "file": "images/south-boulder-trails/DSCF9681-thumb.webp",
+    "fileFull": "images/south-boulder-trails/DSCF9681-full.webp",
+    "collection": "south-boulder",
+    "title": "Boulder on Trail",
+    "location": "South Boulder, CO",
+    "date": "May 18 2026",
+    "camera": "27mm · Classic Negative",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sb-flatirons-trail",
+    "file": "images/south-boulder-trails/DSCF9694-thumb.webp",
+    "fileFull": "images/south-boulder-trails/DSCF9694-full.webp",
+    "collection": "south-boulder",
+    "title": "Flatirons Trail",
+    "location": "South Boulder, CO",
+    "date": "May 18 2026",
+    "camera": "27mm · Classic Negative",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sb-snow-fog",
+    "file": "images/south-boulder-trails/DSCF9697-thumb.webp",
+    "fileFull": "images/south-boulder-trails/DSCF9697-full.webp",
+    "collection": "south-boulder",
+    "title": "Snow and Fog",
+    "location": "South Boulder, CO",
+    "date": "May 18 2026",
+    "camera": "27mm · Classic Negative",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sb-ridge-trail",
+    "file": "images/south-boulder-trails/DSCF9712-thumb.webp",
+    "fileFull": "images/south-boulder-trails/DSCF9712-full.webp",
+    "collection": "south-boulder",
+    "title": "Ridge Trail",
+    "location": "South Boulder, CO",
+    "date": "May 18 2026",
+    "camera": "27mm · Classic Negative",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sb-flatirons-meadow",
+    "file": "images/south-boulder-trails/DSCF9715-thumb.webp",
+    "fileFull": "images/south-boulder-trails/DSCF9715-full.webp",
+    "collection": "south-boulder",
+    "title": "Flatirons Meadow",
+    "location": "South Boulder, CO",
+    "date": "May 18 2026",
+    "camera": "27mm · Classic Negative",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sb-cow-road",
+    "file": "images/south-boulder-trails/DSCF9716-thumb.webp",
+    "fileFull": "images/south-boulder-trails/DSCF9716-full.webp",
+    "collection": "south-boulder",
+    "title": "Road Block",
+    "location": "South Boulder, CO",
+    "date": "May 18 2026",
+    "camera": "27mm · Classic Negative",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
   }
 ]

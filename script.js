@@ -207,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'highway-1': p => p.collection === 'highway-1',
     'apple-park': p => p.collection === 'apple-park',
     'orange-county': p => p.collection === 'orange-county',
+    'south-boulder': p => p.collection === 'south-boulder',
   };
 
   filtersContainer.addEventListener('click', (e) => {
@@ -255,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxImg.alt = photo.title;
     lightboxTitle.textContent = photo.title;
 
-    const details = [photo.location, photo.date, photo.camera, photo.filmSimulation]
+    const details = [photo.location, photo.date, photo.camera]
       .filter(Boolean).join('  ·  ');
     lightboxDetails.textContent = details;
 
