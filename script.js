@@ -208,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'apple-park': p => p.collection === 'apple-park',
     'orange-county': p => p.collection === 'orange-county',
     'south-boulder': p => p.collection === 'south-boulder',
+    'nyc': p => p.collection === 'nyc',
   };
 
   filtersContainer.addEventListener('click', (e) => {

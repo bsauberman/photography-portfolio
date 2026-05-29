@@ -538,5 +538,104 @@
     "camera": "27mm · Classic Negative",
     "filmSimulation": "Classic Negative",
     "size": "tall"
+  },
+  {
+    "id": "ny-skyscraper",
+    "file": "images/nyc/DSCF9734-thumb.webp",
+    "fileFull": "images/nyc/DSCF9734-full.webp",
+    "collection": "nyc",
+    "title": "Looking Up",
+    "location": "Manhattan, NY",
+    "date": "May 22 2026",
+    "camera": "f/8, 1/2200s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "ny-belvedere",
+    "file": "images/nyc/DSCF9785-thumb.webp",
+    "fileFull": "images/nyc/DSCF9785-full.webp",
+    "collection": "nyc",
+    "title": "Belvedere Castle",
+    "location": "Central Park, NY",
+    "date": "May 22 2026",
+    "camera": "f/6.4, 1/1100s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "ny-lamp-path",
+    "file": "images/nyc/DSCF9804-thumb.webp",
+    "fileFull": "images/nyc/DSCF9804-full.webp",
+    "collection": "nyc",
+    "title": "Lamp Path",
+    "location": "Central Park, NY",
+    "date": "May 22 2026",
+    "camera": "f/3.6, 1/150s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "ny-tree",
+    "file": "images/nyc/DSCF9816-thumb.webp",
+    "fileFull": "images/nyc/DSCF9816-full.webp",
+    "collection": "nyc",
+    "title": "Old Oak",
+    "location": "Central Park, NY",
+    "date": "May 22 2026",
+    "camera": "f/4.5, 1/220s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "ny-rowboats",
+    "file": "images/nyc/DSCF9825-thumb.webp",
+    "fileFull": "images/nyc/DSCF9825-full.webp",
+    "collection": "nyc",
+    "title": "Geese and Rowboats",
+    "location": "Central Park, NY",
+    "date": "May 22 2026",
+    "camera": "f/5, 1/300s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "ny-kbbq",
+    "file": "images/nyc/DSCF9856-thumb.webp",
+    "fileFull": "images/nyc/DSCF9856-full.webp",
+    "collection": "nyc",
+    "title": "Korean BBQ",
+    "location": "Manhattan, NY",
+    "date": "May 22 2026",
+    "camera": "f/2.8, 1/17s, ISO 3200",
+    "size": "tall"
+  },
+  {
+    "id": "ny-chef",
+    "file": "images/nyc/DSCF9739-thumb.webp",
+    "fileFull": "images/nyc/DSCF9739-full.webp",
+    "collection": "nyc",
+    "title": "The Chef",
+    "location": "Manhattan, NY",
+    "date": "May 22 2026",
+    "camera": "f/2.8, 1/100s, ISO 2500",
+    "size": "tall"
+  },
+  {
+    "id": "ny-bar",
+    "file": "images/nyc/DSCF9742-thumb.webp",
+    "fileFull": "images/nyc/DSCF9742-full.webp",
+    "collection": "nyc",
+    "title": "Omakase Counter",
+    "location": "Manhattan, NY",
+    "date": "May 22 2026",
+    "camera": "f/2.8, 1/40s, ISO 3200",
+    "size": "tall"
+  },
+  {
+    "id": "ny-times-square",
+    "file": "images/nyc/DSCF9866-thumb.webp",
+    "fileFull": "images/nyc/DSCF9866-full.webp",
+    "collection": "nyc",
+    "title": "Penn Plaza",
+    "location": "Penn Plaza, NY",
+    "date": "May 22 2026",
+    "camera": "f/2.8, 1/100s, ISO 800",
+    "size": "full"
   }
 ]
