@@ -637,5 +637,203 @@
     "date": "May 22 2026",
     "camera": "f/2.8, 1/100s, ISO 800",
     "size": "full"
+  },
+  {
+    "id": "bv-pine-mountains",
+    "file": "images/buena-vista/DSCF9942-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF9942-full.webp",
+    "collection": "buena-vista",
+    "title": "Treeline",
+    "location": "Mt. Quandary, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/7500s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-alpine-slope",
+    "file": "images/buena-vista/DSCF9947-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF9947-full.webp",
+    "collection": "buena-vista",
+    "title": "Snow Streaks",
+    "location": "Mt. Quandary, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/9000s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-scree",
+    "file": "images/buena-vista/DSCF9958-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF9958-full.webp",
+    "collection": "buena-vista",
+    "title": "Overlooking Marmot",
+    "location": "Mt. Quandary, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/10000s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-goat-outcrop",
+    "file": "images/buena-vista/DSCF0003-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0003-full.webp",
+    "collection": "buena-vista",
+    "title": "Summit Goat",
+    "location": "Mt. Quandary, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/15000s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-goats-pair",
+    "file": "images/buena-vista/DSCF0016-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0016-full.webp",
+    "collection": "buena-vista",
+    "title": "Pair on the Ridge",
+    "location": "Mt. Quandary, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/23000s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-goat-sky",
+    "file": "images/buena-vista/DSCF0022-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0022-full.webp",
+    "collection": "buena-vista",
+    "title": "Watchful",
+    "location": "Mt. Quandary, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/9000s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-summit-silhouette",
+    "file": "images/buena-vista/DSCF0037-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0037-full.webp",
+    "collection": "buena-vista",
+    "title": "Summit Approach",
+    "location": "Mt. Quandary, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/32000s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-rock-face",
+    "file": "images/buena-vista/DSCF0043-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0043-full.webp",
+    "collection": "buena-vista",
+    "title": "Wall of Clouds",
+    "location": "Mt. Quandary, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/20000s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-descending",
+    "file": "images/buena-vista/DSCF0062-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0062-full.webp",
+    "collection": "buena-vista",
+    "title": "Descent",
+    "location": "Mt. Quandary, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/7500s, ISO 640",
+    "size": "wide"
+  },
+  {
+    "id": "bv-goat-trees",
+    "file": "images/buena-vista/DSCF0069-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0069-full.webp",
+    "collection": "buena-vista",
+    "title": "Through the Pines",
+    "location": "Mt. Quandary, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/4000s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-bronco",
+    "file": "images/buena-vista/DSCF0094-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0094-full.webp",
+    "collection": "buena-vista",
+    "title": "Lakeside Bronco",
+    "location": "Buena Vista, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/3800s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-cottonwood",
+    "file": "images/buena-vista/DSCF0084-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0084-full.webp",
+    "collection": "buena-vista",
+    "title": "Cottonwood Lake",
+    "location": "Cottonwood Lake, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/7500s, ISO 640",
+    "size": "wide"
+  },
+  {
+    "id": "bv-fly-fisher",
+    "file": "images/buena-vista/DSCF0142-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0142-full.webp",
+    "collection": "buena-vista",
+    "title": "Gone Fishin'",
+    "location": "Cottonwood Lake, CO",
+    "date": "Jun 2026",
+    "camera": "f/2.8, 1/4400s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-bighorns",
+    "file": "images/buena-vista/DSCF0170-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0170-full.webp",
+    "collection": "buena-vista",
+    "title": "Bighorn Herd",
+    "location": "Buena Vista, CO",
+    "date": "Jun 2026",
+    "camera": "f/7.1, 1/1800s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-sun-flare",
+    "file": "images/buena-vista/DSCF0195-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0195-full.webp",
+    "collection": "buena-vista",
+    "title": "Afternoon Alpine",
+    "location": "Ptarmigan Lake, CO",
+    "date": "Jun 2026",
+    "camera": "f/5.6, 1/850s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-wildflowers",
+    "file": "images/buena-vista/DSCF0205-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0205-full.webp",
+    "collection": "buena-vista",
+    "title": "Alpine Bloom",
+    "location": "Ptarmigan Lake, CO",
+    "date": "Jun 2026",
+    "camera": "f/5.6, 1/640s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-basin",
+    "file": "images/buena-vista/DSCF0208-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0208-full.webp",
+    "collection": "buena-vista",
+    "title": "Alpine Basin",
+    "location": "Ptarmigan Lake, CO",
+    "date": "Jun 2026",
+    "camera": "f/5.6, 1/900s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "bv-snowy-peak",
+    "file": "images/buena-vista/DSCF0213-thumb.webp",
+    "fileFull": "images/buena-vista/DSCF0213-full.webp",
+    "collection": "buena-vista",
+    "title": "Ptarmigan Lake",
+    "location": "Ptarmigan Lake, CO",
+    "date": "Jun 2026",
+    "camera": "f/5.6, 1/900s, ISO 640",
+    "size": "tall"
   }
 ]
