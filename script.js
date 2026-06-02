@@ -89,12 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
       photos = data;
 
       const initialFilter = getCollectionFromPath();
-      if (initialFilter !== 'all') {
-        const btn = filtersContainer.querySelector(`[data-filter="${initialFilter}"]`);
-        if (btn) { btn.click(); return; }
-      }
+      const btn = filtersContainer.querySelector(`[data-filter="${initialFilter}"]`);
+      if (btn) { btn.click(); return; }
 
-      galleryPhotos = photos.filter(p => !p.hero);
+      galleryPhotos = sortByCollectionReverse(photos.filter(p => !p.hero));
       renderGallery(galleryPhotos);
       observeGallery();
       loadNotes();
@@ -197,7 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(basePath, '')
       .replace(/^\//, '')
       .replace(/\/$/, '');
-    return path && filterMap[path] ? path : 'all';
+    if (!path) return 'favorites';
+    return filterMap[path] ? path : 'favorites';
   }
 
   let activeCollection = 'all';
@@ -213,12 +212,45 @@ document.addEventListener('DOMContentLoaded', () => {
     'buena-vista': p => p.collection === 'buena-vista',
   };
 
+  function sortByCollectionReverse(items) {
+    const order = [];
+    const seen = new Set();
+    for (const p of items) {
+      if (!seen.has(p.collection)) {
+        seen.add(p.collection);
+        order.push(p.collection);
+      }
+    }
+    order.reverse();
+    return order.flatMap(c => items.filter(p => p.collection === c));
+  }
+
+  function interleaveByCollection(items) {
+    const groups = {};
+    for (const p of items) {
+      if (!groups[p.collection]) groups[p.collection] = [];
+      groups[p.collection].push(p);
+    }
+    const total = items.length;
+    const positioned = [];
+    Object.keys(groups).forEach((col, colIdx) => {
+      groups[col].forEach((p, idx) => {
+        const pos = (idx + 0.5) * (total / groups[col].length) + (colIdx * 0.01);
+        positioned.push({ photo: p, pos });
+      });
+    });
+    positioned.sort((a, b) => a.pos - b.pos);
+    return positioned.map(x => x.photo);
+  }
+
   filtersContainer.addEventListener('click', (e) => {
     if (!e.target.matches('.filters__btn')) return;
     const filter = e.target.dataset.filter;
     activeCollection = filter;
 
-    const path = filter === 'all' ? basePath + '/' : basePath + '/' + filter;
+    const path = filter === 'all' ? basePath + '/all'
+               : filter === 'favorites' ? basePath + '/'
+               : basePath + '/' + filter;
     history.pushState(null, '', path);
 
     filtersContainer.querySelectorAll('.filters__btn').forEach(btn => {
@@ -236,7 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menu) menu.classList.remove('filters__menu--open');
     if (toggle) toggle.setAttribute('aria-expanded', 'false');
 
-    const filtered = photos.filter(p => !p.hero).filter(filterMap[filter] || filterMap.all);
+    const baseFiltered = photos.filter(p => !p.hero).filter(filterMap[filter] || filterMap.all);
+    const filtered = filter === 'favorites' ? interleaveByCollection(baseFiltered) : sortByCollectionReverse(baseFiltered);
     galleryPhotos = filtered;
     renderGallery(filtered);
     observeGallery();
