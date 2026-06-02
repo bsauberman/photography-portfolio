@@ -60,13 +60,20 @@
   <section id="work" class="section">
     <p class="section__label">Selected Work</p>
     <div class="filters">
-      <button class="filters__btn filters__btn--active" data-filter="all">All</button>
-      <button class="filters__btn" data-filter="highway-1">May 13 '26 - Highway 1, CA</button>
-      <button class="filters__btn" data-filter="apple-park">May 14 '26 - Apple Park, CA</button>
-      <button class="filters__btn" data-filter="orange-county">May 16 '26 - Orange County, CA</button>
-      <button class="filters__btn" data-filter="south-boulder">May 18 '26 - South Boulder, CO</button>
-      <button class="filters__btn" data-filter="nyc">May 22 '26 - New York, NY</button>
-      <button class="filters__btn" data-filter="buena-vista">Jun '26 - Buena Vista, CO</button>
+      <button class="filters__toggle" id="filters-toggle" aria-expanded="false">
+        <span class="filters__current">All Collections</span>
+        <span class="filters__chevron"></span>
+      </button>
+      <div class="filters__menu" id="filters-menu">
+        <button class="filters__btn filters__btn--active" data-filter="all">All</button>
+        <button class="filters__btn" data-filter="favorites">Favorites</button>
+        <button class="filters__btn" data-filter="highway-1">May 13 '26 - Highway 1, CA</button>
+        <button class="filters__btn" data-filter="apple-park">May 14 '26 - Apple Park, CA</button>
+        <button class="filters__btn" data-filter="orange-county">May 16 '26 - Orange County, CA</button>
+        <button class="filters__btn" data-filter="south-boulder">May 18 '26 - South Boulder, CO</button>
+        <button class="filters__btn" data-filter="nyc">May 22 '26 - New York, NY</button>
+        <button class="filters__btn" data-filter="buena-vista">May 29-30 '26 - Buena Vista, CO</button>
+      </div>
     </div>
     <div id="gallery" class="gallery"></div>
   </section>

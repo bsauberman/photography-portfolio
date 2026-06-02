@@ -204,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const filterMap = {
     'all': () => true,
+    'favorites': p => p.favorite === true,
     'highway-1': p => p.collection === 'highway-1',
     'apple-park': p => p.collection === 'apple-park',
     'orange-county': p => p.collection === 'orange-county',
@@ -224,6 +225,17 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.toggle('filters__btn--active', btn.dataset.filter === filter);
     });
 
+    const toggleLabel = filtersContainer.querySelector('.filters__current');
+    const activeBtn = filtersContainer.querySelector(`.filters__btn[data-filter="${filter}"]`);
+    if (toggleLabel && activeBtn) {
+      toggleLabel.textContent = filter === 'all' ? 'All Collections' : activeBtn.textContent;
+    }
+
+    const menu = document.getElementById('filters-menu');
+    const toggle = document.getElementById('filters-toggle');
+    if (menu) menu.classList.remove('filters__menu--open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+
     const filtered = photos.filter(p => !p.hero).filter(filterMap[filter] || filterMap.all);
     galleryPhotos = filtered;
     renderGallery(filtered);
@@ -236,6 +248,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = filtersContainer.querySelector(`[data-filter="${filter}"]`);
     if (btn) btn.click();
   });
+
+  // Filters dropdown toggle
+  const filtersToggle = document.getElementById('filters-toggle');
+  const filtersMenu = document.getElementById('filters-menu');
+  if (filtersToggle && filtersMenu) {
+    filtersToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = filtersMenu.classList.toggle('filters__menu--open');
+      filtersToggle.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', (e) => {
+      if (!filtersContainer.contains(e.target)) {
+        filtersMenu.classList.remove('filters__menu--open');
+        filtersToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 
   // Nav scroll
   function updateNav() {

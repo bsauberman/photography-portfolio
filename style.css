@@ -252,31 +252,84 @@ body {
 /* ─── Gallery Filters ─── */
 
 .filters {
-  display: flex;
-  gap: 24px;
+  position: relative;
   margin-bottom: 64px;
-  flex-wrap: wrap;
+  display: inline-block;
+}
+
+.filters__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--color-text);
+  cursor: pointer;
+  padding: 8px 0;
+  transition: opacity 0.2s;
+}
+
+.filters__toggle:hover {
+  opacity: 0.7;
+}
+
+.filters__chevron {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  transition: transform 0.2s;
+}
+
+.filters__toggle[aria-expanded="true"] .filters__chevron {
+  transform: rotate(180deg);
+}
+
+.filters__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 280px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  display: none;
+  flex-direction: column;
+  z-index: 50;
+}
+
+.filters__menu--open {
+  display: flex;
 }
 
 .filters__btn {
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 400;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-text-light);
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px 0;
-  border-bottom: 1px solid transparent;
-  transition: color 0.3s, border-color 0.3s;
+  padding: 14px 20px;
+  text-align: left;
+  transition: color 0.2s, background 0.2s;
 }
 
-.filters__btn:hover,
+.filters__btn:hover {
+  color: var(--color-text);
+  background: rgba(0, 0, 0, 0.03);
+}
+
 .filters__btn--active {
   color: var(--color-text);
-  border-bottom-color: var(--color-text);
 }
 
 /* ─── Gallery ─── */
@@ -286,7 +339,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: clamp(32px, 5vw, 72px);
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 

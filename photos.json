@@ -21,7 +21,8 @@
     "date": "May 13 2026",
     "camera": "f/9, 1/2200s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "full"
+    "size": "full",
+    "favorite": true
   },
   {
     "id": "h1-rolling-hills",
@@ -81,7 +82,8 @@
     "date": "May 13 2026",
     "camera": "f/8, 1/1900s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "h1-ladder",
@@ -141,7 +143,8 @@
     "date": "May 13 2026",
     "camera": "f/7.1, 1/1500s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "h1-shark-fin",
@@ -177,7 +180,8 @@
     "date": "May 13 2026",
     "camera": "f/5.6, 1/1100s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "h1-surf-dark",
@@ -345,7 +349,8 @@
     "date": "May 16 2026",
     "camera": "f/7.1, 1/1700s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "oc-beach-cliffs",
@@ -441,7 +446,8 @@
     "date": "May 18 2026",
     "camera": "27mm · Classic Negative",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "sb-cow-meadow",
@@ -645,7 +651,7 @@
     "collection": "buena-vista",
     "title": "Treeline",
     "location": "Mt. Quandary, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/7500s, ISO 640",
     "size": "tall"
   },
@@ -656,7 +662,7 @@
     "collection": "buena-vista",
     "title": "Snow Streaks",
     "location": "Mt. Quandary, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/9000s, ISO 640",
     "size": "tall"
   },
@@ -667,7 +673,7 @@
     "collection": "buena-vista",
     "title": "Overlooking Marmot",
     "location": "Mt. Quandary, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/10000s, ISO 640",
     "size": "tall"
   },
@@ -678,9 +684,10 @@
     "collection": "buena-vista",
     "title": "Summit Goat",
     "location": "Mt. Quandary, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/15000s, ISO 640",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "bv-goats-pair",
@@ -689,7 +696,7 @@
     "collection": "buena-vista",
     "title": "Pair on the Ridge",
     "location": "Mt. Quandary, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/23000s, ISO 640",
     "size": "tall"
   },
@@ -700,7 +707,7 @@
     "collection": "buena-vista",
     "title": "Watchful",
     "location": "Mt. Quandary, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/9000s, ISO 640",
     "size": "tall"
   },
@@ -711,7 +718,7 @@
     "collection": "buena-vista",
     "title": "Summit Approach",
     "location": "Mt. Quandary, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/32000s, ISO 640",
     "size": "tall"
   },
@@ -722,7 +729,7 @@
     "collection": "buena-vista",
     "title": "Wall of Clouds",
     "location": "Mt. Quandary, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/20000s, ISO 640",
     "size": "tall"
   },
@@ -733,9 +740,10 @@
     "collection": "buena-vista",
     "title": "Descent",
     "location": "Mt. Quandary, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/7500s, ISO 640",
-    "size": "wide"
+    "size": "wide",
+    "favorite": true
   },
   {
     "id": "bv-goat-trees",
@@ -744,9 +752,10 @@
     "collection": "buena-vista",
     "title": "Through the Pines",
     "location": "Mt. Quandary, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/4000s, ISO 640",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "bv-bronco",
@@ -755,7 +764,7 @@
     "collection": "buena-vista",
     "title": "Lakeside Bronco",
     "location": "Buena Vista, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/3800s, ISO 640",
     "size": "tall"
   },
@@ -766,7 +775,7 @@
     "collection": "buena-vista",
     "title": "Cottonwood Lake",
     "location": "Cottonwood Lake, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/7500s, ISO 640",
     "size": "wide"
   },
@@ -777,9 +786,10 @@
     "collection": "buena-vista",
     "title": "Gone Fishin'",
     "location": "Cottonwood Lake, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/2.8, 1/4400s, ISO 640",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "bv-bighorns",
@@ -788,7 +798,7 @@
     "collection": "buena-vista",
     "title": "Bighorn Herd",
     "location": "Buena Vista, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/7.1, 1/1800s, ISO 640",
     "size": "tall"
   },
@@ -799,7 +809,7 @@
     "collection": "buena-vista",
     "title": "Afternoon Alpine",
     "location": "Ptarmigan Lake, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/5.6, 1/850s, ISO 640",
     "size": "tall"
   },
@@ -810,7 +820,7 @@
     "collection": "buena-vista",
     "title": "Alpine Bloom",
     "location": "Ptarmigan Lake, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/5.6, 1/640s, ISO 640",
     "size": "tall"
   },
@@ -821,7 +831,7 @@
     "collection": "buena-vista",
     "title": "Alpine Basin",
     "location": "Ptarmigan Lake, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/5.6, 1/900s, ISO 640",
     "size": "tall"
   },
@@ -832,7 +842,7 @@
     "collection": "buena-vista",
     "title": "Ptarmigan Lake",
     "location": "Ptarmigan Lake, CO",
-    "date": "Jun 2026",
+    "date": "May 29-30 2026",
     "camera": "f/5.6, 1/900s, ISO 640",
     "size": "tall"
   }
