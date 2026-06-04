@@ -776,6 +776,37 @@ body {
   color: var(--color-text);
 }
 
+.notes__byline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notes__sep {
+  color: var(--color-text-light);
+  font-size: 0.75rem;
+  font-weight: 300;
+}
+
+.notes__collection-link {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--color-text-light);
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.notes__collection-link:hover {
+  color: var(--color-text);
+  border-bottom-color: var(--color-text);
+}
+
 .notes__author--anon {
   color: var(--color-text-light);
   font-style: italic;

@@ -95,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
       galleryPhotos = sortByCollectionReverse(photos.filter(p => !p.hero));
       renderGallery(galleryPhotos);
       observeGallery();
-      loadNotes();
     });
 
   function renderGallery(items) {
@@ -273,7 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
     galleryPhotos = filtered;
     renderGallery(filtered);
     observeGallery();
-    loadNotes();
   });
 
   window.addEventListener('popstate', () => {
@@ -385,6 +383,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── Notes / Guestbook ───
 
+  const collectionDisplayNames = {
+    'all': 'All',
+    'favorites': 'Favorites',
+    'highway-1': 'Highway 1, CA',
+    'apple-park': 'Apple Park, CA',
+    'orange-county': 'Orange County, CA',
+    'south-boulder': 'South Boulder, CO',
+    'nyc': 'New York, NY',
+    'buena-vista': 'Buena Vista, CO',
+  };
+
   function renderNote(data) {
     const note = document.createElement('div');
     note.className = 'notes__item';
@@ -393,13 +402,20 @@ document.addEventListener('DOMContentLoaded', () => {
       ? new Date(data.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
       : '';
 
-    const name = data.name
+    const noteCol = data.collection || 'highway-1';
+    const colLabel = collectionDisplayNames[noteCol] || noteCol;
+
+    const nameHtml = data.name
       ? `<span class="notes__author">${escapeHtml(data.name)}</span>`
       : `<span class="notes__author notes__author--anon">Anonymous</span>`;
 
     note.innerHTML = `
       <div class="notes__item-header">
-        ${name}
+        <span class="notes__byline">
+          ${nameHtml}
+          <span class="notes__sep">|</span>
+          <button class="notes__collection-link" data-filter="${noteCol}">${colLabel}</button>
+        </span>
         <span class="notes__date">${date}</span>
       </div>
       <p class="notes__message">${escapeHtml(data.message)}</p>
@@ -413,66 +429,39 @@ document.addEventListener('DOMContentLoaded', () => {
     return div.innerHTML;
   }
 
+  // Click on a collection link in a note → switch filter and scroll to gallery
+  notesList.addEventListener('click', (e) => {
+    if (!e.target.matches('.notes__collection-link')) return;
+    const filter = e.target.dataset.filter;
+    const btn = filtersContainer.querySelector(`[data-filter="${filter}"]`);
+    if (btn) {
+      btn.click();
+      document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+
   let notesUnsubscribe = null;
 
   function loadNotes() {
     if (notesUnsubscribe) notesUnsubscribe();
 
-    if (activeCollection === 'all') {
-      notesForm.style.display = 'none';
-      if (!document.querySelector('.notes__pick')) {
-        const pick = document.createElement('div');
-        pick.className = 'notes__pick';
-        pick.innerHTML = `
-          <label class="notes__pick-label">Leave a note on</label>
-          <select class="notes__pick-select">
-            <option value="" disabled selected>Select a collection</option>
-            ${Array.from(filtersContainer.querySelectorAll('.filters__btn'))
-              .filter(btn => btn.dataset.filter !== 'all')
-              .map(btn => `<option value="${btn.dataset.filter}">${btn.textContent}</option>`)
-              .join('')}
-          </select>
-        `;
-        pick.querySelector('select').addEventListener('change', (e) => {
-          const btn = filtersContainer.querySelector(`[data-filter="${e.target.value}"]`);
-          if (btn) btn.click();
-        });
-        notesForm.parentNode.insertBefore(pick, notesForm.nextSibling);
-      }
-    } else {
-      notesForm.style.display = '';
-      const pick = document.querySelector('.notes__pick');
-      if (pick) pick.remove();
-    }
-
     if (firebaseReady) {
       const q = query(collection(db, 'notes'), orderBy('timestamp', 'desc'), limit(50));
       notesUnsubscribe = onSnapshot(q, (snapshot) => {
         notesList.innerHTML = '';
-        const notes = [];
-        snapshot.forEach(doc => notes.push(doc.data()));
-
-        const filtered = activeCollection === 'all'
-          ? notes
-          : notes.filter(n => (n.collection || 'highway-1') === activeCollection);
-
-        if (filtered.length === 0) {
+        if (snapshot.empty) {
           notesList.innerHTML = '<p class="notes__empty">No notes yet. Be the first.</p>';
           return;
         }
-        filtered.forEach(n => notesList.appendChild(renderNote(n)));
+        snapshot.forEach(doc => notesList.appendChild(renderNote(doc.data())));
       });
     } else {
       const localNotes = JSON.parse(localStorage.getItem('notes') || '[]');
-      const filtered = activeCollection === 'all'
-        ? localNotes
-        : localNotes.filter(n => (n.collection || 'highway-1') === activeCollection);
-
       notesList.innerHTML = '';
-      if (filtered.length === 0) {
+      if (localNotes.length === 0) {
         notesList.innerHTML = '<p class="notes__empty">No notes yet. Be the first.</p>';
       } else {
-        filtered.forEach(n => notesList.appendChild(renderNote(n)));
+        localNotes.forEach(n => notesList.appendChild(renderNote(n)));
       }
     }
   }
@@ -490,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: nameInput.value.trim() || '',
       message,
       timestamp: Date.now(),
-      collection: activeCollection === 'all' ? 'highway-1' : activeCollection
+      collection: activeCollection
     };
 
     const submitBtn = notesForm.querySelector('.notes__submit');
