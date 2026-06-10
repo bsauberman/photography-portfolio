@@ -209,6 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'south-boulder': p => p.collection === 'south-boulder',
     'nyc': p => p.collection === 'nyc',
     'buena-vista': p => p.collection === 'buena-vista',
+    'green-mtn': p => p.collection === 'green-mtn',
+    'eldorado': p => p.collection === 'eldorado',
+    'mesa-trail': p => p.collection === 'mesa-trail',
   };
 
   function sortByCollectionReverse(items) {
@@ -392,6 +395,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'south-boulder': 'South Boulder, CO',
     'nyc': 'New York, NY',
     'buena-vista': 'Buena Vista, CO',
+    'green-mtn': 'Green Mountain, CO',
+    'eldorado': 'Eldorado Canyon, CO',
+    'mesa-trail': 'Mesa Trail, CO',
   };
 
   function renderNote(data) {

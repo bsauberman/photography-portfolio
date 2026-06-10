@@ -845,5 +845,181 @@
     "date": "May 29-30 2026",
     "camera": "f/5.6, 1/900s, ISO 640",
     "size": "tall"
+  },
+  {
+    "id": "gm-tree-cliff",
+    "file": "images/green-mtn/DSCF0234-thumb.webp",
+    "fileFull": "images/green-mtn/DSCF0234-full.webp",
+    "collection": "green-mtn",
+    "title": "Cliffside Pine",
+    "location": "Green Mountain, Boulder",
+    "date": "Jun 4 2026",
+    "camera": "f/5, 1/320s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "gm-pines-haze",
+    "file": "images/green-mtn/DSCF0244-thumb.webp",
+    "fileFull": "images/green-mtn/DSCF0244-full.webp",
+    "collection": "green-mtn",
+    "title": "Hazy Distance",
+    "location": "Green Mountain, Boulder",
+    "date": "Jun 4 2026",
+    "camera": "f/5.6, 1/420s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "gm-sunset-ridge",
+    "file": "images/green-mtn/DSCF0251-thumb.webp",
+    "fileFull": "images/green-mtn/DSCF0251-full.webp",
+    "collection": "green-mtn",
+    "title": "Ridge Glow",
+    "location": "Green Mountain, Boulder",
+    "date": "Jun 4 2026",
+    "camera": "f/5.6, 1/450s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "gm-sunset",
+    "file": "images/green-mtn/DSCF0255-thumb.webp",
+    "fileFull": "images/green-mtn/DSCF0255-full.webp",
+    "collection": "green-mtn",
+    "title": "Last Sun",
+    "location": "Green Mountain, Boulder",
+    "date": "Jun 4 2026",
+    "camera": "f/5.6, 1/750s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "el-rockface",
+    "file": "images/eldorado-state-park/DSCF0298-thumb.webp",
+    "fileFull": "images/eldorado-state-park/DSCF0298-full.webp",
+    "collection": "eldorado",
+    "title": "Sandstone Face",
+    "location": "Eldorado Canyon State Park, CO",
+    "date": "Jun 7 2026",
+    "camera": "f/6.4, 1/1400s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "el-cliff-trees",
+    "file": "images/eldorado-state-park/DSCF0305-thumb.webp",
+    "fileFull": "images/eldorado-state-park/DSCF0305-full.webp",
+    "collection": "eldorado",
+    "title": "Climber's Cliff",
+    "location": "Eldorado Canyon State Park, CO",
+    "date": "Jun 7 2026",
+    "camera": "f/5.6, 1/600s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "el-canyon",
+    "file": "images/eldorado-state-park/DSCF0307-thumb.webp",
+    "fileFull": "images/eldorado-state-park/DSCF0307-full.webp",
+    "collection": "eldorado",
+    "title": "Canyon Mouth",
+    "location": "Eldorado Canyon State Park, CO",
+    "date": "Jun 7 2026",
+    "camera": "f/6.4, 1/1300s, ISO 640",
+    "size": "wide"
+  },
+  {
+    "id": "el-rock-sky",
+    "file": "images/eldorado-state-park/DSCF0310-thumb.webp",
+    "fileFull": "images/eldorado-state-park/DSCF0310-full.webp",
+    "collection": "eldorado",
+    "title": "Rock Spine",
+    "location": "Eldorado Canyon State Park, CO",
+    "date": "Jun 7 2026",
+    "camera": "f/3.6, 1/4000s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "mt-valley",
+    "file": "images/mesa-trail/DSCF0320-thumb.webp",
+    "fileFull": "images/mesa-trail/DSCF0320-full.webp",
+    "collection": "mesa-trail",
+    "title": "Flatirons Valley",
+    "location": "Mesa Trail, Boulder",
+    "date": "Jun 10 2026",
+    "camera": "f/7.1, 1/1400s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "mt-meadow-trail",
+    "file": "images/mesa-trail/DSCF0330-thumb.webp",
+    "fileFull": "images/mesa-trail/DSCF0330-full.webp",
+    "collection": "mesa-trail",
+    "title": "Trail Through Meadow",
+    "location": "Mesa Trail, Boulder",
+    "date": "Jun 10 2026",
+    "camera": "f/6.4, 1/2400s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "mt-flatiron",
+    "file": "images/mesa-trail/DSCF0339-thumb.webp",
+    "fileFull": "images/mesa-trail/DSCF0339-full.webp",
+    "collection": "mesa-trail",
+    "title": "Flatiron Ridge",
+    "location": "Mesa Trail, Boulder",
+    "date": "Jun 10 2026",
+    "camera": "f/8, 1/1800s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "mt-rocks-line",
+    "file": "images/mesa-trail/DSCF0344-thumb.webp",
+    "fileFull": "images/mesa-trail/DSCF0344-full.webp",
+    "collection": "mesa-trail",
+    "title": "Boulder's Peaks",
+    "location": "Mesa Trail, Boulder",
+    "date": "Jun 10 2026",
+    "camera": "f/7.1, 1/1600s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "mt-trail-rocks",
+    "file": "images/mesa-trail/DSCF0346-thumb.webp",
+    "fileFull": "images/mesa-trail/DSCF0346-full.webp",
+    "collection": "mesa-trail",
+    "title": "Open Path",
+    "location": "Mesa Trail, Boulder",
+    "date": "Jun 10 2026",
+    "camera": "f/6.4, 1/1600s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "mt-wildflowers",
+    "file": "images/mesa-trail/DSCF0350-thumb.webp",
+    "fileFull": "images/mesa-trail/DSCF0350-full.webp",
+    "collection": "mesa-trail",
+    "title": "Wildflower Meadow",
+    "location": "Mesa Trail, Boulder",
+    "date": "Jun 10 2026",
+    "camera": "f/8, 1/1400s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "mt-overlook",
+    "file": "images/mesa-trail/DSCF0352-thumb.webp",
+    "fileFull": "images/mesa-trail/DSCF0352-full.webp",
+    "collection": "mesa-trail",
+    "title": "Overlook",
+    "location": "Mesa Trail, Boulder",
+    "date": "Jun 10 2026",
+    "camera": "f/5.6, 1/1100s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "mt-houses",
+    "file": "images/mesa-trail/DSCF0356-thumb.webp",
+    "fileFull": "images/mesa-trail/DSCF0356-full.webp",
+    "collection": "mesa-trail",
+    "title": "Red Rocks",
+    "location": "Mesa Trail, Boulder",
+    "date": "Jun 10 2026",
+    "camera": "f/6.4, 1/1600s, ISO 640",
+    "size": "tall"
   }
 ]
