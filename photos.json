@@ -910,7 +910,8 @@
     "location": "Eldorado Canyon State Park, CO",
     "date": "Jun 7 2026",
     "camera": "f/5.6, 1/600s, ISO 640",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "el-canyon",
@@ -987,7 +988,8 @@
     "location": "Mesa Trail, Boulder",
     "date": "Jun 10 2026",
     "camera": "f/6.4, 1/1600s, ISO 640",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "mt-wildflowers",
