@@ -1023,5 +1023,50 @@
     "date": "Jun 10 2026",
     "camera": "f/6.4, 1/1600s, ISO 640",
     "size": "tall"
+  },
+  {
+    "id": "fl-rock-cliff",
+    "file": "images/flatirons/DSCF0388-thumb.webp",
+    "fileFull": "images/flatirons/DSCF0388-full.webp",
+    "collection": "flatirons",
+    "title": "First Flatiron",
+    "location": "Flatirons, Boulder",
+    "date": "Jun 14 2026",
+    "camera": "f/6.4, 1/1100s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "fl-rock-perch",
+    "file": "images/flatirons/DSCF0391-thumb.webp",
+    "fileFull": "images/flatirons/DSCF0391-full.webp",
+    "collection": "flatirons",
+    "title": "Top of Second Flatiron",
+    "location": "Flatirons, Boulder",
+    "date": "Jun 14 2026",
+    "camera": "f/5.6, 1/1400s, ISO 640",
+    "size": "tall"
+  },
+  {
+    "id": "fl-flatiron",
+    "file": "images/flatirons/DSCF0395-thumb.webp",
+    "fileFull": "images/flatirons/DSCF0395-full.webp",
+    "collection": "flatirons",
+    "title": "Third Flatiron",
+    "location": "Flatirons, Boulder",
+    "date": "Jun 14 2026",
+    "camera": "f/6.4, 1/1500s, ISO 640",
+    "size": "tall",
+    "favorite": true
+  },
+  {
+    "id": "fl-boulder-overlook",
+    "file": "images/flatirons/DSCF0401-thumb.webp",
+    "fileFull": "images/flatirons/DSCF0401-full.webp",
+    "collection": "flatirons",
+    "title": "Boulder Below",
+    "location": "Flatirons, Boulder",
+    "date": "Jun 14 2026",
+    "camera": "f/7.1, 1/1500s, ISO 640",
+    "size": "full"
   }
 ]

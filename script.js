@@ -212,6 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'green-mtn': p => p.collection === 'green-mtn',
     'eldorado': p => p.collection === 'eldorado',
     'mesa-trail': p => p.collection === 'mesa-trail',
+    'flatirons': p => p.collection === 'flatirons',
   };
 
   function sortByCollectionReverse(items) {
@@ -390,14 +391,15 @@ document.addEventListener('DOMContentLoaded', () => {
     'all': 'All',
     'favorites': 'Favorites',
     'highway-1': 'Highway 1, CA',
-    'apple-park': 'Apple Park, CA',
+    'apple-park': 'Apple Park - Cupertino, CA',
     'orange-county': 'Orange County, CA',
-    'south-boulder': 'South Boulder, CO',
+    'south-boulder': 'South Boulder - Boulder, CO',
     'nyc': 'New York, NY',
     'buena-vista': 'Buena Vista, CO',
-    'green-mtn': 'Green Mountain, CO',
-    'eldorado': 'Eldorado Canyon, CO',
-    'mesa-trail': 'Mesa Trail, CO',
+    'green-mtn': 'Green Mountain - Boulder, CO',
+    'eldorado': 'Eldorado Canyon - Eldorado Springs, CO',
+    'mesa-trail': 'Mesa Trail - Boulder, CO',
+    'flatirons': 'Flatirons - Boulder, CO',
   };
 
   function renderNote(data) {
