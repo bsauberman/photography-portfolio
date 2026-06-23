@@ -213,6 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'eldorado': p => p.collection === 'eldorado',
     'mesa-trail': p => p.collection === 'mesa-trail',
     'flatirons': p => p.collection === 'flatirons',
+    'chicago-basin': p => p.collection === 'chicago-basin',
+    'ice-lake': p => p.collection === 'ice-lake',
   };
 
   function sortByCollectionReverse(items) {
@@ -400,6 +402,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'eldorado': 'Eldorado Canyon - Eldorado Springs, CO',
     'mesa-trail': 'Mesa Trail - Boulder, CO',
     'flatirons': 'Flatirons - Boulder, CO',
+    'chicago-basin': 'Chicago Basin - Silverton, CO',
+    'ice-lake': 'Ice & Island Lakes - Silverton, CO',
   };
 
   function renderNote(data) {
