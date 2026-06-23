@@ -1245,7 +1245,8 @@
     "location": "Ice Lake Basin, CO",
     "date": "Jun 22 2026",
     "camera": "f/7.1, 1/1400s, ISO 640",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "il-ice-lake",
@@ -1256,7 +1257,8 @@
     "location": "Ice Lake Basin, CO",
     "date": "Jun 22 2026",
     "camera": "f/7.1, 1/1700s, ISO 640",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "il-lake-2",
