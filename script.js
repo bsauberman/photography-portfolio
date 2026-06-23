@@ -245,7 +245,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
     positioned.sort((a, b) => a.pos - b.pos);
-    return positioned.map(x => x.photo);
+    let result = positioned.map(x => x.photo);
+
+    // Honor explicit pairWith: move the target right after the requesting photo
+    for (const item of [...result]) {
+      if (!item.pairWith) continue;
+      const itemIdx = result.findIndex(p => p.id === item.id);
+      const targetIdx = result.findIndex(p => p.id === item.pairWith);
+      if (targetIdx === -1 || itemIdx === -1) continue;
+      if (Math.abs(targetIdx - itemIdx) === 1) continue;
+      const target = result.splice(targetIdx, 1)[0];
+      const newItemIdx = result.findIndex(p => p.id === item.id);
+      result.splice(newItemIdx + 1, 0, target);
+    }
+
+    return result;
   }
 
   filtersContainer.addEventListener('click', (e) => {

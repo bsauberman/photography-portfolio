@@ -687,7 +687,8 @@
     "date": "May 29-30 2026",
     "camera": "f/2.8, 1/15000s, ISO 640",
     "size": "tall",
-    "favorite": true
+    "favorite": true,
+    "pairWith": "h1-iceplant"
   },
   {
     "id": "bv-goats-pair",
@@ -742,8 +743,7 @@
     "location": "Mt. Quandary, CO",
     "date": "May 29-30 2026",
     "camera": "f/2.8, 1/7500s, ISO 640",
-    "size": "wide",
-    "favorite": true
+    "size": "wide"
   },
   {
     "id": "bv-goat-trees",
@@ -988,8 +988,7 @@
     "location": "Mesa Trail, Boulder",
     "date": "Jun 10 2026",
     "camera": "f/6.4, 1/1600s, ISO 640",
-    "size": "tall",
-    "favorite": true
+    "size": "tall"
   },
   {
     "id": "mt-wildflowers",
@@ -1100,7 +1099,8 @@
     "location": "Chicago Basin, CO",
     "date": "Jun 19-20 2026",
     "camera": "f/5.6, 1/1300s, ISO 640",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "cb-trail-portrait",
