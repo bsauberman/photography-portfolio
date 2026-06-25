@@ -1055,7 +1055,8 @@
     "date": "Jun 14 2026",
     "camera": "f/6.4, 1/1500s, ISO 640",
     "size": "tall",
-    "favorite": true
+    "favorite": true,
+    "pairWith": "h1-surf"
   },
   {
     "id": "fl-boulder-overlook",
