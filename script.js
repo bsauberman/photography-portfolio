@@ -215,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'flatirons': p => p.collection === 'flatirons',
     'chicago-basin': p => p.collection === 'chicago-basin',
     'ice-lake': p => p.collection === 'ice-lake',
+    'olympic-np': p => p.collection === 'olympic-np',
   };
 
   function sortByCollectionReverse(items) {
@@ -418,6 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'flatirons': 'Flatirons - Boulder, CO',
     'chicago-basin': 'Chicago Basin - Silverton, CO',
     'ice-lake': 'Ice & Island Lakes - Silverton, CO',
+    'olympic-np': 'Seven Lakes Basin - Olympic NP, WA',
   };
 
   function renderNote(data) {
