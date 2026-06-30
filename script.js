@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(r => r.json())
     .then(data => {
       photos = data;
+      initMap();
 
       const initialFilter = getCollectionFromPath();
       const btn = filtersContainer.querySelector(`[data-filter="${initialFilter}"]`);
@@ -299,6 +300,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const filter = getCollectionFromPath();
     const btn = filtersContainer.querySelector(`[data-filter="${filter}"]`);
     if (btn) btn.click();
+  });
+
+  // Intercept in-page anchor nav so <base href="../"> doesn't break them
+  document.querySelectorAll('.nav a[href^="#"], .mobile-nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const targetId = link.getAttribute('href').slice(1);
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
   });
 
   // Filters dropdown toggle
@@ -531,4 +544,124 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Post';
   });
+
+  // ─── Map ───
+
+  // lat, lng, label, category (for pin color), collections it groups
+  const mapLocations = [
+    { lat: 40.0150, lng: -105.2705, label: 'Boulder, CO', cat: 'boulder',
+      collections: ['flatirons', 'mesa-trail', 'green-mtn', 'eldorado', 'south-boulder'] },
+    { lat: 38.8425, lng: -106.1311, label: 'Buena Vista, CO', cat: 'mountain',
+      collections: ['buena-vista'] },
+    { lat: 37.8094, lng: -107.7723, label: 'Silverton, CO', cat: 'mountain',
+      collections: ['ice-lake', 'chicago-basin'] },
+    { lat: 47.9683, lng: -123.4983, label: 'Olympic NP, WA', cat: 'pnw',
+      collections: ['olympic-np'] },
+    { lat: 37.1820, lng: -122.3933, label: 'Highway 1, CA', cat: 'coast',
+      collections: ['highway-1'] },
+    { lat: 37.3349, lng: -122.0090, label: 'Cupertino, CA', cat: 'urban',
+      collections: ['apple-park'] },
+    { lat: 33.4734, lng: -117.7136, label: 'Orange County, CA', cat: 'coast',
+      collections: ['orange-county'] },
+    { lat: 40.7549, lng: -73.9840, label: 'New York, NY', cat: 'urban',
+      collections: ['nyc'] },
+  ];
+
+  const collectionLabels = {
+    'highway-1': "May 13 '26 — Highway 1, CA",
+    'apple-park': "May 14 '26 — Apple Park",
+    'orange-county': "May 16 '26 — Orange County, CA",
+    'south-boulder': "May 18 '26 — South Boulder",
+    'nyc': "May 22 '26 — New York, NY",
+    'buena-vista': "May 29-30 '26 — Buena Vista",
+    'green-mtn': "Jun 4 '26 — Green Mountain",
+    'eldorado': "Jun 7 '26 — Eldorado Canyon",
+    'mesa-trail': "Jun 10 '26 — Mesa Trail",
+    'flatirons': "Jun 14 '26 — Flatirons",
+    'chicago-basin': "Jun 19-20 '26 — Chicago Basin",
+    'ice-lake': "Jun 22 '26 — Ice & Island Lakes",
+    'olympic-np': "Jun 28-30 '26 — Seven Lakes Basin",
+  };
+
+  function navigateToCollection(filter) {
+    const btn = filtersContainer.querySelector(`[data-filter="${filter}"]`);
+    if (btn) {
+      btn.click();
+      document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function getCollectionPreview(collection) {
+    const p = photos.find(ph => ph.collection === collection && !ph.hero);
+    return p ? p.file : null;
+  }
+
+  function initMap() {
+    const mapEl = document.getElementById('map');
+    if (!mapEl || typeof L === 'undefined') return;
+
+    const map = L.map(mapEl, {
+      center: [40, -105],
+      zoom: 3,
+      scrollWheelZoom: false,
+      zoomControl: true,
+      attributionControl: true,
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      subdomains: 'abcd',
+      maxZoom: 19,
+    }).addTo(map);
+
+    const bounds = L.latLngBounds(mapLocations.map(l => [l.lat, l.lng]));
+
+    mapLocations.forEach(loc => {
+      const icon = L.divIcon({
+        className: '',
+        html: `<div class="map__pin map__pin--${loc.cat}"></div>`,
+        iconSize: [14, 14],
+        iconAnchor: [7, 7],
+      });
+      const marker = L.marker([loc.lat, loc.lng], { icon }).addTo(map);
+
+      const collections = loc.collections;
+
+      if (collections.length === 1) {
+        const collection = collections[0];
+        const preview = getCollectionPreview(collection);
+        const popupHtml = `
+          <div class="map-popup">
+            <div class="map-popup__title">${loc.label}</div>
+            ${preview ? `<img class="map-popup__img" src="${preview}" alt="" />` : ''}
+            <button class="map-popup__item" data-collection="${collection}">${collectionLabels[collection] || collection}</button>
+          </div>
+        `;
+        marker.bindPopup(popupHtml, { closeButton: true, minWidth: 200 });
+      } else {
+        const items = collections
+          .map(c => `<button class="map-popup__item" data-collection="${c}">${collectionLabels[c] || c}</button>`)
+          .join('');
+        marker.bindPopup(`
+          <div class="map-popup">
+            <div class="map-popup__title">${loc.label}</div>
+            <div class="map-popup__list">${items}</div>
+          </div>
+        `, { closeButton: true, minWidth: 220 });
+      }
+    });
+
+    map.on('popupopen', (e) => {
+      const popupEl = e.popup.getElement();
+      popupEl.querySelectorAll('.map-popup__item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const collection = btn.dataset.collection;
+          map.closePopup();
+          navigateToCollection(collection);
+        });
+      });
+    });
+
+    map.fitBounds(bounds, { padding: [30, 30], maxZoom: 5 });
+  }
 });
