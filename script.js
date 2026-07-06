@@ -217,6 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'chicago-basin': p => p.collection === 'chicago-basin',
     'ice-lake': p => p.collection === 'ice-lake',
     'olympic-np': p => p.collection === 'olympic-np',
+    'squamish': p => p.collection === 'squamish',
+    'vancouver': p => p.collection === 'vancouver',
   };
 
   function sortByCollectionReverse(items) {
@@ -433,6 +435,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'chicago-basin': 'Chicago Basin - Silverton, CO',
     'ice-lake': 'Ice & Island Lakes - Silverton, CO',
     'olympic-np': 'Seven Lakes Basin - Olympic NP, WA',
+    'squamish': 'Squamish, BC',
+    'vancouver': 'Vancouver, BC',
   };
 
   function renderNote(data) {
@@ -557,6 +561,10 @@ document.addEventListener('DOMContentLoaded', () => {
       collections: ['ice-lake', 'chicago-basin'] },
     { lat: 47.9683, lng: -123.4983, label: 'Olympic NP, WA', cat: 'pnw',
       collections: ['olympic-np'] },
+    { lat: 49.7016, lng: -123.1558, label: 'Squamish, BC', cat: 'pnw',
+      collections: ['squamish'] },
+    { lat: 49.2827, lng: -123.1207, label: 'Vancouver, BC', cat: 'urban',
+      collections: ['vancouver'] },
     { lat: 37.1820, lng: -122.3933, label: 'Highway 1, CA', cat: 'coast',
       collections: ['highway-1'] },
     { lat: 37.3349, lng: -122.0090, label: 'Cupertino, CA', cat: 'urban',
@@ -581,6 +589,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'chicago-basin': "Jun 19-20 '26 — Chicago Basin",
     'ice-lake': "Jun 22 '26 — Ice & Island Lakes",
     'olympic-np': "Jun 28-30 '26 — Seven Lakes Basin",
+    'squamish': "Jun 30 - Jul 4 '26 — Squamish, BC",
+    'vancouver': "Jul 5 '26 — Vancouver, BC",
   };
 
   function navigateToCollection(filter) {
