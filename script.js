@@ -203,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const filterMap = {
     'all': () => true,
+    'shuffled': () => true,
     'favorites': p => p.favorite === true,
     'highway-1': p => p.collection === 'highway-1',
     'apple-park': p => p.collection === 'apple-park',
@@ -232,6 +233,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     order.reverse();
     return order.flatMap(c => items.filter(p => p.collection === c));
+  }
+
+  let shuffleSeed = 0;
+
+  function seededShuffle(items) {
+    const arr = [...items];
+    let s = shuffleSeed || 1;
+    const rand = () => {
+      s = (s * 9301 + 49297) % 233280;
+      return s / 233280;
+    };
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(rand() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
   }
 
   function interleaveByCollection(items) {
@@ -283,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleLabel = filtersContainer.querySelector('.filters__current');
     const activeBtn = filtersContainer.querySelector(`.filters__btn[data-filter="${filter}"]`);
     if (toggleLabel && activeBtn) {
-      toggleLabel.textContent = filter === 'all' ? 'All Collections' : activeBtn.textContent;
+      toggleLabel.textContent = activeBtn.textContent;
     }
 
     const menu = document.getElementById('filters-menu');
@@ -292,7 +309,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (toggle) toggle.setAttribute('aria-expanded', 'false');
 
     const baseFiltered = photos.filter(p => !p.hero).filter(filterMap[filter] || filterMap.all);
-    const filtered = filter === 'favorites' ? interleaveByCollection(baseFiltered) : sortByCollectionReverse(baseFiltered);
+    let filtered;
+    if (filter === 'favorites') {
+      filtered = interleaveByCollection(baseFiltered);
+    } else if (filter === 'shuffled') {
+      if (!shuffleSeed) shuffleSeed = Math.floor(Date.now() % 1000000);
+      filtered = seededShuffle(baseFiltered);
+    } else {
+      filtered = sortByCollectionReverse(baseFiltered);
+    }
     galleryPhotos = filtered;
     renderGallery(filtered);
     observeGallery();
@@ -420,7 +445,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── Notes / Guestbook ───
 
   const collectionDisplayNames = {
-    'all': 'All',
+    'all': 'All (Ordered)',
+    'shuffled': 'All (Shuffled)',
     'favorites': 'Favorites',
     'highway-1': 'Highway 1, CA',
     'apple-park': 'Apple Park - Cupertino, CA',
