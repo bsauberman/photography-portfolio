@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const btn = filtersContainer.querySelector(`[data-filter="${initialFilter}"]`);
       if (btn) { btn.click(); return; }
 
-      galleryPhotos = sortByCollectionReverse(photos.filter(p => !p.hero));
+      galleryPhotos = clusterTallPairs(sortByCollectionReverse(photos.filter(p => !p.hero)));
       renderGallery(galleryPhotos);
       observeGallery();
     });
@@ -251,6 +251,25 @@ document.addEventListener('DOMContentLoaded', () => {
     return arr;
   }
 
+  // Pull tall photos into pairs. If a tall is followed by a non-tall,
+  // hunt ahead for the next tall and bring it adjacent (non-talls between
+  // shift to just after the pair). Preserves order otherwise.
+  function clusterTallPairs(items) {
+    const result = [];
+    const remaining = [...items];
+    while (remaining.length > 0) {
+      const photo = remaining.shift();
+      result.push(photo);
+      if ((photo.size || 'medium') === 'tall') {
+        const nextTallIdx = remaining.findIndex(p => (p.size || 'medium') === 'tall');
+        if (nextTallIdx !== -1) {
+          result.push(remaining.splice(nextTallIdx, 1)[0]);
+        }
+      }
+    }
+    return result;
+  }
+
   function interleaveByCollection(items) {
     const groups = {};
     for (const p of items) {
@@ -318,6 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       filtered = sortByCollectionReverse(baseFiltered);
     }
+    filtered = clusterTallPairs(filtered);
     galleryPhotos = filtered;
     renderGallery(filtered);
     observeGallery();
