@@ -92,6 +92,32 @@ body {
   color: var(--color-text-light);
 }
 
+.nav__item--dropdown {
+  position: relative;
+}
+
+.nav__dropdown {
+  position: absolute;
+  top: calc(100% + 16px);
+  right: 0;
+  min-width: 320px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  display: none;
+  flex-direction: column;
+  z-index: 110;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.nav__dropdown--open {
+  display: flex;
+}
+
+.nav__dropdown .filters__btn {
+  padding: 14px 20px;
+  text-align: left;
+}
+
 .nav__hamburger {
   display: none;
   flex-direction: column;
