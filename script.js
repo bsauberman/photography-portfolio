@@ -83,10 +83,44 @@ document.addEventListener('DOMContentLoaded', () => {
   let galleryPhotos = [];
   let currentLightboxIndex = -1;
 
+  const seriesMembers = {
+    'series-water': [
+      'op-1440', 'il-ice-lake', 'il-meadow', 'cb-glacial-lake', 'cb-left-twin',
+      'op-1543', 'op-1476', 'op-1528', 'op-1494', 'il-island-lake',
+      'il-island-overlook', 'bv-cottonwood'
+    ],
+    'series-wildlife': [
+      'bv-goat-outcrop', 'bv-goats-pair', 'bv-goat-sky', 'bv-goat-trees',
+      'bv-bighorns', 'oc-seagulls', 'oc-seagull', 'oc-sandpiper',
+      'op-1537', 'sq-1688', 'cb-camp-1', 'cb-camp-2'
+    ],
+    'series-ascent': [
+      'bv-summit-silhouette', 'bv-descending', 'oc-canyon', 'oc-switchbacks',
+      'il-approach', 'mt-meadow-trail', 'mt-trail-rocks', 'sb-trailhead',
+      'op-1246', 'sq-1666', 'fl-flatiron', 'fl-boulder-overlook'
+    ],
+  };
+
+  const seriesInfo = {
+    'series-water': {
+      label: 'Where Water Sits Still',
+      note: 'Alpine tarns, glacial lakes, and the pockets of stillness found above treeline.',
+    },
+    'series-wildlife': {
+      label: 'The Ones Watching',
+      note: 'Encounters where the camera wasn\'t the only thing paying attention.',
+    },
+    'series-ascent': {
+      label: 'On the Way Up',
+      note: 'The approach — trails, switchbacks, and the quiet miles before the view.',
+    },
+  };
+
   fetch('photos.json')
     .then(r => r.json())
     .then(data => {
       photos = data;
+      rotateHero();
       initMap();
 
       const initialFilter = getCollectionFromPath();
@@ -97,6 +131,114 @@ document.addEventListener('DOMContentLoaded', () => {
       renderGallery(galleryPhotos);
       observeGallery();
     });
+
+  function rotateHero() {
+    const heroImg = document.querySelector('.hero__image');
+    if (!heroImg) return;
+    const pool = photos.filter(p => p.favorite && (p.size === 'full' || p.size === 'wide'));
+    if (pool.length === 0) return;
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    heroImg.src = pick.fileFull || pick.file;
+    heroImg.alt = pick.title || 'Hero photo';
+  }
+
+  function updateSeriesNote(filter) {
+    const info = seriesInfo[filter];
+    let note = document.getElementById('series-note');
+    const workSection = document.getElementById('work');
+    if (info) {
+      if (!note) {
+        note = document.createElement('div');
+        note.id = 'series-note';
+        note.className = 'series-note';
+        const gallery = document.getElementById('gallery');
+        gallery.parentNode.insertBefore(note, gallery);
+      }
+      note.innerHTML = `
+        <p class="series-note__label">Series</p>
+        <p class="series-note__title">${info.label}</p>
+        <p class="series-note__body">${info.note}</p>
+      `;
+      note.style.display = 'block';
+    } else if (note) {
+      note.style.display = 'none';
+    }
+  }
+
+  function groupDropdownByMonth(menu) {
+    if (!menu) return;
+    const monthName = (num) => ['January','February','March','April','May','June','July','August','September','October','November','December'][num - 1];
+    // Match "Mmm DD" or "Mmm DD-DD" or "Mmm DD - Mmm DD" at start of label
+    const monthMap = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
+    const buttons = Array.from(menu.querySelectorAll('.filters__btn'));
+    const dated = [];
+    const meta = [];
+    buttons.forEach(b => {
+      const m = b.textContent.trim().match(/^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/);
+      if (m) dated.push({ btn: b, month: monthMap[m[1]] });
+      else meta.push(b);
+    });
+    let lastMonth = null;
+    dated.forEach(({ btn, month }) => {
+      if (month !== lastMonth) {
+        const header = document.createElement('div');
+        header.className = 'filters__month-header';
+        header.textContent = monthName(month) + " '26";
+        menu.insertBefore(header, btn);
+        lastMonth = month;
+      }
+    });
+  }
+  // apply once nav dropdown clones exist too
+  const initialMenu = document.getElementById('filters-menu');
+  if (initialMenu) {
+    // Inject series buttons above the dated collections (below Favorites/All)
+    const firstDated = Array.from(initialMenu.querySelectorAll('.filters__btn'))
+      .find(b => /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/.test(b.textContent.trim()));
+    const seriesHeader = document.createElement('div');
+    seriesHeader.className = 'filters__month-header';
+    seriesHeader.textContent = 'Series';
+    if (firstDated) initialMenu.insertBefore(seriesHeader, firstDated);
+    else initialMenu.appendChild(seriesHeader);
+    Object.entries(seriesInfo).forEach(([id, info]) => {
+      const btn = document.createElement('button');
+      btn.className = 'filters__btn';
+      btn.dataset.filter = id;
+      btn.textContent = info.label;
+      if (firstDated) initialMenu.insertBefore(btn, firstDated);
+      else initialMenu.appendChild(btn);
+    });
+    groupDropdownByMonth(initialMenu);
+  }
+
+  // Dark mode toggle — injected into nav next to Notes, remembers preference
+  (function initTheme() {
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark') document.body.classList.add('dark');
+
+    const notesLink = document.querySelector('.nav a[href="#notes"]');
+    if (!notesLink) return;
+    const li = document.createElement('li');
+    li.className = 'nav__theme-item';
+    const toggle = document.createElement('button');
+    toggle.className = 'theme-toggle';
+    toggle.setAttribute('aria-label', 'Toggle dark mode');
+    toggle.innerHTML = `
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+      </svg>
+    `;
+    toggle.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    li.appendChild(toggle);
+    notesLink.parentElement.parentElement.appendChild(li);
+  })();
 
   function renderGallery(items) {
     gallery.innerHTML = '';
@@ -220,6 +362,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'olympic-np': p => p.collection === 'olympic-np',
     'squamish': p => p.collection === 'squamish',
     'vancouver': p => p.collection === 'vancouver',
+    'series-water': p => seriesMembers['series-water'].includes(p.id),
+    'series-wildlife': p => seriesMembers['series-wildlife'].includes(p.id),
+    'series-ascent': p => seriesMembers['series-ascent'].includes(p.id),
   };
 
   function sortByCollectionReverse(items) {
@@ -341,6 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
     galleryPhotos = filtered;
     renderGallery(filtered);
     observeGallery();
+    updateSeriesNote(filter);
   });
 
   window.addEventListener('popstate', () => {
@@ -382,6 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
       navDropdown.appendChild(clone);
     });
     navItem.appendChild(navDropdown);
+    groupDropdownByMonth(navDropdown);
 
     photoLink.setAttribute('aria-expanded', 'false');
     // Replace the anchor's own click behavior with the dropdown toggle
@@ -522,6 +669,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'olympic-np': 'Seven Lakes Basin - Olympic NP, WA',
     'squamish': 'Squamish, BC',
     'vancouver': 'Vancouver, BC',
+    'series-water': 'Where Water Sits Still',
+    'series-wildlife': 'The Ones Watching',
+    'series-ascent': 'On the Way Up',
   };
 
   function renderNote(data) {
@@ -674,7 +824,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'chicago-basin': "Jun 19-20 '26 — Chicago Basin",
     'ice-lake': "Jun 22 '26 — Ice & Island Lakes",
     'olympic-np': "Jun 28-30 '26 — Seven Lakes Basin",
-    'squamish': "Jun 30 - Jul 4 '26 — Squamish, BC",
+    'squamish': "Jul 1-4 '26 — Squamish, BC",
     'vancouver': "Jul 5 '26 — Vancouver, BC",
   };
 
