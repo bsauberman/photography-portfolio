@@ -83,38 +83,44 @@ document.addEventListener('DOMContentLoaded', () => {
   let galleryPhotos = [];
   let currentLightboxIndex = -1;
 
-  const seriesMembers = {
-    'series-water': [
-      'op-1440', 'il-ice-lake', 'il-meadow', 'cb-glacial-lake', 'cb-left-twin',
-      'op-1543', 'op-1476', 'op-1528', 'op-1494', 'il-island-lake',
-      'il-island-overlook', 'bv-cottonwood'
-    ],
-    'series-wildlife': [
-      'bv-goat-outcrop', 'bv-goats-pair', 'bv-goat-sky', 'bv-goat-trees',
-      'bv-bighorns', 'oc-seagulls', 'oc-seagull', 'oc-sandpiper',
-      'op-1537', 'sq-1688', 'cb-camp-1', 'cb-camp-2'
-    ],
-    'series-ascent': [
-      'bv-summit-silhouette', 'bv-descending', 'oc-canyon', 'oc-switchbacks',
-      'il-approach', 'mt-meadow-trail', 'mt-trail-rocks', 'sb-trailhead',
-      'op-1246', 'sq-1666', 'fl-flatiron', 'fl-boulder-overlook'
-    ],
-  };
+  // Series data — read from SITE_CONFIG if available, else fall back to inline lists.
+  const seriesMembers = (function () {
+    if (window.SITE_CONFIG) {
+      const out = {};
+      window.SITE_CONFIG.series.forEach(s => { out[s.id] = s.photoIds; });
+      return out;
+    }
+    return {
+      'series-water': [
+        'op-1440', 'il-ice-lake', 'il-meadow', 'cb-glacial-lake', 'cb-left-twin',
+        'op-1543', 'op-1476', 'op-1528', 'op-1494', 'il-island-lake',
+        'il-island-overlook', 'bv-cottonwood'
+      ],
+      'series-wildlife': [
+        'bv-goat-outcrop', 'bv-goats-pair', 'bv-goat-sky', 'bv-goat-trees',
+        'bv-bighorns', 'oc-seagulls', 'oc-seagull', 'oc-sandpiper',
+        'op-1537', 'sq-1688', 'cb-camp-1', 'cb-camp-2'
+      ],
+      'series-ascent': [
+        'bv-summit-silhouette', 'bv-descending', 'oc-canyon', 'oc-switchbacks',
+        'il-approach', 'mt-meadow-trail', 'mt-trail-rocks', 'sb-trailhead',
+        'op-1246', 'sq-1666', 'fl-flatiron', 'fl-boulder-overlook'
+      ],
+    };
+  })();
 
-  const seriesInfo = {
-    'series-water': {
-      label: 'Where Water Sits Still',
-      note: 'Alpine tarns, glacial lakes, and the pockets of stillness found above treeline.',
-    },
-    'series-wildlife': {
-      label: 'The Ones Watching',
-      note: 'Encounters where the camera wasn\'t the only thing paying attention.',
-    },
-    'series-ascent': {
-      label: 'On the Way Up',
-      note: 'The approach — trails, switchbacks, and the quiet miles before the view.',
-    },
-  };
+  const seriesInfo = (function () {
+    if (window.SITE_CONFIG) {
+      const out = {};
+      window.SITE_CONFIG.series.forEach(s => { out[s.id] = { label: s.label, note: s.note }; });
+      return out;
+    }
+    return {
+      'series-water':    { label: 'Where Water Sits Still', note: 'Alpine tarns, glacial lakes, and the pockets of stillness found above treeline.' },
+      'series-wildlife': { label: 'The Ones Watching',      note: "Encounters where the camera wasn't the only thing paying attention." },
+      'series-ascent':   { label: 'On the Way Up',          note: 'The approach — trails, switchbacks, and the quiet miles before the view.' },
+    };
+  })();
 
   fetch('photos.json')
     .then(r => r.json())
@@ -192,22 +198,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // apply once nav dropdown clones exist too
   const initialMenu = document.getElementById('filters-menu');
   if (initialMenu) {
-    // Inject series buttons above the dated collections (below Favorites/All)
-    const firstDated = Array.from(initialMenu.querySelectorAll('.filters__btn'))
-      .find(b => /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/.test(b.textContent.trim()));
-    const seriesHeader = document.createElement('div');
-    seriesHeader.className = 'filters__month-header';
-    seriesHeader.textContent = 'Series';
-    if (firstDated) initialMenu.insertBefore(seriesHeader, firstDated);
-    else initialMenu.appendChild(seriesHeader);
-    Object.entries(seriesInfo).forEach(([id, info]) => {
-      const btn = document.createElement('button');
-      btn.className = 'filters__btn';
-      btn.dataset.filter = id;
-      btn.textContent = info.label;
-      if (firstDated) initialMenu.insertBefore(btn, firstDated);
-      else initialMenu.appendChild(btn);
-    });
+    // Inject series buttons above the dated collections (below Favorites/All) — only if any exist
+    const seriesEntries = Object.entries(seriesInfo);
+    if (seriesEntries.length > 0) {
+      const firstDated = Array.from(initialMenu.querySelectorAll('.filters__btn'))
+        .find(b => /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/.test(b.textContent.trim()));
+      const seriesHeader = document.createElement('div');
+      seriesHeader.className = 'filters__month-header';
+      seriesHeader.textContent = 'Series';
+      if (firstDated) initialMenu.insertBefore(seriesHeader, firstDated);
+      else initialMenu.appendChild(seriesHeader);
+      seriesEntries.forEach(([id, info]) => {
+        const btn = document.createElement('button');
+        btn.className = 'filters__btn';
+        btn.dataset.filter = id;
+        btn.textContent = info.label;
+        if (firstDated) initialMenu.insertBefore(btn, firstDated);
+        else initialMenu.appendChild(btn);
+      });
+    }
     groupDropdownByMonth(initialMenu);
   }
 
@@ -343,29 +352,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let activeCollection = 'all';
 
-  const filterMap = {
-    'all': () => true,
-    'shuffled': () => true,
-    'favorites': p => p.favorite === true,
-    'highway-1': p => p.collection === 'highway-1',
-    'apple-park': p => p.collection === 'apple-park',
-    'orange-county': p => p.collection === 'orange-county',
-    'south-boulder': p => p.collection === 'south-boulder',
-    'nyc': p => p.collection === 'nyc',
-    'buena-vista': p => p.collection === 'buena-vista',
-    'green-mtn': p => p.collection === 'green-mtn',
-    'eldorado': p => p.collection === 'eldorado',
-    'mesa-trail': p => p.collection === 'mesa-trail',
-    'flatirons': p => p.collection === 'flatirons',
-    'chicago-basin': p => p.collection === 'chicago-basin',
-    'ice-lake': p => p.collection === 'ice-lake',
-    'olympic-np': p => p.collection === 'olympic-np',
-    'squamish': p => p.collection === 'squamish',
-    'vancouver': p => p.collection === 'vancouver',
-    'series-water': p => seriesMembers['series-water'].includes(p.id),
-    'series-wildlife': p => seriesMembers['series-wildlife'].includes(p.id),
-    'series-ascent': p => seriesMembers['series-ascent'].includes(p.id),
-  };
+  // Build filterMap from SITE_CONFIG if available (source of truth); fall back to inline entries.
+  const filterMap = (function buildFilterMap() {
+    const map = {
+      'all': () => true,
+      'shuffled': () => true,
+      'favorites': p => p.favorite === true,
+    };
+    if (window.SITE_CONFIG) {
+      window.SITE_CONFIG.collections.forEach(c => {
+        map[c.id] = p => p.collection === c.id;
+      });
+      window.SITE_CONFIG.series.forEach(s => {
+        const ids = new Set(s.photoIds);
+        map[s.id] = p => ids.has(p.id);
+      });
+    } else {
+      // Legacy fallback — every route id explicitly listed.
+      Object.assign(map, {
+        'highway-1': p => p.collection === 'highway-1',
+        'apple-park': p => p.collection === 'apple-park',
+        'orange-county': p => p.collection === 'orange-county',
+        'south-boulder': p => p.collection === 'south-boulder',
+        'nyc': p => p.collection === 'nyc',
+        'buena-vista': p => p.collection === 'buena-vista',
+        'green-mtn': p => p.collection === 'green-mtn',
+        'eldorado': p => p.collection === 'eldorado',
+        'mesa-trail': p => p.collection === 'mesa-trail',
+        'flatirons': p => p.collection === 'flatirons',
+        'chicago-basin': p => p.collection === 'chicago-basin',
+        'ice-lake': p => p.collection === 'ice-lake',
+        'olympic-np': p => p.collection === 'olympic-np',
+        'squamish': p => p.collection === 'squamish',
+        'vancouver': p => p.collection === 'vancouver',
+        'series-water': p => seriesMembers['series-water'].includes(p.id),
+        'series-wildlife': p => seriesMembers['series-wildlife'].includes(p.id),
+        'series-ascent': p => seriesMembers['series-ascent'].includes(p.id),
+      });
+    }
+    return map;
+  })();
 
   function sortByCollectionReverse(items) {
     const order = [];
@@ -650,29 +676,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── Notes / Guestbook ───
 
-  const collectionDisplayNames = {
-    'all': 'All (Ordered)',
-    'shuffled': 'All (Shuffled)',
-    'favorites': 'Favorites',
-    'highway-1': 'Highway 1, CA',
-    'apple-park': 'Apple Park - Cupertino, CA',
-    'orange-county': 'Orange County, CA',
-    'south-boulder': 'South Boulder - Boulder, CO',
-    'nyc': 'New York, NY',
-    'buena-vista': 'Buena Vista, CO',
-    'green-mtn': 'Green Mountain - Boulder, CO',
-    'eldorado': 'Eldorado Canyon - Eldorado Springs, CO',
-    'mesa-trail': 'Mesa Trail - Boulder, CO',
-    'flatirons': 'Flatirons - Boulder, CO',
-    'chicago-basin': 'Chicago Basin - Silverton, CO',
-    'ice-lake': 'Ice & Island Lakes - Silverton, CO',
-    'olympic-np': 'Seven Lakes Basin - Olympic NP, WA',
-    'squamish': 'Squamish, BC',
-    'vancouver': 'Vancouver, BC',
-    'series-water': 'Where Water Sits Still',
-    'series-wildlife': 'The Ones Watching',
-    'series-ascent': 'On the Way Up',
-  };
+  const collectionDisplayNames = (function () {
+    const base = { 'all': 'All (Ordered)', 'shuffled': 'All (Shuffled)', 'favorites': 'Favorites' };
+    if (window.SITE_CONFIG) {
+      window.SITE_CONFIG.collections.forEach(c => { base[c.id] = c.displayName; });
+      window.SITE_CONFIG.series.forEach(s => { base[s.id] = s.label; });
+      return base;
+    }
+    return Object.assign(base, {
+      'highway-1': 'Highway 1, CA',
+      'apple-park': 'Apple Park - Cupertino, CA',
+      'orange-county': 'Orange County, CA',
+      'south-boulder': 'South Boulder - Boulder, CO',
+      'nyc': 'New York, NY',
+      'buena-vista': 'Buena Vista, CO',
+      'green-mtn': 'Green Mountain - Boulder, CO',
+      'eldorado': 'Eldorado Canyon - Eldorado Springs, CO',
+      'mesa-trail': 'Mesa Trail - Boulder, CO',
+      'flatirons': 'Flatirons - Boulder, CO',
+      'chicago-basin': 'Chicago Basin - Silverton, CO',
+      'ice-lake': 'Ice & Island Lakes - Silverton, CO',
+      'olympic-np': 'Seven Lakes Basin - Olympic NP, WA',
+      'squamish': 'Squamish, BC',
+      'vancouver': 'Vancouver, BC',
+      'series-water': 'Where Water Sits Still',
+      'series-wildlife': 'The Ones Watching',
+      'series-ascent': 'On the Way Up',
+    });
+  })();
 
   function renderNote(data) {
     const note = document.createElement('div');
@@ -784,49 +815,59 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.textContent = 'Post';
   });
 
-  // ─── Map ───
+  // Map pins — group collections that share coordinates (e.g. all Boulder-area shoots).
+  const mapLocations = (function () {
+    if (window.SITE_CONFIG) {
+      const byPlace = new Map();
+      window.SITE_CONFIG.collections.forEach(c => {
+        const key = `${c.coords[0].toFixed(3)},${c.coords[1].toFixed(3)}`;
+        if (!byPlace.has(key)) {
+          byPlace.set(key, { lat: c.coords[0], lng: c.coords[1], label: c.placeLabel, cat: c.cat, collections: [] });
+        }
+        byPlace.get(key).collections.push(c.id);
+      });
+      return Array.from(byPlace.values());
+    }
+    return [
+      { lat: 40.0150, lng: -105.2705, label: 'Boulder, CO', cat: 'boulder', collections: ['flatirons', 'mesa-trail', 'green-mtn', 'eldorado', 'south-boulder'] },
+      { lat: 38.8425, lng: -106.1311, label: 'Buena Vista, CO', cat: 'mountain', collections: ['buena-vista'] },
+      { lat: 37.8094, lng: -107.7723, label: 'Silverton, CO', cat: 'mountain', collections: ['ice-lake', 'chicago-basin'] },
+      { lat: 47.9683, lng: -123.4983, label: 'Olympic NP, WA', cat: 'pnw', collections: ['olympic-np'] },
+      { lat: 49.7016, lng: -123.1558, label: 'Squamish, BC', cat: 'pnw', collections: ['squamish'] },
+      { lat: 49.2827, lng: -123.1207, label: 'Vancouver, BC', cat: 'urban', collections: ['vancouver'] },
+      { lat: 37.1820, lng: -122.3933, label: 'Highway 1, CA', cat: 'coast', collections: ['highway-1'] },
+      { lat: 37.3349, lng: -122.0090, label: 'Cupertino, CA', cat: 'urban', collections: ['apple-park'] },
+      { lat: 33.4734, lng: -117.7136, label: 'Orange County, CA', cat: 'coast', collections: ['orange-county'] },
+      { lat: 40.7549, lng: -73.9840, label: 'New York, NY', cat: 'urban', collections: ['nyc'] },
+    ];
+  })();
 
-  // lat, lng, label, category (for pin color), collections it groups
-  const mapLocations = [
-    { lat: 40.0150, lng: -105.2705, label: 'Boulder, CO', cat: 'boulder',
-      collections: ['flatirons', 'mesa-trail', 'green-mtn', 'eldorado', 'south-boulder'] },
-    { lat: 38.8425, lng: -106.1311, label: 'Buena Vista, CO', cat: 'mountain',
-      collections: ['buena-vista'] },
-    { lat: 37.8094, lng: -107.7723, label: 'Silverton, CO', cat: 'mountain',
-      collections: ['ice-lake', 'chicago-basin'] },
-    { lat: 47.9683, lng: -123.4983, label: 'Olympic NP, WA', cat: 'pnw',
-      collections: ['olympic-np'] },
-    { lat: 49.7016, lng: -123.1558, label: 'Squamish, BC', cat: 'pnw',
-      collections: ['squamish'] },
-    { lat: 49.2827, lng: -123.1207, label: 'Vancouver, BC', cat: 'urban',
-      collections: ['vancouver'] },
-    { lat: 37.1820, lng: -122.3933, label: 'Highway 1, CA', cat: 'coast',
-      collections: ['highway-1'] },
-    { lat: 37.3349, lng: -122.0090, label: 'Cupertino, CA', cat: 'urban',
-      collections: ['apple-park'] },
-    { lat: 33.4734, lng: -117.7136, label: 'Orange County, CA', cat: 'coast',
-      collections: ['orange-county'] },
-    { lat: 40.7549, lng: -73.9840, label: 'New York, NY', cat: 'urban',
-      collections: ['nyc'] },
-  ];
-
-  const collectionLabels = {
-    'highway-1': "May 13 '26 — Highway 1, CA",
-    'apple-park': "May 14 '26 — Apple Park",
-    'orange-county': "May 16 '26 — Orange County, CA",
-    'south-boulder': "May 18 '26 — South Boulder",
-    'nyc': "May 22 '26 — New York, NY",
-    'buena-vista': "May 29-30 '26 — Buena Vista",
-    'green-mtn': "Jun 4 '26 — Green Mountain",
-    'eldorado': "Jun 7 '26 — Eldorado Canyon",
-    'mesa-trail': "Jun 10 '26 — Mesa Trail",
-    'flatirons': "Jun 14 '26 — Flatirons",
-    'chicago-basin': "Jun 19-20 '26 — Chicago Basin",
-    'ice-lake': "Jun 22 '26 — Ice & Island Lakes",
-    'olympic-np': "Jun 28-30 '26 — Seven Lakes Basin",
-    'squamish': "Jul 1-4 '26 — Squamish, BC",
-    'vancouver': "Jul 5 '26 — Vancouver, BC",
-  };
+  const collectionLabels = (function () {
+    if (window.SITE_CONFIG) {
+      const out = {};
+      window.SITE_CONFIG.collections.forEach(c => {
+        out[c.id] = `${c.dateLabel} — ${c.placeLabel}`;
+      });
+      return out;
+    }
+    return {
+      'highway-1': "May 13 '26 — Highway 1, CA",
+      'apple-park': "May 14 '26 — Apple Park",
+      'orange-county': "May 16 '26 — Orange County, CA",
+      'south-boulder': "May 18 '26 — South Boulder",
+      'nyc': "May 22 '26 — New York, NY",
+      'buena-vista': "May 29-30 '26 — Buena Vista",
+      'green-mtn': "Jun 4 '26 — Green Mountain",
+      'eldorado': "Jun 7 '26 — Eldorado Canyon",
+      'mesa-trail': "Jun 10 '26 — Mesa Trail",
+      'flatirons': "Jun 14 '26 — Flatirons",
+      'chicago-basin': "Jun 19-20 '26 — Chicago Basin",
+      'ice-lake': "Jun 22 '26 — Ice & Island Lakes",
+      'olympic-np': "Jun 28-30 '26 — Seven Lakes Basin",
+      'squamish': "Jul 1-4 '26 — Squamish, BC",
+      'vancouver': "Jul 5 '26 — Vancouver, BC",
+    };
+  })();
 
   function navigateToCollection(filter) {
     const btn = filtersContainer.querySelector(`[data-filter="${filter}"]`);

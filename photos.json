@@ -1771,5 +1771,139 @@
     "date": "Jul 5 2026",
     "camera": "f/7.1, 1/1600s, ISO 640",
     "size": "tall"
+  },
+  {
+    "id": "mc-flatirons",
+    "file": "images/mallory-cave/DSCF1955-thumb.webp",
+    "fileFull": "images/mallory-cave/DSCF1955-full.webp",
+    "collection": "mallory-cave",
+    "title": "Flatirons from NCAR",
+    "location": "Mallory Cave, Boulder",
+    "date": "Jul 10 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "mc-face",
+    "file": "images/mallory-cave/DSCF1956-thumb.webp",
+    "fileFull": "images/mallory-cave/DSCF1956-full.webp",
+    "collection": "mallory-cave",
+    "title": "Flatiron Face",
+    "location": "Mallory Cave, Boulder",
+    "date": "Jul 10 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "mc-cave",
+    "file": "images/mallory-cave/DSCF1964-thumb.webp",
+    "fileFull": "images/mallory-cave/DSCF1964-full.webp",
+    "collection": "mallory-cave",
+    "title": "Mallory Cave",
+    "location": "Mallory Cave, Boulder",
+    "date": "Jul 10 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "ml-below-ridge",
+    "file": "images/missouri-lakes/DSCF1992-thumb.webp",
+    "fileFull": "images/missouri-lakes/DSCF1992-full.webp",
+    "collection": "missouri-lakes",
+    "title": "Fancy Lake",
+    "location": "Missouri Lakes, Holy Cross Wilderness",
+    "date": "Jul 11-12 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "ml-emerald",
+    "file": "images/missouri-lakes/DSCF1999-thumb.webp",
+    "fileFull": "images/missouri-lakes/DSCF1999-full.webp",
+    "collection": "missouri-lakes",
+    "title": "Emerald & Fancy (Fancy Lake)",
+    "location": "Missouri Lakes, Holy Cross Wilderness",
+    "date": "Jul 11-12 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "ml-from-pass",
+    "file": "images/missouri-lakes/DSCF2017-thumb.webp",
+    "fileFull": "images/missouri-lakes/DSCF2017-full.webp",
+    "collection": "missouri-lakes",
+    "title": "Treasure from the Pass",
+    "location": "Missouri Pass, Holy Cross Wilderness",
+    "date": "Jul 11-12 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall",
+    "favorite": true
+  },
+  {
+    "id": "ml-descent",
+    "file": "images/missouri-lakes/DSCF2032-thumb.webp",
+    "fileFull": "images/missouri-lakes/DSCF2032-full.webp",
+    "collection": "missouri-lakes",
+    "title": "Descent",
+    "location": "Missouri Pass, Holy Cross Wilderness",
+    "date": "Jul 11-12 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "wide",
+    "favorite": true
+  },
+  {
+    "id": "ml-peak-tarn",
+    "file": "images/missouri-lakes/DSCF2038-thumb.webp",
+    "fileFull": "images/missouri-lakes/DSCF2038-full.webp",
+    "collection": "missouri-lakes",
+    "title": "Peak Above Treasure Vault",
+    "location": "Missouri Lakes, Holy Cross Wilderness",
+    "date": "Jul 11-12 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "wide"
+  },
+  {
+    "id": "ml-basin-tarn",
+    "file": "images/missouri-lakes/DSCF2044-thumb.webp",
+    "fileFull": "images/missouri-lakes/DSCF2044-full.webp",
+    "collection": "missouri-lakes",
+    "title": "Treasure Vault Lake",
+    "location": "Missouri Lakes, Holy Cross Wilderness",
+    "date": "Jul 11-12 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "ml-sunset-camp",
+    "file": "images/missouri-lakes/DSCF2063-thumb.webp",
+    "fileFull": "images/missouri-lakes/DSCF2063-full.webp",
+    "collection": "missouri-lakes",
+    "title": "Sunset at Camp",
+    "location": "Missouri Lakes, Holy Cross Wilderness",
+    "date": "Jul 11-12 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "full"
+  },
+  {
+    "id": "ml-lake-pines",
+    "file": "images/missouri-lakes/DSCF2076-thumb.webp",
+    "fileFull": "images/missouri-lakes/DSCF2076-full.webp",
+    "collection": "missouri-lakes",
+    "title": "Missouri Lake",
+    "location": "Missouri Lakes, Holy Cross Wilderness",
+    "date": "Jul 11-12 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "ml-wildflower-shore",
+    "file": "images/missouri-lakes/DSCF2078-thumb.webp",
+    "fileFull": "images/missouri-lakes/DSCF2078-full.webp",
+    "collection": "missouri-lakes",
+    "title": "Wildflower Shore",
+    "location": "Missouri Lakes, Holy Cross Wilderness",
+    "date": "Jul 11-12 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
   }
 ]
