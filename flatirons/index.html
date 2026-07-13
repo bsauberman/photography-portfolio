@@ -12,135 +12,14 @@
   <meta property="og:url" content="https://bensauberman.com/flatirons" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <nav class="nav nav--hero">
-    <a href="#" class="nav__name">Ben Sauberman</a>
-    <ul class="nav__links">
-      <li><a href="#work">Photography</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#notes">Notes</a></li>
-    </ul>
-    <button class="nav__hamburger" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-nav">
-    <a href="#work">Photography</a>
-    <a href="#about">About</a>
-    <a href="#notes">Notes</a>
-  </div>
-
-  <section class="hero">
-    <img class="hero__image" src="images/hero.webp" alt="Pacific Coast" onerror="this.outerHTML='<div class=\'hero__placeholder\'>Add hero.webp to /images</div>'" />
-    <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <h1 class="hero__title">Ben Sauberman</h1>
-      <p class="hero__subtitle">Landscape &amp; Trail Photography</p>
-    </div>
-    <div class="hero__scroll">
-      <span>Scroll</span>
-      <div class="hero__scroll-line"></div>
-    </div>
-  </section>
-
-  <section id="work" class="section">
-    <p class="section__label">Selected Work</p>
-    <div class="filters">
-      <button class="filters__toggle" id="filters-toggle" aria-expanded="false">
-        <span class="filters__current">All Collections</span>
-        <span class="filters__chevron"></span>
-      </button>
-      <div class="filters__menu" id="filters-menu">
-        <button class="filters__btn" data-filter="favorites">Favorites</button>
-        <button class="filters__btn filters__btn--active" data-filter="all">All (Ordered)</button>
-        <button class="filters__btn" data-filter="shuffled">All (Shuffled)</button>
-        <button class="filters__btn" data-filter="missouri-lakes">Jul 11-12 '26 - Missouri Lakes - Holy Cross Wilderness, CO</button>
-        <button class="filters__btn" data-filter="mallory-cave">Jul 10 '26 - Mallory Cave - Boulder, CO</button>
-        <button class="filters__btn" data-filter="vancouver">Jul 5 '26 - Vancouver, BC</button>
-        <button class="filters__btn" data-filter="squamish">Jul 1-4 '26 - Squamish, BC</button>
-        <button class="filters__btn" data-filter="olympic-np">Jun 28-30 '26 - Seven Lakes Basin - Olympic NP, WA</button>
-        <button class="filters__btn" data-filter="ice-lake">Jun 22 '26 - Ice &amp; Island Lakes - Silverton, CO</button>
-        <button class="filters__btn" data-filter="chicago-basin">Jun 19-20 '26 - Chicago Basin - Silverton, CO</button>
-        <button class="filters__btn" data-filter="flatirons">Jun 14 '26 - Flatirons - Boulder, CO</button>
-        <button class="filters__btn" data-filter="mesa-trail">Jun 10 '26 - Mesa Trail - Boulder, CO</button>
-        <button class="filters__btn" data-filter="eldorado">Jun 7 '26 - Eldorado Canyon - Eldorado Springs, CO</button>
-        <button class="filters__btn" data-filter="green-mtn">Jun 4 '26 - Green Mountain - Boulder, CO</button>
-        <button class="filters__btn" data-filter="buena-vista">May 29-30 '26 - Buena Vista, CO</button>
-        <button class="filters__btn" data-filter="nyc">May 22 '26 - New York, NY</button>
-        <button class="filters__btn" data-filter="south-boulder">May 18 '26 - South Boulder - Boulder, CO</button>
-        <button class="filters__btn" data-filter="orange-county">May 16 '26 - Orange County, CA</button>
-        <button class="filters__btn" data-filter="apple-park">May 14 '26 - Apple Park - Cupertino, CA</button>
-        <button class="filters__btn" data-filter="highway-1">May 13 '26 - Highway 1, CA</button>
-      </div>
-    </div>
-    <div id="gallery" class="gallery"></div>
-  </section>
-
-  <section id="about" class="section about">
-    <p class="section__label">About</p>
-    <div class="about__inner">
-      <a class="about__photo-link" href="images/highway-1/DSCF9292-full.webp" target="_blank">
-        <img class="about__photo" src="images/highway-1/DSCF9292-thumb.webp" alt="Ben Sauberman" loading="lazy" />
-      </a>
-      <div>
-        <p class="about__text">
-          Ben Sauberman is a software engineer and outdoor enthusiast based in Boulder, Colorado.
-          He shoots on a Fujifilm X-E4 with a 27mm pancake lens; a compact setup to capture
-          adventures on the trail and road.
-        </p>
-        <p class="about__gear">Fujifilm X-E4 · Fujinon XF 27mm F2.8 R WR</p>
-        <p class="about__follow">Follow along on Instagram <a class="about__follow-link" href="https://instagram.com/bensauberman" target="_blank" rel="noopener">@bensauberman</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section id="notes" class="section notes">
-    <p class="section__label">Notes</p>
-    <form class="notes__form" id="notes-form">
-      <input class="notes__input notes__input--name" type="text" placeholder="Your name" maxlength="50" />
-      <textarea class="notes__input notes__input--message" placeholder="Leave a note..." maxlength="500" rows="3"></textarea>
-      <button class="notes__submit" type="submit">Post</button>
-    </form>
-    <div class="notes__list" id="notes-list"></div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <span class="footer__copy">&copy; 2026 Ben Sauberman</span>
-        <span class="footer__tagline">Shot on Fujifilm X-E4</span>
-      </div>
-      <a class="footer__link" href="mailto:bsauberman@gmail.com">bsauberman@gmail.com</a>
-      <a class="footer__link" href="https://instagram.com/bensauberman" target="_blank" rel="noopener">@bensauberman</a>
-    </div>
-  </footer>
-
-  <div class="lightbox">
-    <button class="lightbox__close">&times;</button>
-    <button class="lightbox__nav lightbox__nav--prev">&lsaquo;</button>
-    <div class="lightbox__content">
-      <img class="lightbox__img" src="" alt="" />
-      <div class="lightbox__info">
-        <p class="lightbox__title"></p>
-        <p class="lightbox__details"></p>
-        <button class="lightbox__like" id="lightbox-like">
-          <svg class="lightbox__like-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-          <span class="lightbox__like-count" id="lightbox-like-count"></span>
-        </button>
-      </div>
-    </div>
-    <button class="lightbox__nav lightbox__nav--next">&rsaquo;</button>
-  </div>
-
+  <div id="app"></div>
   <script src="site-config.js"></script>
+  <script src="templates.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="firebase-config.js"></script>
   <script type="module" src="script.js"></script>
 </body>
