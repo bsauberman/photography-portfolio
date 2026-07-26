@@ -1905,5 +1905,140 @@
     "date": "Jul 11-12 2026",
     "camera": "27mm · Classic Negative",
     "size": "tall"
+  },
+  {
+    "id": "cz-penguins",
+    "file": "images/cheyenne-mtn-zoo/DSCF2089-thumb.webp",
+    "fileFull": "images/cheyenne-mtn-zoo/DSCF2089-full.webp",
+    "collection": "cheyenne-mtn-zoo",
+    "title": "African Penguins",
+    "location": "Cheyenne Mountain Zoo, Colorado Springs",
+    "date": "Jul 18 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "cz-hippo",
+    "file": "images/cheyenne-mtn-zoo/DSCF2104-thumb.webp",
+    "fileFull": "images/cheyenne-mtn-zoo/DSCF2104-full.webp",
+    "collection": "cheyenne-mtn-zoo",
+    "title": "Behind the Bars",
+    "location": "Cheyenne Mountain Zoo, Colorado Springs",
+    "date": "Jul 18 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "cz-elephant",
+    "file": "images/cheyenne-mtn-zoo/DSCF2120-thumb.webp",
+    "fileFull": "images/cheyenne-mtn-zoo/DSCF2120-full.webp",
+    "collection": "cheyenne-mtn-zoo",
+    "title": "Reaching",
+    "location": "Cheyenne Mountain Zoo, Colorado Springs",
+    "date": "Jul 18 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "cz-feeding",
+    "file": "images/cheyenne-mtn-zoo/DSCF2132-thumb.webp",
+    "fileFull": "images/cheyenne-mtn-zoo/DSCF2132-full.webp",
+    "collection": "cheyenne-mtn-zoo",
+    "title": "Feeding the Giraffes",
+    "location": "Cheyenne Mountain Zoo, Colorado Springs",
+    "date": "Jul 18 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall",
+    "favorite": true
+  },
+  {
+    "id": "cz-giraffe",
+    "file": "images/cheyenne-mtn-zoo/DSCF2146-thumb.webp",
+    "fileFull": "images/cheyenne-mtn-zoo/DSCF2146-full.webp",
+    "collection": "cheyenne-mtn-zoo",
+    "title": "Long Neck",
+    "location": "Cheyenne Mountain Zoo, Colorado Springs",
+    "date": "Jul 18 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "cr-lower",
+    "file": "images/crater-lakes/DSCF2160-thumb.webp",
+    "fileFull": "images/crater-lakes/DSCF2160-full.webp",
+    "collection": "crater-lakes",
+    "title": "Lower Crater Lake",
+    "location": "Crater Lakes, James Peak Wilderness",
+    "date": "Jul 26 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "wide"
+  },
+  {
+    "id": "cr-twin-basin",
+    "file": "images/crater-lakes/DSCF2166-thumb.webp",
+    "fileFull": "images/crater-lakes/DSCF2166-full.webp",
+    "collection": "crater-lakes",
+    "title": "Two Lakes, One Basin",
+    "location": "Crater Lakes, James Peak Wilderness",
+    "date": "Jul 26 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "full",
+    "favorite": true
+  },
+  {
+    "id": "cr-headwall",
+    "file": "images/crater-lakes/DSCF2169-thumb.webp",
+    "fileFull": "images/crater-lakes/DSCF2169-full.webp",
+    "collection": "crater-lakes",
+    "title": "Headwall",
+    "location": "Crater Lakes, James Peak Wilderness",
+    "date": "Jul 26 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "cr-scree",
+    "file": "images/crater-lakes/DSCF2172-thumb.webp",
+    "fileFull": "images/crater-lakes/DSCF2172-full.webp",
+    "collection": "crater-lakes",
+    "title": "Scree Above the Water",
+    "location": "Crater Lakes, James Peak Wilderness",
+    "date": "Jul 26 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "cr-ridgeline",
+    "file": "images/crater-lakes/DSCF2175-thumb.webp",
+    "fileFull": "images/crater-lakes/DSCF2175-full.webp",
+    "collection": "crater-lakes",
+    "title": "Ridgeline",
+    "location": "Crater Lakes, James Peak Wilderness",
+    "date": "Jul 26 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "cr-upper",
+    "file": "images/crater-lakes/DSCF2177-thumb.webp",
+    "fileFull": "images/crater-lakes/DSCF2177-full.webp",
+    "collection": "crater-lakes",
+    "title": "Upper Crater Lake",
+    "location": "Crater Lakes, James Peak Wilderness",
+    "date": "Jul 26 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall",
+    "favorite": true
+  },
+  {
+    "id": "cr-descent",
+    "file": "images/crater-lakes/DSCF2178-thumb.webp",
+    "fileFull": "images/crater-lakes/DSCF2178-full.webp",
+    "collection": "crater-lakes",
+    "title": "Looking Back",
+    "location": "Crater Lakes, James Peak Wilderness",
+    "date": "Jul 26 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
   }
 ]

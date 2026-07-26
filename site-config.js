@@ -24,6 +24,8 @@ const SITE_CONFIG = {
     { id: 'vancouver',    dateLabel: "Jul 5 '26",     placeLabel: "Vancouver, BC",                  displayName: "Vancouver, BC",                     coords: [49.2827, -123.1207], cat: 'urban' },
     { id: 'mallory-cave', dateLabel: "Jul 10 '26",    placeLabel: "Mallory Cave - Boulder, CO",     displayName: "Mallory Cave - Boulder, CO",        coords: [40.0150, -105.2705], cat: 'boulder' },
     { id: 'missouri-lakes', dateLabel: "Jul 11-12 '26", placeLabel: "Missouri Lakes - Holy Cross Wilderness, CO", displayName: "Missouri Lakes - Holy Cross Wilderness, CO", coords: [39.4430, -106.4830], cat: 'mountain' },
+    { id: 'cheyenne-mtn-zoo', dateLabel: "Jul 18 '26", placeLabel: "Cheyenne Mountain Zoo - Colorado Springs, CO", displayName: "Cheyenne Mountain Zoo - Colorado Springs, CO", coords: [38.7639, -104.8547], cat: 'urban' },
+    { id: 'crater-lakes',   dateLabel: "Jul 26 '26",    placeLabel: "Crater Lakes - James Peak Wilderness, CO", displayName: "Crater Lakes - James Peak Wilderness, CO", coords: [39.9089, -105.6672], cat: 'mountain' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───
