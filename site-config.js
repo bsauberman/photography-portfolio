@@ -26,6 +26,7 @@ const SITE_CONFIG = {
     { id: 'missouri-lakes', dateLabel: "Jul 11-12 '26", placeLabel: "Missouri Lakes - Holy Cross Wilderness, CO", displayName: "Missouri Lakes - Holy Cross Wilderness, CO", coords: [39.4430, -106.4830], cat: 'mountain' },
     { id: 'cheyenne-mtn-zoo', dateLabel: "Jul 18 '26", placeLabel: "Cheyenne Mountain Zoo - Colorado Springs, CO", displayName: "Cheyenne Mountain Zoo - Colorado Springs, CO", coords: [38.7639, -104.8547], cat: 'urban' },
     { id: 'crater-lakes',   dateLabel: "Jul 26 '26",    placeLabel: "Crater Lakes - James Peak Wilderness, CO", displayName: "Crater Lakes - James Peak Wilderness, CO", coords: [39.9089, -105.6672], cat: 'mountain' },
+    { id: 'isabelle-lake',  dateLabel: "Jul 30 '26",    placeLabel: "Lake Isabelle - Indian Peaks Wilderness, CO", displayName: "Lake Isabelle - Indian Peaks Wilderness, CO", coords: [40.0733, -105.6167], cat: 'mountain' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───

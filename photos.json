@@ -1948,8 +1948,7 @@
     "location": "Cheyenne Mountain Zoo, Colorado Springs",
     "date": "Jul 18 2026",
     "camera": "27mm · Classic Negative",
-    "size": "tall",
-    "favorite": true
+    "size": "tall"
   },
   {
     "id": "cz-giraffe",
@@ -1982,8 +1981,7 @@
     "location": "Crater Lakes, James Peak Wilderness",
     "date": "Jul 26 2026",
     "camera": "27mm · Classic Negative",
-    "size": "full",
-    "favorite": true
+    "size": "full"
   },
   {
     "id": "cr-headwall",
@@ -2038,6 +2036,51 @@
     "title": "Looking Back",
     "location": "Crater Lakes, James Peak Wilderness",
     "date": "Jul 26 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "is-mitchell-view",
+    "file": "images/isabelle-lake/DSCF2180-thumb.webp",
+    "fileFull": "images/isabelle-lake/DSCF2180-full.webp",
+    "collection": "isabelle-lake",
+    "title": "Cloud Over the Divide",
+    "location": "Brainard Lake, Indian Peaks Wilderness",
+    "date": "Jul 30 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "is-boulder-field",
+    "file": "images/isabelle-lake/DSCF2193-thumb.webp",
+    "fileFull": "images/isabelle-lake/DSCF2193-full.webp",
+    "collection": "isabelle-lake",
+    "title": "Granite and Spruce",
+    "location": "Lake Isabelle, Indian Peaks Wilderness",
+    "date": "Jul 30 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "full"
+  },
+  {
+    "id": "is-fireweed",
+    "file": "images/isabelle-lake/DSCF2197-thumb.webp",
+    "fileFull": "images/isabelle-lake/DSCF2197-full.webp",
+    "collection": "isabelle-lake",
+    "title": "Morning Clouds Over Lake Isabelle",
+    "location": "Lake Isabelle, Indian Peaks Wilderness",
+    "date": "Jul 30 2026",
+    "camera": "27mm · Classic Negative",
+    "size": "full",
+    "favorite": true
+  },
+  {
+    "id": "is-shoreline",
+    "file": "images/isabelle-lake/DSCF2211-thumb.webp",
+    "fileFull": "images/isabelle-lake/DSCF2211-full.webp",
+    "collection": "isabelle-lake",
+    "title": "Trail Along the Shore",
+    "location": "Lake Isabelle, Indian Peaks Wilderness",
+    "date": "Jul 30 2026",
     "camera": "27mm · Classic Negative",
     "size": "tall"
   }
