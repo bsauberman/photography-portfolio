@@ -11,8 +11,8 @@ const templates = (() => {
         <a href="#" class="nav__name">Ben Sauberman</a>
         <ul class="nav__links">
           <li><a href="#work">Photography</a></li>
-          <li><a href="#about">About</a></li>
           <li><a href="#map-section">Map</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#notes">Notes</a></li>
         </ul>
         <button class="nav__hamburger" aria-label="Menu">
@@ -21,8 +21,8 @@ const templates = (() => {
       </nav>
       <div class="mobile-nav">
         <a href="#work">Photography</a>
-        <a href="#about">About</a>
         <a href="#map-section">Map</a>
+        <a href="#about">About</a>
         <a href="#notes">Notes</a>
       </div>
     `;
@@ -170,8 +170,8 @@ const templates = (() => {
       nav(),
       hero(),
       work(),
-      about(),
       mapSection(),
+      about(),
       notes(),
       footer(),
       lightbox(),
