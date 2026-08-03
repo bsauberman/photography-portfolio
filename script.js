@@ -399,26 +399,43 @@ document.addEventListener('DOMContentLoaded', () => {
     return result;
   }
 
+  // Spread photos so adjacent ones come from different collections, while biasing
+  // recent collections toward the top. RECENCY_BIAS 0 = pure even spread (old behavior),
+  // 1 = strict newest-first. 0.4 keeps the mix varied but surfaces new work early.
+  const RECENCY_BIAS = 0.4;
+
+  // Photos pinned to the front of Favorites, in this order. Everything else follows
+  // the blended recency/spread ordering below.
+  const FAVORITES_LEAD = ['il-meadow', 'h1-iceplant'];
+
   function interleaveByCollection(items) {
     const groups = {};
     for (const p of items) {
       if (!groups[p.collection]) groups[p.collection] = [];
       groups[p.collection].push(p);
     }
+    // Collections are listed oldest-first in site-config, so a higher index is newer.
+    const chronology = (window.SITE_CONFIG?.collections || []).map(c => c.id);
+    const newest = Math.max(chronology.length - 1, 1);
     const total = items.length;
     const positioned = [];
     Object.keys(groups).forEach((col, colIdx) => {
+      const rank = chronology.indexOf(col);
+      const recency = rank === -1 ? 0 : rank / newest; // 1 = newest collection
       groups[col].forEach((p, idx) => {
-        const pos = (idx + 0.5) * (total / groups[col].length) + (colIdx * 0.01);
-        positioned.push({ photo: p, pos });
+        const spread = ((idx + 0.5) * (total / groups[col].length)) / total;
+        const blended = (1 - RECENCY_BIAS) * spread + RECENCY_BIAS * (1 - recency);
+        positioned.push({ photo: p, pos: blended * total + colIdx * 0.001 });
       });
     });
     positioned.sort((a, b) => a.pos - b.pos);
     let result = positioned.map(x => x.photo);
 
-    // Honor explicit pairWith: move the target right after the requesting photo
+    // Honor explicit pairWith: move the target right after the requesting photo.
+    // Skip when either side is pinned to the lead — the pin wins.
     for (const item of [...result]) {
       if (!item.pairWith) continue;
+      if (FAVORITES_LEAD.includes(item.id) || FAVORITES_LEAD.includes(item.pairWith)) continue;
       const itemIdx = result.findIndex(p => p.id === item.id);
       const targetIdx = result.findIndex(p => p.id === item.pairWith);
       if (targetIdx === -1 || itemIdx === -1) continue;
@@ -428,7 +445,13 @@ document.addEventListener('DOMContentLoaded', () => {
       result.splice(newItemIdx + 1, 0, target);
     }
 
-    return result;
+    // Pull the pinned leads to the front, preserving FAVORITES_LEAD order
+    const leads = [];
+    FAVORITES_LEAD.forEach(id => {
+      const i = result.findIndex(p => p.id === id);
+      if (i !== -1) leads.push(result.splice(i, 1)[0]);
+    });
+    return leads.concat(result);
   }
 
   filtersContainer.addEventListener('click', (e) => {
