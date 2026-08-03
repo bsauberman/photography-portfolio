@@ -46,15 +46,15 @@ const templates = (() => {
     `;
   }
 
-  function filterButton(id, label, active = false) {
-    return `<button class="filters__btn${active ? ' filters__btn--active' : ''}" data-filter="${id}">${label}</button>`;
+  function filterButton(id, label, active = false, primary = false) {
+    return `<button class="filters__btn${active ? ' filters__btn--active' : ''}${primary ? ' filters__btn--primary' : ''}" data-filter="${id}">${label}</button>`;
   }
 
   function work() {
     // Reversed so newest collections appear at top of dropdown
     const dated = [...cfg.collections].reverse();
     const staticBtns = cfg.staticFilters.map((f, i) =>
-      filterButton(f.id, f.label, f.id === 'all')
+      filterButton(f.id, f.label, f.id === 'all', true)
     ).join('\n        ');
     const seriesBtns = cfg.series.map(s => filterButton(s.id, s.label)).join('\n        ');
     const datedBtns = dated.map(c =>

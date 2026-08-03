@@ -420,6 +420,18 @@ body.dark .nav--scrolled {
   border-top: none;
 }
 
+/* Unlabeled divider bar above the undated views — needs explicit height since it has no text */
+.filters__month-header--blank {
+  padding: 0;
+  height: 10px;
+}
+
+/* Favorites / All (Ordered) / All (Shuffled) — weighted to read as the entry points */
+.filters__btn--primary {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
 .series-note {
   max-width: 640px;
   margin: 0 auto 56px;

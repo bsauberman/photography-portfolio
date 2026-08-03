@@ -157,6 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (m) dated.push({ btn: b, month: monthMap[m[1]] });
       else meta.push(b);
     });
+    // Divider bar above the undated views (no label — purely visual separation)
+    if (meta.length > 0) {
+      const prev = meta[0].previousElementSibling;
+      if (!prev || !prev.classList.contains('filters__month-header')) {
+        const metaHeader = document.createElement('div');
+        metaHeader.className = 'filters__month-header filters__month-header--blank';
+        menu.insertBefore(metaHeader, meta[0]);
+      }
+    }
     let lastMonth = null;
     dated.forEach(({ btn, month }) => {
       if (month !== lastMonth) {
@@ -626,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── Notes / Guestbook ───
 
   const collectionDisplayNames = (function () {
-    const base = { 'all': 'All (Ordered)', 'shuffled': 'All (Shuffled)', 'favorites': 'Favorites' };
+    const base = { 'all': 'All (Ordered)', 'shuffled': 'All (Shuffled)', 'favorites': "Ben's Favorites" };
     (window.SITE_CONFIG?.collections || []).forEach(c => { base[c.id] = c.displayName; });
     (window.SITE_CONFIG?.series || []).forEach(s => { base[s.id] = s.label; });
     return base;

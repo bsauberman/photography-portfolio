@@ -27,6 +27,8 @@ const SITE_CONFIG = {
     { id: 'cheyenne-mtn-zoo', dateLabel: "Jul 18 '26", placeLabel: "Cheyenne Mountain Zoo - Colorado Springs, CO", displayName: "Cheyenne Mountain Zoo - Colorado Springs, CO", coords: [38.7639, -104.8547], cat: 'urban' },
     { id: 'crater-lakes',   dateLabel: "Jul 26 '26",    placeLabel: "Crater Lakes - James Peak Wilderness, CO", displayName: "Crater Lakes - James Peak Wilderness, CO", coords: [39.9089, -105.6672], cat: 'mountain' },
     { id: 'isabelle-lake',  dateLabel: "Jul 30 '26",    placeLabel: "Lake Isabelle - Indian Peaks Wilderness, CO", displayName: "Lake Isabelle - Indian Peaks Wilderness, CO", coords: [40.0733, -105.6167], cat: 'mountain' },
+    { id: 'berthoud-pass-and-trestle', dateLabel: "Aug 1 '26", placeLabel: "Berthoud Pass & Trestle - Winter Park, CO", displayName: "Berthoud Pass & Trestle - Winter Park, CO", coords: [39.7981, -105.7772], cat: 'mountain' },
+    { id: 'jurassic-park',  dateLabel: "Aug 2 '26",     placeLabel: "Jurassic Park - Estes Park, CO", displayName: "Jurassic Park - Estes Park, CO",   coords: [40.3092, -105.6183], cat: 'boulder' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───
@@ -67,7 +69,7 @@ const SITE_CONFIG = {
 
   // ─── Static filter entries (always at top of dropdown) ───
   staticFilters: [
-    { id: 'favorites', label: 'Favorites' },
+    { id: 'favorites', label: "Ben's Favorites" },
     { id: 'all', label: 'All (Ordered)' },
     { id: 'shuffled', label: 'All (Shuffled)' },
   ],

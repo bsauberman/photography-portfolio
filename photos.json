@@ -2083,5 +2083,90 @@
     "date": "Jul 30 2026",
     "camera": "27mm · Classic Negative",
     "size": "tall"
+  },
+  {
+    "id": "bp-cirque",
+    "file": "images/berthoud-pass-and-trestle/DSCF2224-thumb.webp",
+    "fileFull": "images/berthoud-pass-and-trestle/DSCF2224-full.webp",
+    "collection": "berthoud-pass-and-trestle",
+    "title": "Talus Below the Ridge",
+    "location": "Berthoud Pass, CO",
+    "date": "Aug 1 2026",
+    "camera": "f/6.4, 1/1600s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "full"
+  },
+  {
+    "id": "bp-above-treeline",
+    "file": "images/berthoud-pass-and-trestle/DSCF2242-thumb.webp",
+    "fileFull": "images/berthoud-pass-and-trestle/DSCF2242-full.webp",
+    "collection": "berthoud-pass-and-trestle",
+    "title": "Above Treeline",
+    "location": "Berthoud Pass, CO",
+    "date": "Aug 1 2026",
+    "camera": "f/6.4, 1/2200s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "bp-divide-ridge",
+    "file": "images/berthoud-pass-and-trestle/DSCF2249-thumb.webp",
+    "fileFull": "images/berthoud-pass-and-trestle/DSCF2249-full.webp",
+    "collection": "berthoud-pass-and-trestle",
+    "title": "Divide Ridge",
+    "location": "Berthoud Pass, CO",
+    "date": "Aug 1 2026",
+    "camera": "f/8, 1/1800s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "bp-trestle-lift",
+    "file": "images/berthoud-pass-and-trestle/DSCF2269-thumb.webp",
+    "fileFull": "images/berthoud-pass-and-trestle/DSCF2269-full.webp",
+    "collection": "berthoud-pass-and-trestle",
+    "title": "Cabins Over the Run",
+    "location": "Trestle Bike Park, Winter Park, CO",
+    "date": "Aug 1 2026",
+    "camera": "f/8, 1/1700s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "bp-gondola",
+    "file": "images/berthoud-pass-and-trestle/DSCF2276-thumb.webp",
+    "fileFull": "images/berthoud-pass-and-trestle/DSCF2276-full.webp",
+    "collection": "berthoud-pass-and-trestle",
+    "title": "The Gondola",
+    "location": "Trestle Bike Park, Winter Park, CO",
+    "date": "Aug 1 2026",
+    "camera": "f/6.4, 1/1400s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "jp-teeny",
+    "file": "images/jurassic-park/DSCF2288-thumb.webp",
+    "fileFull": "images/jurassic-park/DSCF2288-full.webp",
+    "collection": "jurassic-park",
+    "title": "Teeny",
+    "location": "Jurassic Park, Estes Park, CO",
+    "date": "Aug 2 2026",
+    "camera": "f/3.6, 1/120s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "jp-edge-of-time",
+    "file": "images/jurassic-park/DSCF2393-thumb.webp",
+    "fileFull": "images/jurassic-park/DSCF2393-full.webp",
+    "collection": "jurassic-park",
+    "title": "Charley on Edge of Time | The Fin",
+    "location": "Jurassic Park, Estes Park, CO",
+    "date": "Aug 2 2026",
+    "camera": "f/6.4, 1/1100s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall",
+    "favorite": true
   }
 ]
