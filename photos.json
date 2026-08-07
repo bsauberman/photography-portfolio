@@ -2168,5 +2168,101 @@
     "filmSimulation": "Classic Negative",
     "size": "tall",
     "favorite": true
+  },
+  {
+    "id": "sa-deadfall",
+    "file": "images/south-arapahoe-peak/DSCF2424-thumb.webp",
+    "fileFull": "images/south-arapahoe-peak/DSCF2424-full.webp",
+    "collection": "south-arapahoe-peak",
+    "title": "Deadfall on the Approach",
+    "location": "South Arapaho Peak, Indian Peaks Wilderness",
+    "date": "Aug 7 2026",
+    "camera": "f/3.2, 1/105s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sa-marmot-trio",
+    "file": "images/south-arapahoe-peak/DSCF2446-thumb.webp",
+    "fileFull": "images/south-arapahoe-peak/DSCF2446-full.webp",
+    "collection": "south-arapahoe-peak",
+    "title": "Three on the Talus",
+    "location": "South Arapaho Peak, Indian Peaks Wilderness",
+    "date": "Aug 7 2026",
+    "camera": "f/5.6, 1/1300s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sa-marmot",
+    "file": "images/south-arapahoe-peak/DSCF2453-thumb.webp",
+    "fileFull": "images/south-arapahoe-peak/DSCF2453-full.webp",
+    "collection": "south-arapahoe-peak",
+    "title": "Keeping Watch",
+    "location": "South Arapaho Peak, Indian Peaks Wilderness",
+    "date": "Aug 7 2026",
+    "camera": "f/6.4, 1/1600s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sa-divide",
+    "file": "images/south-arapahoe-peak/DSCF2463-thumb.webp",
+    "fileFull": "images/south-arapahoe-peak/DSCF2463-full.webp",
+    "collection": "south-arapahoe-peak",
+    "title": "Smoke Over the Divide",
+    "location": "South Arapaho Peak, Indian Peaks Wilderness",
+    "date": "Aug 7 2026",
+    "camera": "f/8, 1/1900s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "full"
+  },
+  {
+    "id": "sa-glacier",
+    "file": "images/south-arapahoe-peak/DSCF2472-thumb.webp",
+    "fileFull": "images/south-arapahoe-peak/DSCF2472-full.webp",
+    "collection": "south-arapahoe-peak",
+    "title": "Arapaho Glacier and Its Meltwater",
+    "location": "South Arapaho Peak, Indian Peaks Wilderness",
+    "date": "Aug 7 2026",
+    "camera": "f/9, 1/2200s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sa-hazy-peaks",
+    "file": "images/south-arapahoe-peak/DSCF2475-thumb.webp",
+    "fileFull": "images/south-arapahoe-peak/DSCF2475-full.webp",
+    "collection": "south-arapahoe-peak",
+    "title": "A Lake Somewhere in the Haze",
+    "location": "South Arapaho Peak, Indian Peaks Wilderness",
+    "date": "Aug 7 2026",
+    "camera": "f/9, 1/2000s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sa-ridge-down",
+    "file": "images/south-arapahoe-peak/DSCF2487-thumb.webp",
+    "fileFull": "images/south-arapahoe-peak/DSCF2487-full.webp",
+    "collection": "south-arapahoe-peak",
+    "title": "The Long Way Down",
+    "location": "South Arapaho Peak, Indian Peaks Wilderness",
+    "date": "Aug 7 2026",
+    "camera": "f/8, 1/1900s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sa-snowfield",
+    "file": "images/south-arapahoe-peak/DSCF2491-thumb.webp",
+    "fileFull": "images/south-arapahoe-peak/DSCF2491-full.webp",
+    "collection": "south-arapahoe-peak",
+    "title": "Late Snow Below the Buttress",
+    "location": "South Arapaho Peak, Indian Peaks Wilderness",
+    "date": "Aug 7 2026",
+    "camera": "f/9, 1/2000s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
   }
 ]
