@@ -2230,18 +2230,6 @@
     "size": "tall"
   },
   {
-    "id": "sa-hazy-peaks",
-    "file": "images/south-arapahoe-peak/DSCF2475-thumb.webp",
-    "fileFull": "images/south-arapahoe-peak/DSCF2475-full.webp",
-    "collection": "south-arapahoe-peak",
-    "title": "A Lake Somewhere in the Haze",
-    "location": "South Arapaho Peak, Indian Peaks Wilderness",
-    "date": "Aug 7 2026",
-    "camera": "f/9, 1/2000s, ISO 640",
-    "filmSimulation": "Classic Negative",
-    "size": "tall"
-  },
-  {
     "id": "sa-ridge-down",
     "file": "images/south-arapahoe-peak/DSCF2487-thumb.webp",
     "fileFull": "images/south-arapahoe-peak/DSCF2487-full.webp",
@@ -2259,6 +2247,18 @@
     "fileFull": "images/south-arapahoe-peak/DSCF2491-full.webp",
     "collection": "south-arapahoe-peak",
     "title": "Late Snow Below the Buttress",
+    "location": "South Arapaho Peak, Indian Peaks Wilderness",
+    "date": "Aug 7 2026",
+    "camera": "f/9, 1/2000s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sa-tarns",
+    "file": "images/south-arapahoe-peak/DSCF2498-thumb.webp",
+    "fileFull": "images/south-arapahoe-peak/DSCF2498-full.webp",
+    "collection": "south-arapahoe-peak",
+    "title": "Tarns in the Basin Below",
     "location": "South Arapaho Peak, Indian Peaks Wilderness",
     "date": "Aug 7 2026",
     "camera": "f/9, 1/2000s, ISO 640",
