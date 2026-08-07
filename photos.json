@@ -2246,12 +2246,13 @@
     "file": "images/south-arapahoe-peak/DSCF2491-thumb.webp",
     "fileFull": "images/south-arapahoe-peak/DSCF2491-full.webp",
     "collection": "south-arapahoe-peak",
-    "title": "Late Snow Below the Buttress",
+    "title": "Late Snow Below North Arapaho",
     "location": "South Arapaho Peak, Indian Peaks Wilderness",
     "date": "Aug 7 2026",
     "camera": "f/9, 1/2000s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "sa-tarns",
@@ -2263,6 +2264,7 @@
     "date": "Aug 7 2026",
     "camera": "f/9, 1/2000s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   }
 ]
