@@ -30,6 +30,7 @@ const SITE_CONFIG = {
     { id: 'berthoud-pass-and-trestle', dateLabel: "Aug 1 '26", placeLabel: "Berthoud Pass & Trestle - Winter Park, CO", displayName: "Berthoud Pass & Trestle - Winter Park, CO", coords: [39.7981, -105.7772], cat: 'mountain' },
     { id: 'jurassic-park',  dateLabel: "Aug 2 '26",     placeLabel: "Jurassic Park - Estes Park, CO", displayName: "Jurassic Park - Estes Park, CO",   coords: [40.3092, -105.6183], cat: 'boulder' },
     { id: 'south-arapahoe-peak', dateLabel: "Aug 7 '26", placeLabel: "South Arapaho Peak - Indian Peaks Wilderness, CO", displayName: "South Arapaho Peak - Indian Peaks Wilderness, CO", coords: [40.0308, -105.6483], cat: 'mountain' },
+    { id: 'sky-pond',       dateLabel: "Aug 8 '26",     placeLabel: "Sky Pond - Rocky Mountain NP, CO", displayName: "Sky Pond - Rocky Mountain NP, CO", coords: [40.2789, -105.6714], cat: 'mountain' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───
