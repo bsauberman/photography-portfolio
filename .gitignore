@@ -1,3 +1,8 @@
 .DS_Store
+# Camera originals — only the generated -thumb/-full .webp files are committed.
 *.JPG
+*.jpg
+*.JPEG
+*.jpeg
+*.RAF
 images/highway-1/DSCF9299-*.webp
