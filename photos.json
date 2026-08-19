@@ -2338,7 +2338,8 @@
     "date": "Aug 11 2026",
     "camera": "f/6.4, 1/1400s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "full"
+    "size": "full",
+    "favorite": true
   },
   {
     "id": "lj-dome",
@@ -2398,7 +2399,8 @@
     "date": "Aug 12 2026",
     "camera": "f/8, 1/1900s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "bo-shallows",
@@ -2446,7 +2448,8 @@
     "date": "Aug 13 2026",
     "camera": "f/14, 1/3200s, ISO 6400",
     "filmSimulation": "Classic Negative",
-    "size": "full"
+    "size": "full",
+    "favorite": true
   },
   {
     "id": "sl-larches",
@@ -2470,7 +2473,8 @@
     "date": "Aug 13 2026",
     "camera": "f/5, 1/280s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "sl-valley",
@@ -2554,7 +2558,8 @@
     "date": "Aug 14 2026",
     "camera": "f/7.1, 1/1700s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "sl-karst",
@@ -2650,7 +2655,8 @@
     "date": "Aug 17 2026",
     "camera": "f/2.8, 1/100s, ISO 2500",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "sk-doline",
@@ -2674,7 +2680,8 @@
     "date": "Aug 16 2026",
     "camera": "f/6.4, 1/1250s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "pi-swimmers",
@@ -2698,7 +2705,8 @@
     "date": "Aug 16 2026",
     "camera": "f/7.1, 1/1700s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "pi-steps",
@@ -2842,6 +2850,7 @@
     "date": "Aug 17 2026",
     "camera": "f/5.0, 1/280s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   }
 ]
