@@ -31,11 +31,12 @@ const SITE_CONFIG = {
     { id: 'jurassic-park',  dateLabel: "Aug 2 '26",     placeLabel: "Jurassic Park - Estes Park, CO", displayName: "Jurassic Park - Estes Park, CO",   coords: [40.3092, -105.6183], cat: 'boulder' },
     { id: 'south-arapahoe-peak', dateLabel: "Aug 7 '26", placeLabel: "South Arapaho Peak - Indian Peaks Wilderness, CO", displayName: "South Arapaho Peak - Indian Peaks Wilderness, CO", coords: [40.0308, -105.6483], cat: 'mountain' },
     { id: 'sky-pond',       dateLabel: "Aug 8 '26",     placeLabel: "Sky Pond - Rocky Mountain NP, CO", displayName: "Sky Pond - Rocky Mountain NP, CO", coords: [40.2789, -105.6714], cat: 'mountain' },
-    { id: 'ljubljana-skofja-loka', dateLabel: "Aug 11-12 '26", placeLabel: "Ljubljana & Škofja Loka, Slovenia", displayName: "Ljubljana & Škofja Loka, Slovenia", coords: [46.0569, 14.5058], cat: 'urban' },
-    { id: 'lake-bohinj',    dateLabel: "Aug 13 '26",    placeLabel: "Lake Bohinj - Triglav NP, Slovenia", displayName: "Lake Bohinj - Triglav NP, Slovenia", coords: [46.2800, 13.8800], cat: 'mountain' },
-    { id: 'seven-lakes-valley', dateLabel: "Aug 14-16 '26", placeLabel: "Seven Lakes Valley - Triglav NP, Slovenia", displayName: "Seven Lakes Valley - Triglav NP, Slovenia", coords: [46.3200, 13.7900], cat: 'mountain' },
-    { id: 'piran',          dateLabel: "Aug 17 '26",    placeLabel: "Piran, Slovenia",                displayName: "Piran, Slovenia",                   coords: [45.5285, 13.5683], cat: 'coast' },
-    { id: 'skocjan-postojna', dateLabel: "Aug 16 & 18 '26", placeLabel: "Škocjan Caves & Predjama, Slovenia", displayName: "Škocjan Caves & Predjama, Slovenia", coords: [45.6636, 13.9900], cat: 'mountain' },
+    { id: 'ljubljana-skofja-loka', dateLabel: "Aug 11 '26", placeLabel: "Ljubljana & Škofja Loka, Slovenia", displayName: "Ljubljana & Škofja Loka, Slovenia", coords: [46.0569, 14.5058], cat: 'urban' },
+    { id: 'lake-bohinj',    dateLabel: "Aug 12 '26",    placeLabel: "Lake Bohinj - Triglav NP, Slovenia", displayName: "Lake Bohinj - Triglav NP, Slovenia", coords: [46.2800, 13.8800], cat: 'mountain' },
+    { id: 'seven-lakes-valley', dateLabel: "Aug 13-15 '26", placeLabel: "Seven Lakes Valley - Triglav NP, Slovenia", displayName: "Seven Lakes Valley - Triglav NP, Slovenia", coords: [46.3200, 13.7900], cat: 'mountain' },
+    { id: 'piran',          dateLabel: "Aug 15-16 '26", placeLabel: "Piran, Slovenia",                displayName: "Piran, Slovenia",                   coords: [45.5285, 13.5683], cat: 'coast' },
+    { id: 'skocjan-postojna', dateLabel: "Aug 15 & 17 '26", placeLabel: "Škocjan Caves & Predjama, Slovenia", displayName: "Škocjan Caves & Predjama, Slovenia", coords: [45.6636, 13.9900], cat: 'mountain' },
+    { id: 'lake-bled',      dateLabel: "Aug 11 & 17 '26", placeLabel: "Lake Bled & Vintgar Gorge, Slovenia", displayName: "Lake Bled & Vintgar Gorge, Slovenia", coords: [46.3625, 14.0936], cat: 'mountain' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───
