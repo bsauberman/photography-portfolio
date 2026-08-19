@@ -2723,5 +2723,65 @@
     "camera": "f/5.6, 1/450s, ISO 640",
     "filmSimulation": "Classic Negative",
     "size": "tall"
+  },
+  {
+    "id": "sl-larch-peak",
+    "file": "images/seven_lakes_valley_triglav_np/DSCF2803-thumb.webp",
+    "fileFull": "images/seven_lakes_valley_triglav_np/DSCF2803-full.webp",
+    "collection": "seven-lakes-valley",
+    "title": "The Peak Above the Larches",
+    "location": "Triglav National Park, Slovenia",
+    "date": "Aug 14 2026",
+    "camera": "f/6.4, 1/1400s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "wide"
+  },
+  {
+    "id": "sl-last-light",
+    "file": "images/seven_lakes_valley_triglav_np/DSCF2843-thumb.webp",
+    "fileFull": "images/seven_lakes_valley_triglav_np/DSCF2843-full.webp",
+    "collection": "seven-lakes-valley",
+    "title": "Last Light on the Summit",
+    "location": "Triglav National Park, Slovenia",
+    "date": "Aug 14 2026",
+    "camera": "f/5, 1/300s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "sk-overhang",
+    "file": "images/skojcan_postojna/DSCF2999-thumb.webp",
+    "fileFull": "images/skojcan_postojna/DSCF2999-full.webp",
+    "collection": "skocjan-postojna",
+    "title": "Under the Overhang",
+    "location": "Predjama, Slovenia",
+    "date": "Aug 16 2026",
+    "camera": "f/5.6, 1/350s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "wide"
+  },
+  {
+    "id": "pi-sunset",
+    "file": "images/piran/DSCF3038-thumb.webp",
+    "fileFull": "images/piran/DSCF3038-full.webp",
+    "collection": "piran",
+    "title": "Sunset Over the Adriatic",
+    "location": "Piran, Slovenia",
+    "date": "Aug 16 2026",
+    "camera": "f/5.6, 1/600s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "pi-lunch",
+    "file": "images/piran/DSCF3116-thumb.webp",
+    "fileFull": "images/piran/DSCF3116-full.webp",
+    "collection": "piran",
+    "title": "Lunch by the Water",
+    "location": "Piran, Slovenia",
+    "date": "Aug 17 2026",
+    "camera": "f/5.6, 1/950s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "wide"
   }
 ]
