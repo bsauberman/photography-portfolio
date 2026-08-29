@@ -2899,6 +2899,7 @@
     "date": "Aug 29 2026",
     "camera": "f/5.6, 1/750s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   }
 ]
