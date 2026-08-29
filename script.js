@@ -820,10 +820,11 @@ document.addEventListener('DOMContentLoaded', () => {
       attributionControl: true,
     });
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap &copy; CARTO',
-      subdomains: 'abcd',
-      maxZoom: 19,
+    // Esri World Light Gray Base — no API key required, light gray, unlabeled.
+    // CARTO's free basemap tier was discontinued; anon requests now get watermarked.
+    L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri',
+      maxZoom: 16,
     }).addTo(map);
 
     const bounds = L.latLngBounds(mapLocations.map(l => [l.lat, l.lng]));
