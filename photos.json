@@ -2852,5 +2852,53 @@
     "filmSimulation": "Classic Negative",
     "size": "tall",
     "favorite": true
+  },
+  {
+    "id": "cl-peacock",
+    "file": "images/chasm-lake/DSCF3199-thumb.webp",
+    "fileFull": "images/chasm-lake/DSCF3199-full.webp",
+    "collection": "chasm-lake",
+    "title": "Peacock Pool from the Trail",
+    "location": "Chasm Lake - Rocky Mountain NP, CO",
+    "date": "Aug 29 2026",
+    "camera": "f/4.5, 1/280s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "cl-columbine",
+    "file": "images/chasm-lake/DSCF3203-thumb.webp",
+    "fileFull": "images/chasm-lake/DSCF3203-full.webp",
+    "collection": "chasm-lake",
+    "title": "Columbine Falls Below the Headwall",
+    "location": "Chasm Lake - Rocky Mountain NP, CO",
+    "date": "Aug 29 2026",
+    "camera": "f/5.0, 1/400s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "cl-cirque",
+    "file": "images/chasm-lake/DSCF3206-thumb.webp",
+    "fileFull": "images/chasm-lake/DSCF3206-full.webp",
+    "collection": "chasm-lake",
+    "title": "The Trail Into the Cirque",
+    "location": "Chasm Lake - Rocky Mountain NP, CO",
+    "date": "Aug 29 2026",
+    "camera": "f/5.6, 1/420s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "cl-diamond",
+    "file": "images/chasm-lake/DSCF3211-thumb.webp",
+    "fileFull": "images/chasm-lake/DSCF3211-full.webp",
+    "collection": "chasm-lake",
+    "title": "The Diamond Above Chasm Lake",
+    "location": "Chasm Lake - Rocky Mountain NP, CO",
+    "date": "Aug 29 2026",
+    "camera": "f/5.6, 1/750s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
   }
 ]

@@ -37,6 +37,7 @@ const SITE_CONFIG = {
     { id: 'piran',          dateLabel: "Aug 15-16 '26", placeLabel: "Piran, Slovenia",                displayName: "Piran, Slovenia",                   coords: [45.5285, 13.5683], cat: 'coast' },
     { id: 'skocjan-postojna', dateLabel: "Aug 15 & 17 '26", placeLabel: "Škocjan Caves & Predjama, Slovenia", displayName: "Škocjan Caves & Predjama, Slovenia", coords: [45.6636, 13.9900], cat: 'mountain' },
     { id: 'lake-bled',      dateLabel: "Aug 11 & 17 '26", placeLabel: "Lake Bled & Vintgar Gorge, Slovenia", displayName: "Lake Bled & Vintgar Gorge, Slovenia", coords: [46.3625, 14.0936], cat: 'mountain' },
+    { id: 'chasm-lake',     dateLabel: "Aug 29 '26",    placeLabel: "Chasm Lake - Rocky Mountain NP, CO", displayName: "Chasm Lake - Rocky Mountain NP, CO", coords: [40.2589, -105.5878], cat: 'mountain' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───
