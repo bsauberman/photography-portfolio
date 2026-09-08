@@ -245,17 +245,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const pair = document.createElement('div');
         pair.className = 'gallery__pair';
 
-        pair.appendChild(createGalleryItem(photo, i));
-        pair.appendChild(createGalleryItem(nextPhoto, i + 1));
+        pair.appendChild(createGalleryItem(photo, i, true));
+        pair.appendChild(createGalleryItem(nextPhoto, i + 1, true));
         gallery.appendChild(pair);
         i += 2;
       } else {
-        gallery.appendChild(createGalleryItem(photo, i));
+        gallery.appendChild(createGalleryItem(photo, i, false));
         i++;
       }
     }
 
-    function createGalleryItem(photo, index) {
+    function createGalleryItem(photo, index, paired) {
       const sizeClass = photo.size || 'medium';
       const item = document.createElement('div');
       item.className = `gallery__item gallery__item--${sizeClass}`;
@@ -264,10 +264,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const liked = getLiked();
       const isLiked = liked[photo.id] ? ' gallery__like--liked' : '';
 
+      // Let high-DPR screens pull the larger derivative. Both files already exist, so
+      // this costs no new storage: -thumb is 1600px on the long edge and -full is
+      // 2400px, making portrait frames 1066w/1600w and landscape 1600w/2400w.
+      const isTall = sizeClass === 'tall';
+      const srcsetAttr = photo.fileFull
+        ? `srcset="${photo.file} ${isTall ? 1066 : 1600}w, ${photo.fileFull} ${isTall ? 1600 : 2400}w"`
+        : '';
+      // Rendered width, mirroring the CSS: .section pads 24-64px per side and .gallery
+      // caps at 1600px. Paired portraits split that in half (32px gap), except under
+      // 600px where .gallery__pair stacks and tall items go full width.
+      const sizesAttr = !isTall
+        ? 'sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1728px) calc(100vw - 128px), 1600px"'
+        : paired
+          ? 'sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 1728px) calc((100vw - 160px) / 2), 784px"'
+          : 'sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 900px) 80vw, 560px"';
+
       item.innerHTML = `
         <img
           class="gallery__img"
           src="${photo.file}"
+          ${srcsetAttr}
+          ${sizesAttr}
           alt="${photo.title}"
           loading="lazy"
           onerror="this.outerHTML='<div class=\\'gallery__placeholder\\'>${photo.title}</div>'"
