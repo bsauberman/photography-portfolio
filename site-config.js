@@ -38,6 +38,10 @@ const SITE_CONFIG = {
     { id: 'skocjan-postojna', dateLabel: "Aug 15 & 17 '26", placeLabel: "Škocjan Caves & Predjama, Slovenia", displayName: "Škocjan Caves & Predjama, Slovenia", coords: [45.6636, 13.9900], cat: 'mountain' },
     { id: 'lake-bled',      dateLabel: "Aug 11 & 17 '26", placeLabel: "Lake Bled & Vintgar Gorge, Slovenia", displayName: "Lake Bled & Vintgar Gorge, Slovenia", coords: [46.3625, 14.0936], cat: 'mountain' },
     { id: 'chasm-lake',     dateLabel: "Aug 29 '26",    placeLabel: "Chasm Lake - Rocky Mountain NP, CO", displayName: "Chasm Lake - Rocky Mountain NP, CO", coords: [40.2589, -105.5878], cat: 'mountain' },
+    { id: 'cottonwood-pass', dateLabel: "Sep 4 '26",    placeLabel: "Cottonwood Pass, CO",             displayName: "Cottonwood Pass, CO",               coords: [38.8267, -106.4139], cat: 'mountain' },
+    { id: '401-trail',      dateLabel: "Sep 4-5 '26",   placeLabel: "401 Trail - Crested Butte, CO",   displayName: "401 Trail - Crested Butte, CO",     coords: [38.9581, -106.9878], cat: 'mountain' },
+    { id: 'emerald-lake',   dateLabel: "Sep 5-6 '26",   placeLabel: "Emerald Lake & Schofield Pass - Crested Butte, CO", displayName: "Emerald Lake & Schofield Pass - Crested Butte, CO", coords: [39.0128, -107.0453], cat: 'mountain' },
+    { id: 'oh-be-joyful',   dateLabel: "Sep 6 '26",     placeLabel: "Oh Be Joyful - Crested Butte, CO", displayName: "Oh Be Joyful - Crested Butte, CO",  coords: [38.9333, -107.0611], cat: 'mountain' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───
