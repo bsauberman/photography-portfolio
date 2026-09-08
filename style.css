@@ -301,6 +301,30 @@ body.dark .nav--scrolled {
   50% { transform: scaleY(0.5); opacity: 1; }
 }
 
+/* The scroll cue is centered while the title sits bottom-left, so on a narrow
+   viewport the title grows under it. Give the cue its own band below the text
+   instead of nudging it sideways — the subtitle wraps on small phones, so any
+   horizontal clearance we picked would be a guess. */
+@media (max-width: 700px) {
+  .hero__content {
+    padding-bottom: 96px;
+  }
+
+  .hero__scroll {
+    bottom: 28px;
+  }
+
+  /* 0.65rem uppercase with 0.2em tracking is barely legible at this size; the
+     pulsing line carries the affordance on its own. */
+  .hero__scroll span {
+    display: none;
+  }
+
+  .hero__scroll-line {
+    height: 32px;
+  }
+}
+
 /* ─── Section shared ─── */
 
 .section {
