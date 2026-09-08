@@ -5,8 +5,8 @@
 *.JPEG
 *.jpeg
 *.RAF
-# Exception: the link-preview cover must be a JPEG for clients that can't read WebP.
-# Glob (not an exact name) so swapping the cover to a new filename stays committed —
+# Exception: link-preview covers must be JPEG for clients that can't read WebP.
+# Glob (not exact names) so swapping a cover to a new filename stays committed —
 # a new filename is how you bust the OG image caches in iMessage/Slack/etc.
-!images/og-cover*.jpg
+!images/og-*.jpg
 images/highway-1/DSCF9299-*.webp
