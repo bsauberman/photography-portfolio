@@ -118,7 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const pool = photos.filter(p => p.favorite && (p.size === 'full' || p.size === 'wide'));
     if (pool.length === 0) return;
     const pick = pool[Math.floor(Math.random() * pool.length)];
-    heroImg.src = pick.fileFull || pick.file;
+    // Full-viewport, so it wants the largest tier available. The hero pool is
+    // landscape-only (full/wide), which is exactly what has an -xl derivative.
+    heroImg.src = pick.fileXl || pick.fileFull || pick.file;
     heroImg.alt = pick.title || 'Hero photo';
   }
 
@@ -264,12 +266,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const liked = getLiked();
       const isLiked = liked[photo.id] ? ' gallery__like--liked' : '';
 
-      // Let high-DPR screens pull the larger derivative. Both files already exist, so
-      // this costs no new storage: -thumb is 1600px on the long edge and -full is
-      // 2400px, making portrait frames 1066w/1600w and landscape 1600w/2400w.
+      // Let high-DPR screens pull the larger derivative. These files already exist, so
+      // the only new cost is the -xl tier: -thumb is 1600px on the long edge, -full is
+      // 2400px, -xl is 3200px (landscape only, since portraits never render wider than
+      // ~784px). Portrait frames are 1066w/1600w, landscape 1600w/2400w/3200w.
       const isTall = sizeClass === 'tall';
-      const srcsetAttr = photo.fileFull
-        ? `srcset="${photo.file} ${isTall ? 1066 : 1600}w, ${photo.fileFull} ${isTall ? 1600 : 2400}w"`
+      const candidates = [
+        [photo.file, isTall ? 1066 : 1600],
+        [photo.fileFull, isTall ? 1600 : 2400],
+        [photo.fileXl, 3200],
+      ].filter(([f]) => f);
+      const srcsetAttr = candidates.length > 1
+        ? `srcset="${candidates.map(([f, w]) => `${f} ${w}w`).join(', ')}"`
         : '';
       // Rendered width, mirroring the CSS: .section pads 24-64px per side and .gallery
       // caps at 1600px. Paired portraits split that in half (32px gap), except under
@@ -606,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const photo = galleryPhotos[index];
     if (!photo) return;
 
-    lightboxImg.src = photo.fileFull || photo.file;
+    lightboxImg.src = photo.fileXl || photo.fileFull || photo.file;
     lightboxImg.alt = photo.title;
     lightboxTitle.textContent = photo.title;
 
