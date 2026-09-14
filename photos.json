@@ -3213,15 +3213,17 @@
   },
   {
     "id": "ch-willows",
-    "file": "images/chihuahua-lake/DSCF3484-thumb.webp",
-    "fileFull": "images/chihuahua-lake/DSCF3484-full.webp",
+    "file": "images/chihuahua-lake/DSCF3483-thumb.webp",
+    "fileFull": "images/chihuahua-lake/DSCF3483-full.webp",
+    "fileXl": "images/chihuahua-lake/DSCF3483-xl.webp",
     "collection": "chihuahua-lake",
     "title": "Autumn Willows Below the Ridge",
     "location": "Chihuahua Gulch, CO",
     "date": "Sep 12 2026",
-    "camera": "f/7.1, 1/1600s, ISO 640",
+    "camera": "f/7.1, 1/1500s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "wide",
+    "favorite": true
   },
   {
     "id": "ch-lake",
@@ -3233,7 +3235,8 @@
     "date": "Sep 12 2026",
     "camera": "f/6.4, 1/1300s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "ch-headwall",
