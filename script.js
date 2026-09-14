@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(r => r.json())
     .then(data => {
       photos = data;
-      rotateHero();
+      startHero();
       initMap();
 
       const initialFilter = getCollectionFromPath();
@@ -112,16 +112,61 @@ document.addEventListener('DOMContentLoaded', () => {
       observeGallery();
     });
 
-  function rotateHero() {
-    const heroImg = document.querySelector('.hero__image');
-    if (!heroImg) return;
+  // Hero rotation. Holds each photo for HERO_HOLD_MS, then crossfades to the next
+  // over the CSS --hero-fade duration. Keep the two in sync if you change either.
+  const HERO_HOLD_MS = 60000;
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+
+  function startHero() {
+    const heroEl = document.querySelector('.hero');
+    if (!heroEl) return;
+    const layers = [...heroEl.querySelectorAll('.hero__image')];
+    // full/wide are the landscape sizes, and they're exactly the ones carrying an
+    // -xl derivative — which is what a full-viewport image wants.
     const pool = photos.filter(p => p.favorite && (p.size === 'full' || p.size === 'wide'));
-    if (pool.length === 0) return;
-    const pick = pool[Math.floor(Math.random() * pool.length)];
-    // Full-viewport, so it wants the largest tier available. The hero pool is
-    // landscape-only (full/wide), which is exactly what has an -xl derivative.
-    heroImg.src = pick.fileXl || pick.fileFull || pick.file;
-    heroImg.alt = pick.title || 'Hero photo';
+    if (layers.length < 2 || pool.length === 0) return;
+
+    // Walk a shuffled queue rather than picking at random each time, so every photo
+    // gets shown once per cycle instead of the same one recurring by chance.
+    let queue = [];
+    let showing = null;
+    function pick() {
+      if (queue.length === 0) {
+        queue = pool.slice().sort(() => Math.random() - 0.5);
+        // A reshuffle can otherwise repeat the photo that's already up.
+        if (queue.length > 1 && queue[0] === showing) queue.push(queue.shift());
+      }
+      showing = queue.shift();
+      return showing;
+    }
+
+    // Wait for pixels before fading, or the crossfade reveals an empty layer.
+    function ready(img) {
+      if (img.decode) return img.decode().catch(() => {});
+      return new Promise(done => {
+        img.addEventListener('load', done, { once: true });
+        img.addEventListener('error', done, { once: true });
+      });
+    }
+
+    let back = 0;
+    function show(photo) {
+      const layer = layers[back];
+      layer.src = photo.fileXl || photo.fileFull || photo.file;
+      layer.alt = photo.title || '';
+      return ready(layer).then(() => {
+        layers.forEach((l, i) => l.classList.toggle('hero__image--active', i === back));
+        back = 1 - back;
+      });
+    }
+
+    show(pick()).then(() => {
+      heroEl.classList.remove('hero--intro');
+      if (pool.length < 2 || reduceMotion?.matches) return;
+      (function loop() {
+        setTimeout(() => show(pick()).then(loop), HERO_HOLD_MS);
+      })();
+    });
   }
 
   function updateSeriesNote(filter) {

@@ -29,10 +29,13 @@ const templates = (() => {
   }
 
   function hero() {
+    // Two stacked layers so script.js can crossfade between them. Neither carries a
+    // src: shipping a placeholder meant every visitor downloaded a 1MB image that was
+    // replaced as soon as photos.json resolved. The .hero background covers the gap.
     return `
-      <section class="hero">
-        <img class="hero__image" src="images/hero.webp" alt="Hero photo"
-             onerror="this.outerHTML='<div class=\\'hero__placeholder\\'>Add hero.webp to /images</div>'" />
+      <section class="hero hero--intro">
+        <img class="hero__image" alt="" fetchpriority="high" />
+        <img class="hero__image" alt="" fetchpriority="high" />
         <div class="hero__overlay"></div>
         <div class="hero__content">
           <h1 class="hero__title">Ben Sauberman</h1>

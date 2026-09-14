@@ -224,6 +224,16 @@ body.dark .nav--scrolled {
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
+  /* Visible until the first hero image decodes, so the white title has something
+     to sit on instead of the page background. */
+  background: #2a2a2a;
+  --hero-fade: 3s;
+}
+
+/* The first image shouldn't take three seconds to arrive — script.js drops this
+   class once a photo is up, and every rotation after that gets the long fade. */
+.hero--intro {
+  --hero-fade: 0.8s;
 }
 
 .hero__image {
@@ -233,6 +243,12 @@ body.dark .nav--scrolled {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  opacity: 0;
+  transition: opacity var(--hero-fade) ease-in-out;
+}
+
+.hero__image--active {
+  opacity: 1;
 }
 
 .hero__overlay {
@@ -322,6 +338,19 @@ body.dark .nav--scrolled {
 
   .hero__scroll-line {
     height: 32px;
+  }
+}
+
+/* The hero rotates on its own, which is the kind of motion this query exists for.
+   script.js checks the same query and stops after the first photo, so the fade
+   never runs — but kill the transition too in case the class lands anyway. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__image {
+    transition: none;
+  }
+
+  .hero__scroll-line {
+    animation: none;
   }
 }
 
@@ -1286,8 +1315,7 @@ body.dark .theme-toggle .theme-toggle__sun { display: inline-block; }
 
 /* ─── Placeholder for missing images ─── */
 
-.gallery__placeholder,
-.hero__placeholder {
+.gallery__placeholder {
   width: 100%;
   height: 100%;
   min-height: 200px;
@@ -1307,13 +1335,6 @@ body.dark .theme-toggle .theme-toggle__sun { display: inline-block; }
 }
 
 .gallery__item--tall .gallery__placeholder { aspect-ratio: 2 / 3; }
-
-.hero__placeholder {
-  background: #2a2a2a;
-  color: #666;
-  position: absolute;
-  inset: 0;
-}
 
 /* ─── Responsive ─── */
 
