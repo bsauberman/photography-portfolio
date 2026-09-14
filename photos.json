@@ -3173,5 +3173,91 @@
     "camera": "f/6.4, 1/1300s, ISO 640",
     "filmSimulation": "Classic Negative",
     "size": "wide"
+  },
+  {
+    "id": "ch-aspens",
+    "file": "images/chihuahua-lake/DSCF3463-thumb.webp",
+    "fileFull": "images/chihuahua-lake/DSCF3463-full.webp",
+    "collection": "chihuahua-lake",
+    "title": "First Gold in the Gulch",
+    "location": "Chihuahua Gulch, CO",
+    "date": "Sep 12 2026",
+    "camera": "f/7.1, 1/1300s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "ch-moraine",
+    "file": "images/chihuahua-lake/DSCF3469-thumb.webp",
+    "fileFull": "images/chihuahua-lake/DSCF3469-full.webp",
+    "collection": "chihuahua-lake",
+    "title": "The Moraine at Treeline",
+    "location": "Chihuahua Gulch, CO",
+    "date": "Sep 12 2026",
+    "camera": "f/6.4, 1/1250s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "ch-saddle",
+    "file": "images/chihuahua-lake/DSCF3478-thumb.webp",
+    "fileFull": "images/chihuahua-lake/DSCF3478-full.webp",
+    "fileXl": "images/chihuahua-lake/DSCF3478-xl.webp",
+    "collection": "chihuahua-lake",
+    "title": "The Saddle Above the Gulch",
+    "location": "Chihuahua Gulch, CO",
+    "date": "Sep 12 2026",
+    "camera": "f/4.0, 1/4000s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "wide"
+  },
+  {
+    "id": "ch-willows",
+    "file": "images/chihuahua-lake/DSCF3484-thumb.webp",
+    "fileFull": "images/chihuahua-lake/DSCF3484-full.webp",
+    "collection": "chihuahua-lake",
+    "title": "Autumn Willows Below the Ridge",
+    "location": "Chihuahua Gulch, CO",
+    "date": "Sep 12 2026",
+    "camera": "f/7.1, 1/1600s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "ch-lake",
+    "file": "images/chihuahua-lake/DSCF3490-thumb.webp",
+    "fileFull": "images/chihuahua-lake/DSCF3490-full.webp",
+    "collection": "chihuahua-lake",
+    "title": "Chihuahua Lake",
+    "location": "Chihuahua Lake, CO",
+    "date": "Sep 12 2026",
+    "camera": "f/6.4, 1/1300s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "ch-headwall",
+    "file": "images/chihuahua-lake/DSCF3498-thumb.webp",
+    "fileFull": "images/chihuahua-lake/DSCF3498-full.webp",
+    "collection": "chihuahua-lake",
+    "title": "Headwall Above Chihuahua Lake",
+    "location": "Chihuahua Lake, CO",
+    "date": "Sep 12 2026",
+    "camera": "f/6.4, 1/1500s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "tmc-recpath",
+    "file": "images/chihuahua-lake/DSCF3558-thumb.webp",
+    "fileFull": "images/chihuahua-lake/DSCF3558-full.webp",
+    "fileXl": "images/chihuahua-lake/DSCF3558-xl.webp",
+    "collection": "chihuahua-lake",
+    "title": "The Path Up Ten Mile Canyon",
+    "location": "Ten Mile Canyon - Frisco, CO",
+    "date": "Sep 13 2026",
+    "camera": "f/6.4, 1/1500s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "wide"
   }
 ]

@@ -39,6 +39,7 @@ const SITE_CONFIG = {
     { id: 'lake-bled',      dateLabel: "Aug 11 & 17 '26", placeLabel: "Lake Bled & Vintgar Gorge, Slovenia", displayName: "Lake Bled & Vintgar Gorge, Slovenia", coords: [46.3625, 14.0936], cat: 'mountain' },
     { id: 'chasm-lake',     dateLabel: "Aug 29 '26",    placeLabel: "Chasm Lake - Rocky Mountain NP, CO", displayName: "Chasm Lake - Rocky Mountain NP, CO", coords: [40.2589, -105.5878], cat: 'mountain' },
     { id: 'crested-butte',  dateLabel: "Sep 4-6 '26",   placeLabel: "Crested Butte, CO",              displayName: "Crested Butte, CO",                 coords: [38.8697, -106.9878], cat: 'mountain' },
+    { id: 'chihuahua-lake', dateLabel: "Sep 12-13 '26", placeLabel: "Chihuahua Lake & Ten Mile Canyon - Summit County, CO", displayName: "Chihuahua Lake & Ten Mile Canyon - Summit County, CO", coords: [39.6075, -105.8622], cat: 'mountain' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───
