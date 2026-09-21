@@ -40,6 +40,7 @@ const SITE_CONFIG = {
     { id: 'chasm-lake',     dateLabel: "Aug 29 '26",    placeLabel: "Chasm Lake - Rocky Mountain NP, CO", displayName: "Chasm Lake - Rocky Mountain NP, CO", coords: [40.2589, -105.5878], cat: 'mountain' },
     { id: 'crested-butte',  dateLabel: "Sep 4-6 '26",   placeLabel: "Crested Butte, CO",              displayName: "Crested Butte, CO",                 coords: [38.8697, -106.9878], cat: 'mountain' },
     { id: 'chihuahua-lake', dateLabel: "Sep 12-13 '26", placeLabel: "Chihuahua Lake & Ten Mile Canyon - Summit County, CO", displayName: "Chihuahua Lake & Ten Mile Canyon - Summit County, CO", coords: [39.6075, -105.8622], cat: 'mountain' },
+    { id: 'willow-lakes',   dateLabel: "Sep 19 '26",    placeLabel: "Willow Lakes - Eagles Nest Wilderness, CO", displayName: "Willow Lakes - Eagles Nest Wilderness, CO", coords: [39.6539, -106.1506], cat: 'mountain' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───
