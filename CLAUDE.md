@@ -154,10 +154,11 @@ the panel.
 
 ```js
 { id: 'willow-lakes', dateLabel: "Sep 19 '26",
-  placeLabel:  "Willow Lakes - Eagles Nest Wilderness, CO",  // dropdown / toggle sub-line
+  placeLabel:  "Willow Lakes - Eagles Nest Wilderness, CO",  // nav text list, note bylines
   displayName: "Willow Lakes - Eagles Nest Wilderness, CO",  // byline on guestbook notes
   coords: [39.6539, -106.1506],                              // map pin
-  shortLabel: "Willow Lakes",                                // tile caption + toggle headline
+  shortLabel:  "Willow Lakes",                               // tile caption + toggle headline
+  regionLabel: "Eagles Nest Wilderness, CO",                 // tile line 2 + toggle sub-line
   cover: 'images/willow-lakes/DSCF3608-cover.webp',           // 400x600 panel tile
   cat: 'mountain' },                                          // pin colour
 ```
@@ -166,7 +167,15 @@ the panel.
 
 **`shortLabel` exists because `placeLabel` averages 30 characters and maxes at 48**
 ("South Arapaho Peak - Indian Peaks Wilderness, CO"). That reads fine in a wide text list
-and terribly in a 152px grid cell or a headline. Any new collection needs both.
+and terribly in a 152px grid cell or a headline.
+
+**`regionLabel` is the geography with the collection name removed** — `placeLabel` starts
+with the name, so displaying it under the name would repeat it. It can't be derived
+reliably: stripping `shortLabel` off `placeLabel` leaves a stray `" & "` on Berthoud Pass
+and Lake Bled, and Škocjan's `placeLabel` doesn't begin with its `shortLabel` at all. Hence
+an explicit field.
+
+A new collection needs `shortLabel`, `regionLabel` and `cover`.
 
 Also in the file: `staticFilters` (favorites / all / shuffled), `series: []` with three
 archived definitions under `_seriesDisabled`, `email`, `instagram`.
@@ -292,9 +301,9 @@ that carries an xl derivative, which is what a full-viewport image wants.
 Markup comes from `templates.js`; behaviour is shared with the nav dropdown.
 
 - `.filters__toggle` is the trigger: body font at `clamp(1.55rem, 3.2vw, 2.05rem)`, showing
-  `data-short` as a headline plus `data-sub` (date · full place) underneath.
+  `data-short` as a headline plus `data-sub` (date · region) underneath.
 - `.filters__menu.filters__panel` is the tray: 700px wide, **4 columns**, month-grouped,
-  newest first. Tiles are 2:3 covers at ~152×228.
+  newest first. Tiles are 2:3 covers at ~152×228, captioned name / region / date.
 - `.filters__modes` holds Favorites / All (Ordered) / All (Shuffled) at the top.
 - **The nav "Photography" dropdown clones the panel's children** so the two can't drift.
   Children, not the element — that carries `id="filters-menu"`. Clicks delegate back to the
@@ -388,8 +397,8 @@ serif there.
    head = src.rstrip()[:-1].rstrip()   # drop trailing ']'
    open(path,'w').write(head + ",\n" + ",\n".join(blocks) + "\n]\n")
    ```
-6. Add the collection to `site-config.js` **at the end** (chronological), with `shortLabel`
-   and `cover`.
+6. Add the collection to `site-config.js` **at the end** (chronological), with `shortLabel`,
+   `regionLabel` and `cover`.
 7. Generate the 400×600 cover from a tall frame.
 8. Create `<id>/index.html` — copy any existing route and edit the head. Keep the
    `photos.json` preload and `<base href="../" />`.
@@ -435,6 +444,8 @@ let missing=[];for(const p of photos)for(const f of [p.file,p.fileFull,p.fileXl]
 console.log('missing photo files:',missing);
 console.log('missing covers:',cfg.collections.filter(c=>!fs.existsSync(c.cover)).map(c=>c.id));
 console.log('missing shortLabel:',cfg.collections.filter(c=>!c.shortLabel).map(c=>c.id));
+console.log('missing regionLabel:',cfg.collections.filter(c=>!c.regionLabel).map(c=>c.id));
+console.log('regionLabel repeating its own name:',cfg.collections.filter(c=>c.regionLabel&&c.shortLabel&&c.regionLabel.includes(c.shortLabel)).map(c=>c.id));
 console.log('missing routes:',[...cids].filter(c=>!fs.existsSync(c+'/index.html')));
 const used=new Set(photos.flatMap(p=>[p.file,p.fileFull,p.fileXl]).filter(Boolean));
 cfg.collections.forEach(c=>used.add(c.cover));

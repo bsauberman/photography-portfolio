@@ -613,12 +613,30 @@ body.dark .nav--scrolled {
   color: var(--color-panel-text);
 }
 
+/* Region sits between name and date. Quieter than the name so the tile still reads
+   name-first, and it may wrap to two lines — "INDIAN PEAKS WILDERNESS, CO" is 27
+   characters in a ~152px column. */
+.filters__tile-region {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  color: var(--color-panel-text-dim);
+}
+
+/* Nothing to show for a collection with no regionLabel — don't leave a gap. */
+.filters__tile-region:empty {
+  display: none;
+}
+
 .filters__tile-date {
   display: block;
   margin-top: 2px;
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   letter-spacing: 0.12em;
   color: var(--color-panel-text-dim);
+  opacity: 0.8;
 }
 
 .filters__month-header {

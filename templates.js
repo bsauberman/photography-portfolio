@@ -67,14 +67,18 @@ const templates = (() => {
     return `<button class="filters__btn${active ? ' filters__btn--active' : ''}${primary ? ' filters__btn--primary' : ''}" data-filter="${id}" data-short="${esc(label)}" data-sub="">${esc(label)}</button>`;
   }
 
-  // A collection tile: square cover, short name, date. Still a .filters__btn, so the
+  // A collection tile: cover, short name, region, date. Still a .filters__btn, so the
   // existing click/active-state handling in script.js applies unchanged.
   function filterTile(c) {
     const short = c.shortLabel || c.placeLabel;
-    const sub = `${c.dateLabel} · ${c.placeLabel}`;
+    // regionLabel deliberately omits the collection name — placeLabel starts with it,
+    // so showing that here would repeat the line above.
+    const region = c.regionLabel || '';
+    const sub = region ? `${c.dateLabel} · ${region}` : c.dateLabel;
     return `<button class="filters__btn filters__tile" data-filter="${c.id}" data-short="${esc(short)}" data-sub="${esc(sub)}">
               <img class="filters__tile-img" src="${c.cover}" alt="" loading="lazy" decoding="async" width="400" height="600" />
               <span class="filters__tile-name">${esc(short)}</span>
+              <span class="filters__tile-region">${esc(region)}</span>
               <span class="filters__tile-date">${esc(c.dateLabel)}</span>
             </button>`;
   }
