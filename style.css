@@ -14,6 +14,11 @@
   --color-text-light: #888;
   --color-border: #e0e0e0;
   --color-hover-bg: rgba(0, 0, 0, 0.03);
+  /* Overlay surfaces (the collections panel) need to sit *above* the page, so they
+     get a lifted background and a darker edge than --color-bg / --color-border,
+     which are near-identical to each other by design. */
+  --color-panel-bg: #ffffff;
+  --color-panel-border: #cfcfcf;
   --nav-height: 72px;
 }
 
@@ -23,6 +28,9 @@ body.dark {
   --color-text-light: #888;
   --color-border: #262626;
   --color-hover-bg: rgba(255, 255, 255, 0.04);
+  /* Lighter than the page here — raised surfaces catch light, they don't sink. */
+  --color-panel-bg: #1c1c1c;
+  --color-panel-border: #3a3a3a;
 }
 
 body.dark .hero__overlay {
@@ -414,17 +422,21 @@ body.dark .nav--scrolled {
 }
 
 /* Full-width thumbnail panel. Anchored to the .filters origin but allowed to run
-   wider than the toggle that opens it, which is the whole point of the grid. */
+   wider than the toggle that opens it, which is the whole point of the grid.
+   It sits on its own surface: --color-bg is #fafafa and the 1px #e0e0e0 border
+   vanished against the page, so the panel gets a lifted background, a darker
+   edge, and a soft shadow to read as a layer above the page. */
 .filters__menu {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  width: min(1100px, calc(100vw - 80px));
+  width: min(1000px, calc(100vw - 80px));
   max-height: 72vh;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
+  background: var(--color-panel-bg);
+  border: 1px solid var(--color-panel-border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.12);
   display: none;
   flex-direction: column;
   z-index: 50;
@@ -440,14 +452,14 @@ body.dark .nav--scrolled {
   flex-wrap: wrap;
   gap: 4px 0;
   padding: 6px 12px;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-panel-border);
 }
 
 .filters__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px 20px;
-  padding: 24px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 22px 16px;
+  padding: 22px;
 }
 
 .filters__btn {
@@ -467,7 +479,7 @@ body.dark .nav--scrolled {
 
 .filters__btn:hover {
   color: var(--color-text);
-  background: rgba(0, 0, 0, 0.03);
+  background: var(--color-hover-bg);
 }
 
 .filters__btn--active {
@@ -489,39 +501,37 @@ body.dark .nav--scrolled {
 
 .filters__tile-img {
   width: 100%;
-  aspect-ratio: 1;
+  /* 2:3 — a real portrait frame. The covers are cropped to match, so nothing
+     is squeezed. */
+  aspect-ratio: 2 / 3;
   object-fit: cover;
   display: block;
   /* Dimmed at rest so the panel reads as chrome and doesn't compete with the
      gallery below it. Full colour on hover confirms what you're about to open. */
   filter: saturate(0.65) brightness(0.94);
-  transition: filter 0.3s ease, opacity 0.3s ease;
+  transition: filter 0.3s ease;
 }
 
 .filters__tile:hover .filters__tile-img,
 .filters__tile:focus-visible .filters__tile-img,
-.filters__tile--active .filters__tile-img {
-  filter: none;
-}
-
 .filters__btn--active .filters__tile-img {
   filter: none;
 }
 
 .filters__tile-name {
   display: block;
-  margin-top: 10px;
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  line-height: 1.5;
+  margin-top: 9px;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
   color: var(--color-text);
 }
 
 .filters__tile-date {
   display: block;
-  margin-top: 3px;
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
+  margin-top: 2px;
+  font-size: 0.54rem;
+  letter-spacing: 0.12em;
   color: var(--color-text-light);
 }
 
@@ -545,7 +555,7 @@ body.dark .nav--scrolled {
   padding: 4px 0 0;
   background: none;
   border-top: none;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-panel-border);
 }
 
 .filters__grid .filters__month-header:first-child {
@@ -556,18 +566,28 @@ body.dark .nav--scrolled {
   border-top: none;
 }
 
-/* Fewer columns before the labels start wrapping badly. "Ljubljana & Škofja Loka"
-   is the long pole — it needs roughly 150px to stay on two lines. */
-@media (max-width: 1000px) {
-  .filters__grid { grid-template-columns: repeat(3, 1fr); gap: 24px 16px; }
+/* Step columns down only where the panel itself actually narrows, so tile width stays
+   roughly constant (~140-160px) instead of ballooning on the way down. The panel is
+   capped at 1000px, so it stops shrinking above ~1080px viewport — a breakpoint above
+   that would just make the tiles bigger. "Ljubljana & Škofja Loka" is the long pole;
+   it needs ~140px to stay on two lines. */
+@media (max-width: 1040px) {
+  .filters__grid { grid-template-columns: repeat(5, 1fr); }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 880px) {
+  .filters__grid { grid-template-columns: repeat(4, 1fr); gap: 20px 14px; }
+}
+
+@media (max-width: 730px) {
   .filters__menu { width: calc(100vw - 48px); max-height: 68vh; }
-  .filters__grid { grid-template-columns: repeat(2, 1fr); gap: 20px 14px; padding: 18px; }
-  .filters__tile-name { font-size: 0.64rem; letter-spacing: 0.08em; }
+  .filters__grid { grid-template-columns: repeat(3, 1fr); gap: 18px 12px; padding: 16px; }
   /* No hover on touch, so don't ship a permanently dimmed grid there. */
   .filters__tile-img { filter: none; }
+}
+
+@media (max-width: 480px) {
+  .filters__grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Unlabeled divider bar above the undated views — needs explicit height since it has no text */

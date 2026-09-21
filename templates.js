@@ -71,7 +71,7 @@ const templates = (() => {
   function filterTile(c) {
     const label = `${c.dateLabel} - ${c.placeLabel}`;
     return `<button class="filters__btn filters__tile" data-filter="${c.id}" data-label="${esc(label)}">
-              <img class="filters__tile-img" src="${c.cover}" alt="" loading="lazy" decoding="async" width="500" height="500" />
+              <img class="filters__tile-img" src="${c.cover}" alt="" loading="lazy" decoding="async" width="400" height="600" />
               <span class="filters__tile-name">${esc(c.shortLabel || c.placeLabel)}</span>
               <span class="filters__tile-date">${esc(c.dateLabel)}</span>
             </button>`;
