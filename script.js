@@ -200,8 +200,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const dated = [];
     const meta = [];
     buttons.forEach(b => {
-      const m = b.textContent.trim().match(/^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/);
-      if (m) dated.push({ btn: b, month: monthMap[m[1]] });
+      const label = b.textContent.trim();
+      const m = label.match(/^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/);
+      // Pull the year off the label rather than assuming '26, or 2027 trips misfile.
+      const y = label.match(/'(\d{2})/);
+      if (m) dated.push({ btn: b, month: monthMap[m[1]], year: y ? y[1] : '' });
       else meta.push(b);
     });
     // Divider bar above the undated views (no label — purely visual separation)
@@ -213,40 +216,35 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.insertBefore(metaHeader, meta[0]);
       }
     }
-    let lastMonth = null;
-    dated.forEach(({ btn, month }) => {
-      if (month !== lastMonth) {
+    let lastKey = null;
+    dated.forEach(({ btn, month, year }) => {
+      const key = year + '-' + month;
+      if (key !== lastKey) {
         const header = document.createElement('div');
         header.className = 'filters__month-header';
-        header.textContent = monthName(month) + " '26";
+        header.textContent = monthName(month) + " '" + year;
         menu.insertBefore(header, btn);
-        lastMonth = month;
+        lastKey = key;
       }
     });
   }
-  // apply once nav dropdown clones exist too
+  // The in-page menu's month headers come from templates.js now, so it isn't grouped
+  // here — only the nav clone is, further down.
   const initialMenu = document.getElementById('filters-menu');
   if (initialMenu) {
-    // Inject series buttons above the dated collections (below Favorites/All) — only if any exist
+    // Series are view modes, so they sit with Favorites/All above the grid — if any exist.
     const seriesEntries = Object.entries(seriesInfo);
-    if (seriesEntries.length > 0) {
-      const firstDated = Array.from(initialMenu.querySelectorAll('.filters__btn'))
-        .find(b => /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/.test(b.textContent.trim()));
-      const seriesHeader = document.createElement('div');
-      seriesHeader.className = 'filters__month-header';
-      seriesHeader.textContent = 'Series';
-      if (firstDated) initialMenu.insertBefore(seriesHeader, firstDated);
-      else initialMenu.appendChild(seriesHeader);
+    const modes = initialMenu.querySelector('.filters__modes');
+    if (seriesEntries.length > 0 && modes) {
       seriesEntries.forEach(([id, info]) => {
         const btn = document.createElement('button');
         btn.className = 'filters__btn';
         btn.dataset.filter = id;
+        btn.dataset.label = info.label;
         btn.textContent = info.label;
-        if (firstDated) initialMenu.insertBefore(btn, firstDated);
-        else initialMenu.appendChild(btn);
+        modes.appendChild(btn);
       });
     }
-    groupDropdownByMonth(initialMenu);
   }
 
   // Dark mode toggle — injected into nav next to Notes, remembers preference
@@ -526,8 +524,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   filtersContainer.addEventListener('click', (e) => {
-    if (!e.target.matches('.filters__btn')) return;
-    const filter = e.target.dataset.filter;
+    // closest(), not matches() — a tile click usually lands on its <img> or <span>.
+    const clicked = e.target.closest('.filters__btn');
+    if (!clicked || !filtersContainer.contains(clicked)) return;
+    const filter = clicked.dataset.filter;
     activeCollection = filter;
 
     const path = filter === 'all' ? basePath + '/all'
@@ -542,7 +542,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleLabel = filtersContainer.querySelector('.filters__current');
     const activeBtn = filtersContainer.querySelector(`.filters__btn[data-filter="${filter}"]`);
     if (toggleLabel && activeBtn) {
-      toggleLabel.textContent = activeBtn.textContent;
+      // data-label, not textContent — a tile's textContent bundles name and date.
+      toggleLabel.textContent = activeBtn.dataset.label || activeBtn.textContent;
     }
 
     const menu = document.getElementById('filters-menu');
@@ -593,9 +594,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navDropdown = document.createElement('div');
     navDropdown.className = 'nav__dropdown';
+    // Build compact text buttons rather than cloning the source nodes — the in-page
+    // menu is a thumbnail grid now, and cloning tiles would drag 34 covers into the nav.
     filtersContainer.querySelectorAll('.filters__btn').forEach(btn => {
-      const clone = btn.cloneNode(true);
-      clone.classList.remove('filters__btn--active');
+      const clone = document.createElement('button');
+      clone.className = btn.classList.contains('filters__btn--primary')
+        ? 'filters__btn filters__btn--primary' : 'filters__btn';
+      clone.dataset.filter = btn.dataset.filter;
+      clone.textContent = btn.dataset.label || btn.textContent.trim();
       clone.addEventListener('click', (e) => {
         e.stopPropagation();
         btn.click();

@@ -413,12 +413,14 @@ body.dark .nav--scrolled {
   transform: rotate(180deg);
 }
 
+/* Full-width thumbnail panel. Anchored to the .filters origin but allowed to run
+   wider than the toggle that opens it, which is the whole point of the grid. */
 .filters__menu {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  min-width: 280px;
-  max-height: 70vh;
+  width: min(1100px, calc(100vw - 80px));
+  max-height: 72vh;
   overflow-y: auto;
   overscroll-behavior: contain;
   background: var(--color-bg);
@@ -430,6 +432,22 @@ body.dark .nav--scrolled {
 
 .filters__menu--open {
   display: flex;
+}
+
+/* Favorites / All / Shuffled — modes, not places, so they stay a text row. */
+.filters__modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filters__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 20px;
+  padding: 24px;
 }
 
 .filters__btn {
@@ -456,6 +474,57 @@ body.dark .nav--scrolled {
   color: var(--color-text);
 }
 
+/* ─── Collection tiles ─── */
+
+.filters__tile {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 0;
+}
+
+.filters__tile:hover {
+  background: none;
+}
+
+.filters__tile-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  /* Dimmed at rest so the panel reads as chrome and doesn't compete with the
+     gallery below it. Full colour on hover confirms what you're about to open. */
+  filter: saturate(0.65) brightness(0.94);
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.filters__tile:hover .filters__tile-img,
+.filters__tile:focus-visible .filters__tile-img,
+.filters__tile--active .filters__tile-img {
+  filter: none;
+}
+
+.filters__btn--active .filters__tile-img {
+  filter: none;
+}
+
+.filters__tile-name {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.filters__tile-date {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--color-text-light);
+}
+
 .filters__month-header {
   font-family: var(--font-body);
   font-size: 0.6rem;
@@ -469,8 +538,36 @@ body.dark .nav--scrolled {
   pointer-events: none;
 }
 
+/* Inside the grid a header is a full-width rule between month blocks, not a row item. */
+.filters__grid .filters__month-header {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 4px 0 0;
+  background: none;
+  border-top: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filters__grid .filters__month-header:first-child {
+  padding-top: 0;
+}
+
 .filters__month-header:first-child {
   border-top: none;
+}
+
+/* Fewer columns before the labels start wrapping badly. "Ljubljana & Škofja Loka"
+   is the long pole — it needs roughly 150px to stay on two lines. */
+@media (max-width: 1000px) {
+  .filters__grid { grid-template-columns: repeat(3, 1fr); gap: 24px 16px; }
+}
+
+@media (max-width: 700px) {
+  .filters__menu { width: calc(100vw - 48px); max-height: 68vh; }
+  .filters__grid { grid-template-columns: repeat(2, 1fr); gap: 20px 14px; padding: 18px; }
+  .filters__tile-name { font-size: 0.64rem; letter-spacing: 0.08em; }
+  /* No hover on touch, so don't ship a permanently dimmed grid there. */
+  .filters__tile-img { filter: none; }
 }
 
 /* Unlabeled divider bar above the undated views — needs explicit height since it has no text */

@@ -49,20 +49,64 @@ const templates = (() => {
     `;
   }
 
+  const MONTHS = ['January','February','March','April','May','June','July',
+                  'August','September','October','November','December'];
+  const MONTH_NUM = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6,
+                      Jul:7, Aug:8, Sep:9, Oct:10, Nov:11, Dec:12 };
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+                    .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  // data-label is what the closed toggle and the nav dropdown show. Tiles can't use
+  // textContent for that the way flat buttons did — theirs would read "Willow Lakes
+  // Sep 19 '26" — so every filter button carries the label explicitly.
   function filterButton(id, label, active = false, primary = false) {
-    return `<button class="filters__btn${active ? ' filters__btn--active' : ''}${primary ? ' filters__btn--primary' : ''}" data-filter="${id}">${label}</button>`;
+    return `<button class="filters__btn${active ? ' filters__btn--active' : ''}${primary ? ' filters__btn--primary' : ''}" data-filter="${id}" data-label="${esc(label)}">${esc(label)}</button>`;
+  }
+
+  // A collection tile: square cover, short name, date. Still a .filters__btn, so the
+  // existing click/active-state handling in script.js applies unchanged.
+  function filterTile(c) {
+    const label = `${c.dateLabel} - ${c.placeLabel}`;
+    return `<button class="filters__btn filters__tile" data-filter="${c.id}" data-label="${esc(label)}">
+              <img class="filters__tile-img" src="${c.cover}" alt="" loading="lazy" decoding="async" width="500" height="500" />
+              <span class="filters__tile-name">${esc(c.shortLabel || c.placeLabel)}</span>
+              <span class="filters__tile-date">${esc(c.dateLabel)}</span>
+            </button>`;
+  }
+
+  // "Jun 19-20 '26" / "Aug 11 & 17 '26" -> { month: 6, year: "26" }. Reading the year
+  // off the label rather than hardcoding it keeps 2027 trips from reading "'26".
+  function monthOf(dateLabel) {
+    const m = dateLabel.match(/^([A-Za-z]{3})/);
+    const y = dateLabel.match(/'(\d{2})\s*$/);
+    return { month: m ? MONTH_NUM[m[1]] : null, year: y ? y[1] : '' };
+  }
+
+  function collectionGrid() {
+    // Reversed so the newest collections come first.
+    const dated = [...cfg.collections].reverse();
+    const out = [];
+    let lastKey = null;
+    for (const c of dated) {
+      const { month, year } = monthOf(c.dateLabel);
+      const key = `${year}-${month}`;
+      if (month && key !== lastKey) {
+        out.push(`<p class="filters__month-header">${MONTHS[month - 1]} &rsquo;${year}</p>`);
+        lastKey = key;
+      }
+      out.push(filterTile(c));
+    }
+    return out.join('\n            ');
   }
 
   function work() {
-    // Reversed so newest collections appear at top of dropdown
-    const dated = [...cfg.collections].reverse();
-    const staticBtns = cfg.staticFilters.map((f, i) =>
+    const modeBtns = cfg.staticFilters.map(f =>
       filterButton(f.id, f.label, f.id === 'all', true)
-    ).join('\n        ');
-    const seriesBtns = cfg.series.map(s => filterButton(s.id, s.label)).join('\n        ');
-    const datedBtns = dated.map(c =>
-      filterButton(c.id, `${c.dateLabel} - ${c.placeLabel}`)
-    ).join('\n        ');
+    ).join('\n            ');
+    const seriesBtns = cfg.series.map(s => filterButton(s.id, s.label)).join('\n            ');
 
     return `
       <section id="work" class="section">
@@ -73,9 +117,13 @@ const templates = (() => {
             <span class="filters__chevron"></span>
           </button>
           <div class="filters__menu" id="filters-menu">
-        ${staticBtns}
-        ${seriesBtns}
-        ${datedBtns}
+            <div class="filters__modes">
+            ${modeBtns}
+            ${seriesBtns}
+            </div>
+            <div class="filters__grid">
+            ${collectionGrid()}
+            </div>
           </div>
         </div>
         <div id="gallery" class="gallery"></div>
