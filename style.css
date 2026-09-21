@@ -386,6 +386,12 @@ body.dark .nav--scrolled {
   margin-bottom: 48px;
 }
 
+/* Pull the eyebrow close to the headline it labels, so the two read as a pair. Other
+   sections keep the roomier default, where the label precedes content rather than a title. */
+#work .section__label {
+  margin-bottom: 14px;
+}
+
 /* ─── Gallery Filters ─── */
 
 .filters {
@@ -394,34 +400,62 @@ body.dark .nav--scrolled {
   display: inline-block;
 }
 
+/* The entry point to all 34 collections, so it carries the section rather than sitting
+   under it. At 0.7rem it was the same size as the .section__label eyebrow above it and
+   read as a caption. Promoted to the display serif at headline size: prominence from
+   type hierarchy instead of added chrome — no fill, no box.
+   Grid so the chevron sits beside the headline and the sub-line spans underneath. */
 .filters__toggle {
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
   align-items: center;
-  gap: 12px;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
+  column-gap: 14px;
+  row-gap: 3px;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 3.2vw, 2.05rem);
   font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--color-text);
   background: none;
   border: none;
-  border-bottom: 1px solid var(--color-text);
+  border-bottom: 1px solid var(--color-border);
   cursor: pointer;
-  padding: 8px 0;
-  transition: opacity 0.2s;
+  padding: 0 2px 10px 0;
+  text-align: left;
+  transition: border-color 0.2s;
 }
 
+/* The underline is the affordance, so darken it on hover rather than fading the
+   whole control out. */
 .filters__toggle:hover {
-  opacity: 0.7;
+  border-bottom-color: var(--color-text);
+}
+
+/* Date and full place name, under the headline. Empty for the view modes, and an
+   empty grid item would still reserve a row. */
+.filters__sub {
+  grid-column: 1 / -1;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+.filters__sub:empty {
+  display: none;
 }
 
 .filters__chevron {
   width: 0;
   height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 5px solid currentColor;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid currentColor;
   transition: transform 0.2s;
 }
 

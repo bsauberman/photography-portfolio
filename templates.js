@@ -59,20 +59,22 @@ const templates = (() => {
                     .replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  // data-label is what the closed toggle and the nav dropdown show. Tiles can't use
-  // textContent for that the way flat buttons did — theirs would read "Willow Lakes
-  // Sep 19 '26" — so every filter button carries the label explicitly.
+  // data-short is the headline the closed toggle shows; data-sub is the small line
+  // under it. Split rather than one data-label because the toggle is a display-serif
+  // headline now, and the full "Sep 19 '26 - Willow Lakes - Eagles Nest Wilderness, CO"
+  // would wrap across three lines at that size.
   function filterButton(id, label, active = false, primary = false) {
-    return `<button class="filters__btn${active ? ' filters__btn--active' : ''}${primary ? ' filters__btn--primary' : ''}" data-filter="${id}" data-label="${esc(label)}">${esc(label)}</button>`;
+    return `<button class="filters__btn${active ? ' filters__btn--active' : ''}${primary ? ' filters__btn--primary' : ''}" data-filter="${id}" data-short="${esc(label)}" data-sub="">${esc(label)}</button>`;
   }
 
   // A collection tile: square cover, short name, date. Still a .filters__btn, so the
   // existing click/active-state handling in script.js applies unchanged.
   function filterTile(c) {
-    const label = `${c.dateLabel} - ${c.placeLabel}`;
-    return `<button class="filters__btn filters__tile" data-filter="${c.id}" data-label="${esc(label)}">
+    const short = c.shortLabel || c.placeLabel;
+    const sub = `${c.dateLabel} · ${c.placeLabel}`;
+    return `<button class="filters__btn filters__tile" data-filter="${c.id}" data-short="${esc(short)}" data-sub="${esc(sub)}">
               <img class="filters__tile-img" src="${c.cover}" alt="" loading="lazy" decoding="async" width="400" height="600" />
-              <span class="filters__tile-name">${esc(c.shortLabel || c.placeLabel)}</span>
+              <span class="filters__tile-name">${esc(short)}</span>
               <span class="filters__tile-date">${esc(c.dateLabel)}</span>
             </button>`;
   }
@@ -115,6 +117,7 @@ const templates = (() => {
           <button class="filters__toggle" id="filters-toggle" aria-expanded="false">
             <span class="filters__current">All Collections</span>
             <span class="filters__chevron"></span>
+            <span class="filters__sub"></span>
           </button>
           <div class="filters__menu filters__panel" id="filters-menu">
             <div class="filters__modes">

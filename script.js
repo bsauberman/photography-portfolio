@@ -203,7 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = document.createElement('button');
         btn.className = 'filters__btn';
         btn.dataset.filter = id;
-        btn.dataset.label = info.label;
+        btn.dataset.short = info.label;
+        btn.dataset.sub = '';
         btn.textContent = info.label;
         modes.appendChild(btn);
       });
@@ -505,10 +506,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const toggleLabel = filtersContainer.querySelector('.filters__current');
+    const toggleSub = filtersContainer.querySelector('.filters__sub');
     const activeBtn = filtersContainer.querySelector(`.filters__btn[data-filter="${filter}"]`);
-    if (toggleLabel && activeBtn) {
-      // data-label, not textContent — a tile's textContent bundles name and date.
-      toggleLabel.textContent = activeBtn.dataset.label || activeBtn.textContent;
+    if (activeBtn) {
+      // data-short/data-sub, not textContent — a tile's textContent bundles name and date.
+      if (toggleLabel) toggleLabel.textContent = activeBtn.dataset.short || activeBtn.textContent;
+      if (toggleSub) toggleSub.textContent = activeBtn.dataset.sub || '';
     }
 
     const menu = document.getElementById('filters-menu');
