@@ -216,28 +216,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const stored = localStorage.getItem('theme');
     if (stored === 'dark') document.body.classList.add('dark');
 
-    const notesLink = document.querySelector('.nav a[href="#notes"]');
-    if (!notesLink) return;
-    const li = document.createElement('li');
-    li.className = 'nav__theme-item';
-    const toggle = document.createElement('button');
-    toggle.className = 'theme-toggle';
-    toggle.setAttribute('aria-label', 'Toggle dark mode');
-    toggle.innerHTML = `
-      <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="4"/>
-        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-      </svg>
-    `;
-    toggle.addEventListener('click', () => {
+    function setTheme() {
       const isDark = document.body.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-    li.appendChild(toggle);
-    notesLink.parentElement.parentElement.appendChild(li);
+    }
+
+    // Which icon shows is driven by body.dark in CSS, so every copy of this button
+    // stays in sync without being told about the others.
+    function makeToggle(extraClass) {
+      const toggle = document.createElement('button');
+      toggle.className = extraClass ? `theme-toggle ${extraClass}` : 'theme-toggle';
+      toggle.type = 'button';
+      toggle.setAttribute('aria-label', 'Toggle dark mode');
+      toggle.innerHTML = `
+        <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+      `;
+      toggle.addEventListener('click', setTheme);
+      return toggle;
+    }
+
+    // Desktop: in the nav links row, after Notes.
+    const notesLink = document.querySelector('.nav a[href="#notes"]');
+    if (notesLink) {
+      const li = document.createElement('li');
+      li.className = 'nav__theme-item';
+      li.appendChild(makeToggle());
+      notesLink.parentElement.parentElement.appendChild(li);
+    }
+
+    // Mobile: the nav links row is display:none under 600px, which took the only
+    // toggle with it — so the hamburger overlay needs its own.
+    const mobileNav = document.querySelector('.mobile-nav');
+    if (mobileNav) {
+      mobileNav.appendChild(makeToggle('theme-toggle--mobile'));
+    }
   })();
 
   function renderGallery(items) {

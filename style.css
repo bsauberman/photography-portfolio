@@ -1504,6 +1504,20 @@ body.dark .nav--scrolled {
 body.dark .theme-toggle .theme-toggle__moon { display: none; }
 body.dark .theme-toggle .theme-toggle__sun { display: inline-block; }
 
+/* The hamburger overlay's own copy. The nav-row toggle lives in .nav__links, which is
+   display:none under 600px — that hid the only way to switch themes on a phone. Sized
+   up and at full contrast to sit with the 2rem text links around it. Must come after
+   the base rules above, which match at equal specificity. */
+.theme-toggle--mobile {
+  color: var(--color-text);
+  padding: 8px;
+}
+
+.theme-toggle--mobile svg {
+  width: 28px;
+  height: 28px;
+}
+
 /* ─── Placeholder for missing images ─── */
 
 .gallery__placeholder {
