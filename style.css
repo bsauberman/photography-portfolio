@@ -402,8 +402,8 @@ body.dark .nav--scrolled {
 
 /* The entry point to all 34 collections, so it carries the section rather than sitting
    under it. At 0.7rem it was the same size as the .section__label eyebrow above it and
-   read as a caption. Promoted to the display serif at headline size: prominence from
-   type hierarchy instead of added chrome — no fill, no box.
+   read as a caption. Promoted to headline size: prominence from type hierarchy instead
+   of added chrome — no fill, no box. Body font, same as the rest of the page.
    Grid so the chevron sits beside the headline and the sub-line spans underneath. */
 .filters__toggle {
   display: grid;
@@ -412,11 +412,13 @@ body.dark .nav--scrolled {
   align-items: center;
   column-gap: 14px;
   row-gap: 3px;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: clamp(1.55rem, 3.2vw, 2.05rem);
   font-weight: 400;
   line-height: 1.15;
-  letter-spacing: 0.01em;
+  /* Slightly tight rather than the wide tracking the small uppercase labels use —
+     a sans-serif at headline size wants the opposite treatment. */
+  letter-spacing: -0.01em;
   text-transform: none;
   color: var(--color-text);
   background: none;
