@@ -3298,7 +3298,8 @@
     "date": "Sep 19 2026",
     "camera": "f/6.4, 1/1250s, ISO 640",
     "filmSimulation": "Classic Negative",
-    "size": "tall"
+    "size": "tall",
+    "favorite": true
   },
   {
     "id": "wl-serrated",
