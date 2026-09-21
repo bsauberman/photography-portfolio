@@ -430,7 +430,7 @@ body.dark .nav--scrolled {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  width: min(1000px, calc(100vw - 80px));
+  width: min(700px, calc(100vw - 80px));
   max-height: 72vh;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -457,7 +457,7 @@ body.dark .nav--scrolled {
 
 .filters__grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 22px 16px;
   padding: 22px;
 }
@@ -493,6 +493,9 @@ body.dark .nav--scrolled {
   flex-direction: column;
   padding: 0;
   gap: 0;
+  /* Don't let the grid stretch a tile to the row's height. Without this, a tall
+     row makes the tile tall, and anything inside it that can grow grows with it. */
+  align-self: start;
 }
 
 .filters__tile:hover {
@@ -502,8 +505,11 @@ body.dark .nav--scrolled {
 .filters__tile-img {
   width: 100%;
   /* 2:3 — a real portrait frame. The covers are cropped to match, so nothing
-     is squeezed. */
+     is squeezed. height:auto is explicit so aspect-ratio is what sets the height;
+     without it an inherited or stretched height silently wins and the tile
+     renders as a tall thin strip. */
   aspect-ratio: 2 / 3;
+  height: auto;
   object-fit: cover;
   display: block;
   /* Dimmed at rest so the panel reads as chrome and doesn't compete with the
@@ -567,26 +573,18 @@ body.dark .nav--scrolled {
 }
 
 /* Step columns down only where the panel itself actually narrows, so tile width stays
-   roughly constant (~140-160px) instead of ballooning on the way down. The panel is
-   capped at 1000px, so it stops shrinking above ~1080px viewport — a breakpoint above
-   that would just make the tiles bigger. "Ljubljana & Škofja Loka" is the long pole;
-   it needs ~140px to stay on two lines. */
-@media (max-width: 1040px) {
-  .filters__grid { grid-template-columns: repeat(5, 1fr); }
-}
-
-@media (max-width: 880px) {
-  .filters__grid { grid-template-columns: repeat(4, 1fr); gap: 20px 14px; }
-}
-
-@media (max-width: 730px) {
+   roughly constant instead of ballooning on the way down. The panel caps at 700px, so
+   it stops shrinking above a ~780px viewport — a breakpoint above that would only make
+   the tiles bigger. "Ljubljana & Škofja Loka" is the long pole; it needs ~130px to
+   stay on two lines. */
+@media (max-width: 690px) {
   .filters__menu { width: calc(100vw - 48px); max-height: 68vh; }
   .filters__grid { grid-template-columns: repeat(3, 1fr); gap: 18px 12px; padding: 16px; }
   /* No hover on touch, so don't ship a permanently dimmed grid there. */
   .filters__tile-img { filter: none; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 470px) {
   .filters__grid { grid-template-columns: repeat(2, 1fr); }
 }
 
