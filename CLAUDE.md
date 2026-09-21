@@ -393,7 +393,9 @@ serif there.
 7. Generate the 400×600 cover from a tall frame.
 8. Create `<id>/index.html` — copy any existing route and edit the head. Keep the
    `photos.json` preload and `<base href="../" />`.
-9. Run the validation script below.
+9. **Generate `images/og-<id>.jpg` and set the three `og:image:*` tags.** Nothing does this
+   for you, and a WebP `og:image` shares with no picture at all. See the OG images section.
+10. Run the validation script below.
 
 ### Favorite a photo
 ```python
@@ -458,6 +460,33 @@ console.log('every hero has xl:',pool.every(p=>p.fileXl));
 Expected now: `total: 285 favorites: 46 with xl: 45`, `ordering ok: 284`, hero pool 9,
 `orphan webp: 10`.
 
+### Link-preview check
+Separate, because a broken `og:image` is invisible until someone shares the link. Catches a
+WebP preview, a missing file, and dimension tags that disagree with the actual image.
+
+```bash
+cd ~/src/photography-portfolio && python3 -c "
+import re, glob
+from PIL import Image
+bad = []
+pages = sorted(glob.glob('*/index.html')) + ['index.html']
+for path in pages:
+    s = open(path).read()
+    img = re.search(r'og:image\" content=\"https://bensauberman\.com/([^\"]+)\"', s)
+    w = re.search(r'og:image:width\" content=\"(\d+)\"', s)
+    h = re.search(r'og:image:height\" content=\"(\d+)\"', s)
+    a = re.search(r'og:image:alt\" content=\"([^\"]*)\"', s)
+    if not img: bad.append((path,'no og:image')); continue
+    if img.group(1).endswith('.webp'): bad.append((path,'WebP preview — will not render')); continue
+    if not (w and h and a): bad.append((path,'missing width/height/alt')); continue
+    try: actual = Image.open(img.group(1)).size
+    except Exception: bad.append((path,'file missing: '+img.group(1))); continue
+    if actual != (int(w.group(1)), int(h.group(1))):
+        bad.append((path, f'declared {(int(w.group(1)),int(h.group(1)))} != actual {actual}'))
+print('pages:', len(pages), '| problems:', bad or 'none')
+"
+```
+
 The 10 orphans are pre-existing: `buena-vista/DSCF9974`, `highway-1/DSCF9292` (the About
 photo, referenced from `templates.js` not `photos.json`), `highway-1/DSCF9299`,
 `missouri-lakes/DSCF1995`, `nyc/DSCF9782` — thumb + full each.
@@ -488,7 +517,7 @@ month headers). Say clearly when that's what happened.
 ## Constraints and gotchas
 
 ### GitHub Pages
-**1GB published-site limit, hard.** Currently **504MB tracked (~49%)**. Every new collection
+**1GB published-site limit, hard.** Currently **518MB tracked (~51%)**. Every new collection
 adds roughly 10–25MB. The xl tier was only approved after correcting an earlier overestimate
 of repo size — don't add a tier without checking the budget.
 
@@ -496,7 +525,7 @@ Working tree is 3.1GB (2.2GB of gitignored camera originals) and `.git` is 512MB
 
 ### `.gitignore` is case-insensitive on APFS
 `*.jpg` matches `.JPG`. Any committed JPEG needs an explicit negation — hence
-`!images/og-*.jpg` for the two OG preview images.
+`!images/og-*.jpg`, which covers all 36 link-preview images.
 
 **`git check-ignore -v` gives a misleading exit code on negation rules** — it printed the
 `!images/og-*.jpg` rule *and* returned 0, which reads as "ignored". Verify tracking
@@ -517,14 +546,40 @@ Convention, applied across all 36 routes:
 label. **Escape bare `&` in `meta content`** — a strict parser truncates the value there,
 which once would have cut "Ice & Island Lakes" in half.
 
-OG images must be **JPEG**, not webp, for clients that can't decode webp:
-`images/og-cover-401.jpg` (root) and `images/og-favorites-oyster.jpg` (`/favorites`). Made
-with `sips -s format jpeg -s formatOptions 88 -Z 1200 <xl>.webp --out images/og-*.jpg`.
-Changing the filename is how you bust the iMessage/Slack preview cache.
+### OG images must be JPEG, one per route
+**iMessage and other preview fetchers will not render a WebP `og:image`** — the link
+appears with no picture at all. Every route therefore points at a committed JPEG:
+`images/og-<collection-id>.jpg`, plus `images/og-cover-401.jpg` (root and `/all`) and
+`images/og-favorites-oyster.jpg`. 36 files, ~15MB.
 
-### `images/hero.webp` is still referenced
-It's no longer in the rotation, but it **is** the `og:image` for `/all` and `/highway-1`.
-Don't delete it. (An earlier claim that it was unreferenced was wrong.)
+Every route also declares `og:image:width`, `og:image:height` and `og:image:alt`, and the
+declared dimensions must match the file — 24 are landscape **1200×800**, 12 are portrait
+**800×1200**.
+
+Those 12 are the collections with no landscape photo in them. Cropping a portrait frame to
+3:2 produced previews with the subject cut out entirely (Chasm Lake became an unrecognisable
+band of rock wall), so they ship the full frame at 2:3 instead. Prefer a landscape source
+where one exists; use the whole frame when one doesn't.
+
+Generation, from the largest existing derivative:
+```bash
+sips -s format png <src>.webp --out /tmp/og.png
+# centred crop to the target ratio, then exact resize, then JPEG
+sips -c <cropH> <cropW> /tmp/og.png      # note: HEIGHT then WIDTH
+sips -z 800 1200 /tmp/og.png             # landscape; use -z 1200 800 for portrait
+sips -s format jpeg -s formatOptions 88 /tmp/og.png --out images/og-<id>.jpg
+```
+Changing the filename is how you bust the iMessage/Slack preview cache. Apple caches by
+page URL, so an already-shared link may keep showing the old (or missing) preview for a
+while regardless.
+
+**This is not automatic.** A new route needs its OG JPEG generated and its dimension tags
+written, or the link will share with no image.
+
+### `images/hero.webp` is vestigial
+It is no longer the `og:image` for anything, and it is not in the hero rotation. The only
+thing still pointing at it is the dead `id: "hero"` entry in `photos.json`, which every
+query filters out. It's ~1MB of tracked weight that could go — ask first.
 
 ### Git
 When files are **staged**, `git checkout -- <file>` restores from the index and is a no-op
@@ -569,9 +624,10 @@ None of these are authorised — ask before starting.
 ├── CNAME                       bensauberman.com
 ├── CLAUDE.md
 └── images/
-    ├── hero.webp               og:image for /all and /highway-1
-    ├── og-cover-401.jpg        root link preview
+    ├── hero.webp               vestigial — nothing references it but dead JSON
+    ├── og-cover-401.jpg        root + /all link preview
     ├── og-favorites-oyster.jpg /favorites link preview
+    ├── og-<collection-id>.jpg  34 link previews, one per collection
     ├── screensavers/           gitignored full-res hero copies
     └── <34 collection dirs>/   *.JPG originals (gitignored)
                                 *-thumb/-full/-xl/-cover.webp (committed)
