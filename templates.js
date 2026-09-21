@@ -116,7 +116,7 @@ const templates = (() => {
             <span class="filters__current">All Collections</span>
             <span class="filters__chevron"></span>
           </button>
-          <div class="filters__menu" id="filters-menu">
+          <div class="filters__menu filters__panel" id="filters-menu">
             <div class="filters__modes">
             ${modeBtns}
             ${seriesBtns}

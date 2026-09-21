@@ -191,45 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function groupDropdownByMonth(menu) {
-    if (!menu) return;
-    const monthName = (num) => ['January','February','March','April','May','June','July','August','September','October','November','December'][num - 1];
-    // Match "Mmm DD" or "Mmm DD-DD" or "Mmm DD - Mmm DD" at start of label
-    const monthMap = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
-    const buttons = Array.from(menu.querySelectorAll('.filters__btn'));
-    const dated = [];
-    const meta = [];
-    buttons.forEach(b => {
-      const label = b.textContent.trim();
-      const m = label.match(/^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/);
-      // Pull the year off the label rather than assuming '26, or 2027 trips misfile.
-      const y = label.match(/'(\d{2})/);
-      if (m) dated.push({ btn: b, month: monthMap[m[1]], year: y ? y[1] : '' });
-      else meta.push(b);
-    });
-    // Divider bar above the undated views (no label — purely visual separation)
-    if (meta.length > 0) {
-      const prev = meta[0].previousElementSibling;
-      if (!prev || !prev.classList.contains('filters__month-header')) {
-        const metaHeader = document.createElement('div');
-        metaHeader.className = 'filters__month-header filters__month-header--blank';
-        menu.insertBefore(metaHeader, meta[0]);
-      }
-    }
-    let lastKey = null;
-    dated.forEach(({ btn, month, year }) => {
-      const key = year + '-' + month;
-      if (key !== lastKey) {
-        const header = document.createElement('div');
-        header.className = 'filters__month-header';
-        header.textContent = monthName(month) + " '" + year;
-        menu.insertBefore(header, btn);
-        lastKey = key;
-      }
-    });
-  }
-  // The in-page menu's month headers come from templates.js now, so it isn't grouped
-  // here — only the nav clone is, further down.
+  // Month headers are emitted by templates.js as part of the collection grid, and the
+  // nav dropdown clones that markup — so nothing groups them at runtime any more.
   const initialMenu = document.getElementById('filters-menu');
   if (initialMenu) {
     // Series are view modes, so they sit with Favorites/All above the grid — if any exist.
@@ -535,7 +498,9 @@ document.addEventListener('DOMContentLoaded', () => {
                : basePath + '/' + filter;
     history.pushState(null, '', path);
 
-    filtersContainer.querySelectorAll('.filters__btn').forEach(btn => {
+    // document-wide, not just filtersContainer: the nav dropdown holds a cloned copy
+    // of these buttons and has to show the same active collection.
+    document.querySelectorAll('.filters__btn').forEach(btn => {
       btn.classList.toggle('filters__btn--active', btn.dataset.filter === filter);
     });
 
@@ -593,26 +558,28 @@ document.addEventListener('DOMContentLoaded', () => {
     navItem.classList.add('nav__item--dropdown');
 
     const navDropdown = document.createElement('div');
-    navDropdown.className = 'nav__dropdown';
-    // Build compact text buttons rather than cloning the source nodes — the in-page
-    // menu is a thumbnail grid now, and cloning tiles would drag 34 covers into the nav.
-    filtersContainer.querySelectorAll('.filters__btn').forEach(btn => {
-      const clone = document.createElement('button');
-      clone.className = btn.classList.contains('filters__btn--primary')
-        ? 'filters__btn filters__btn--primary' : 'filters__btn';
-      clone.dataset.filter = btn.dataset.filter;
-      clone.textContent = btn.dataset.label || btn.textContent.trim();
-      clone.addEventListener('click', (e) => {
-        e.stopPropagation();
-        btn.click();
-        navDropdown.classList.remove('nav__dropdown--open');
-        photoLink.setAttribute('aria-expanded', 'false');
-        document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
-      });
-      navDropdown.appendChild(clone);
+    navDropdown.className = 'nav__dropdown filters__panel';
+    // Clone the in-page panel's own children so the two menus can't drift apart —
+    // same modes row, same month-grouped cover grid. Children, not the element
+    // itself, because that carries id="filters-menu" and ids must stay unique.
+    // Clicks delegate back to the original buttons, so the filtering logic has
+    // exactly one implementation.
+    const sourceMenu = document.getElementById('filters-menu');
+    if (sourceMenu) {
+      [...sourceMenu.children].forEach(child => navDropdown.appendChild(child.cloneNode(true)));
+    }
+    navDropdown.addEventListener('click', (e) => {
+      const clicked = e.target.closest('.filters__btn');
+      if (!clicked) return;
+      e.stopPropagation();
+      const original = filtersContainer.querySelector(
+        `.filters__btn[data-filter="${clicked.dataset.filter}"]`);
+      if (original) original.click();
+      navDropdown.classList.remove('nav__dropdown--open');
+      photoLink.setAttribute('aria-expanded', 'false');
+      document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
     });
     navItem.appendChild(navDropdown);
-    groupDropdownByMonth(navDropdown);
 
     photoLink.setAttribute('aria-expanded', 'false');
     // Replace the anchor's own click behavior with the dropdown toggle

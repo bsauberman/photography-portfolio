@@ -149,25 +149,19 @@ body.dark .nav--scrolled {
   position: absolute;
   top: calc(100% + 16px);
   right: 0;
-  min-width: 320px;
+  /* Wide enough for the 4-column cover grid it clones from the in-page panel.
+     Background, border and shadow come from .filters__panel. */
+  width: min(700px, calc(100vw - 32px));
   max-height: calc(100vh - var(--nav-height) - 32px);
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
   display: none;
   flex-direction: column;
   z-index: 110;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .nav__dropdown--open {
   display: flex;
-}
-
-.nav__dropdown .filters__btn {
-  padding: 14px 20px;
-  text-align: left;
 }
 
 .nav__hamburger {
@@ -423,9 +417,15 @@ body.dark .nav--scrolled {
   transform: rotate(180deg);
 }
 
-/* Full-width thumbnail panel. Anchored to the .filters origin but allowed to run
-   wider than the toggle that opens it, which is the whole point of the grid. A dark
-   tray with a thin light edge, so it separates from the page without a heavy border. */
+/* Shared surface for both collection menus — the in-page panel and the nav dropdown,
+   which clones its markup. A dark tray with a thin light edge, so it separates from
+   the page without a heavy border. Positioning and width stay with each menu. */
+.filters__panel {
+  background: var(--color-panel-bg);
+  border: 1px solid var(--color-panel-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 16px 40px rgba(0, 0, 0, 0.22);
+}
+
 .filters__menu {
   position: absolute;
   top: calc(100% + 8px);
@@ -434,9 +434,6 @@ body.dark .nav--scrolled {
   max-height: 72vh;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: var(--color-panel-bg);
-  border: 1px solid var(--color-panel-border);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 16px 40px rgba(0, 0, 0, 0.22);
   display: none;
   flex-direction: column;
   z-index: 50;
@@ -464,23 +461,24 @@ body.dark .nav--scrolled {
   padding: 22px;
 }
 
-/* ─── Panel text. Scoped, because .filters__btn is reused in the light nav dropdown. ─── */
+/* ─── Panel text. Scoped to .filters__panel so it covers both menus but leaves any
+       other .filters__btn on a light background alone. ─── */
 
-.filters__menu .filters__btn {
+.filters__panel .filters__btn {
   font-size: 0.74rem;
   color: var(--color-panel-text-dim);
 }
 
-.filters__menu .filters__btn:hover {
+.filters__panel .filters__btn:hover {
   color: var(--color-panel-text);
   background: var(--color-panel-hover);
 }
 
-.filters__menu .filters__btn--active {
+.filters__panel .filters__btn--active {
   color: var(--color-panel-text);
 }
 
-.filters__menu .filters__btn--primary {
+.filters__panel .filters__btn--primary {
   font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.13em;
@@ -491,7 +489,7 @@ body.dark .nav--scrolled {
 
 /* The active view mode gets a rule under it — the colour difference alone is too
    quiet once every mode button is already full brightness. */
-.filters__menu .filters__btn--primary.filters__btn--active {
+.filters__panel .filters__btn--primary.filters__btn--active {
   border-bottom-color: var(--color-panel-text);
 }
 
@@ -621,12 +619,6 @@ body.dark .nav--scrolled {
 
 @media (max-width: 470px) {
   .filters__grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* Unlabeled divider bar above the undated views — needs explicit height since it has no text */
-.filters__month-header--blank {
-  padding: 0;
-  height: 10px;
 }
 
 /* Favorites / All (Ordered) / All (Shuffled) — weighted to read as the entry points */
