@@ -3373,5 +3373,92 @@
     "camera": "f/3.2, 1/110s, ISO 640",
     "filmSimulation": "Classic Negative",
     "size": "tall"
+  },
+  {
+    "id": "mh-bear-lake-road",
+    "file": "images/mills-haiyaha-dream-emerald-lakes/DSCF3726-thumb.webp",
+    "fileFull": "images/mills-haiyaha-dream-emerald-lakes/DSCF3726-full.webp",
+    "collection": "mills-haiyaha-dream-emerald-lakes",
+    "title": "Gold Along Bear Lake Road",
+    "location": "Bear Lake Road - Rocky Mountain NP, CO",
+    "date": "Oct 3 2026",
+    "camera": "f/7.1, 1/1500s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "mh-mills-lake",
+    "file": "images/mills-haiyaha-dream-emerald-lakes/DSCF3744-thumb.webp",
+    "fileFull": "images/mills-haiyaha-dream-emerald-lakes/DSCF3744-full.webp",
+    "fileXl": "images/mills-haiyaha-dream-emerald-lakes/DSCF3744-xl.webp",
+    "collection": "mills-haiyaha-dream-emerald-lakes",
+    "title": "Mills Lake Up Glacier Gorge",
+    "location": "Mills Lake - Rocky Mountain NP, CO",
+    "date": "Oct 3 2026",
+    "camera": "f/7.1, 1/1500s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "wide"
+  },
+  {
+    "id": "mh-haiyaha",
+    "file": "images/mills-haiyaha-dream-emerald-lakes/DSCF3761-thumb.webp",
+    "fileFull": "images/mills-haiyaha-dream-emerald-lakes/DSCF3761-full.webp",
+    "collection": "mills-haiyaha-dream-emerald-lakes",
+    "title": "Turquoise Haiyaha",
+    "location": "Lake Haiyaha - Rocky Mountain NP, CO",
+    "date": "Oct 3 2026",
+    "camera": "f/6.4, 1/1300s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "mh-dream-lake",
+    "file": "images/mills-haiyaha-dream-emerald-lakes/DSCF3776-thumb.webp",
+    "fileFull": "images/mills-haiyaha-dream-emerald-lakes/DSCF3776-full.webp",
+    "fileXl": "images/mills-haiyaha-dream-emerald-lakes/DSCF3776-xl.webp",
+    "collection": "mills-haiyaha-dream-emerald-lakes",
+    "title": "Hallett Peak over Dream Lake",
+    "location": "Dream Lake - Rocky Mountain NP, CO",
+    "date": "Oct 3 2026",
+    "camera": "f/5.6, 1/1250s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "wide"
+  },
+  {
+    "id": "mh-aspens",
+    "file": "images/mills-haiyaha-dream-emerald-lakes/DSCF3778-thumb.webp",
+    "fileFull": "images/mills-haiyaha-dream-emerald-lakes/DSCF3778-full.webp",
+    "collection": "mills-haiyaha-dream-emerald-lakes",
+    "title": "Aspens Catching the Light",
+    "location": "Emerald Lake Trail - Rocky Mountain NP, CO",
+    "date": "Oct 3 2026",
+    "camera": "f/5.6, 1/850s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall",
+    "favorite": true
+  },
+  {
+    "id": "mh-emerald-spires",
+    "file": "images/mills-haiyaha-dream-emerald-lakes/DSCF3788-thumb.webp",
+    "fileFull": "images/mills-haiyaha-dream-emerald-lakes/DSCF3788-full.webp",
+    "collection": "mills-haiyaha-dream-emerald-lakes",
+    "title": "Spires Above Emerald Lake",
+    "location": "Emerald Lake - Rocky Mountain NP, CO",
+    "date": "Oct 3 2026",
+    "camera": "f/5.6, 1/500s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "mh-hallett-face",
+    "file": "images/mills-haiyaha-dream-emerald-lakes/DSCF3796-thumb.webp",
+    "fileFull": "images/mills-haiyaha-dream-emerald-lakes/DSCF3796-full.webp",
+    "collection": "mills-haiyaha-dream-emerald-lakes",
+    "title": "Hallett Peak from Emerald Lake",
+    "location": "Emerald Lake - Rocky Mountain NP, CO",
+    "date": "Oct 3 2026",
+    "camera": "f/5, 1/340s, ISO 640",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
   }
 ]

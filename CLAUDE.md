@@ -61,7 +61,7 @@ template websites.
 Both were discussed with Ben and chosen knowingly. Don't "fix" them back:
 - **The collections panel is a uniform grid of cover tiles.** The no-rigid-grids rule
   protects the *gallery*, where the photos are the work. An index is chrome, and
-  uniformity there is what makes 34 collections scannable.
+  uniformity there is what makes 35 collections scannable.
 - **That panel has a drop shadow.** Ben asked for separation directly. An overlay is the
   one place a shadow does real work rather than decoration.
 
@@ -93,7 +93,7 @@ exists before the module runs.
 
 ### Routes
 36 directories, each a 26-line shell whose only job is its own `<head>`:
-34 collections + `/all` + `/favorites`. Plus `index.html` at the root.
+35 collections + `/all` + `/favorites`. Plus `index.html` at the root.
 
 Every route file is identical except `<title>`, the `<meta>`/OG block, and — for
 subdirectories — `<base href="../" />`, which makes all relative paths resolve from the
@@ -109,7 +109,7 @@ footer are on every route** — a collection page is the same page with a filter
 
 ## Data model
 
-### `photos.json` — 285 entries, 46 favorites, 45 with `fileXl`
+### `photos.json` — 292 entries, 47 favorites, 47 with `fileXl`
 
 Canonical key order (keep it; edits are done by string manipulation):
 ```
@@ -146,7 +146,7 @@ camera, filmSimulation, size, favorite
 The `hero` entry has no `size` key, so **always use `p.size` defensively** or filter
 `!p.hero` first.
 
-### `site-config.js` — 34 collections
+### `site-config.js` — 35 collections
 
 Listed **oldest first**. Order is load-bearing: `interleaveByCollection` derives recency
 from array index, and `collectionGrid()` reverses it so the newest month is at the top of
@@ -267,7 +267,7 @@ dimensions, orientation, timestamp, aperture, shutter, ISO, focal length and fil
 **Photos that have been cropped or re-exported lose the MakerNote.** Those read `None`; the
 convention is to inherit the film sim from the rest of that day's batch and say so.
 
-### Outstanding: 138 of 285 entries have no `filmSimulation`
+### Outstanding: 138 of 292 entries have no `filmSimulation`
 Deferred, not cancelled — Ben said *"push first then we can do this."* The plan: validate
 the parser against entries that already record a value, then backfill and correct.
 Originals still exist locally for most collections.
@@ -324,7 +324,9 @@ Three functions, applied in combination depending on the filter:
 - `sortByCollectionReverse` — newest collection first. Used for `all` and single collections.
 - `interleaveByCollection` — used for `/favorites`. Spreads adjacent photos across different
   collections while biasing recent work upward. `RECENCY_BIAS = 0.4` (0 = pure even spread,
-  1 = strict newest-first). `FAVORITES_LEAD = ['il-meadow', 'h1-iceplant']` pins the first two.
+  1 = strict newest-first). `FAVORITES_LEAD = ['sa-snowfield', 'mh-aspens']` pins the first two;
+  `FAVORITES_PINNED = { 'il-meadow': 7, 'h1-iceplant': 8 }` holds the former leads at
+  fixed 0-based slots (an explicit swap Ben asked for). Pinned photos also skip `pairWith`.
 - `seededShuffle` — used for `shuffled`; seeded so the order is stable within a session.
 - `clusterTallPairs` — runs **last**, always. Finds each `tall` photo and pulls the next
   `tall` up beside it so portraits render two-across instead of leaving gaps.
@@ -458,7 +460,7 @@ const ph=photos.filter(p=>p.size);
 const src=fs.readFileSync('script.js','utf8');
 function grab(n){const i=src.indexOf('function '+n);let d=0,j=src.indexOf('{',i);
   for(let k=j;k<src.length;k++){if(src[k]==='{')d++;else if(src[k]==='}'){d--;if(d===0)return src.slice(i,k+1);}}}
-eval(src.match(/const RECENCY_BIAS = [^;]+;/)[0]+src.match(/const FAVORITES_LEAD = [^;]+;/)[0]+grab('interleaveByCollection')+grab('clusterTallPairs'));
+eval(src.match(/const RECENCY_BIAS = [^;]+;/)[0]+src.match(/const FAVORITES_LEAD = [^;]+;/)[0]+src.match(/const FAVORITES_PINNED = [^;]+;/)[0]+grab('interleaveByCollection')+grab('clusterTallPairs'));
 console.log('ordering ok:',clusterTallPairs(interleaveByCollection(ph)).length);
 console.log('total:',photos.length,'favorites:',photos.filter(p=>p.favorite).length,'with xl:',photos.filter(p=>p.fileXl).length);
 const pool=photos.filter(p=>p.favorite&&(p.size==='full'||p.size==='wide'));
@@ -468,7 +470,7 @@ console.log('every hero has xl:',pool.every(p=>p.fileXl));
   && python3 -c "s=open('style.css').read(); print('css braces balanced:', s.count('{')==s.count('}'))"
 ```
 
-Expected now: `total: 285 favorites: 46 with xl: 45`, `ordering ok: 284`, hero pool 9,
+Expected now: `total: 292 favorites: 47 with xl: 47`, `ordering ok: 291`, hero pool 9,
 `orphan webp: 10`.
 
 ### Link-preview check
@@ -548,7 +550,7 @@ authoritatively with `git add` then `git diff --cached --name-status`.
 - `while IFS= read` drops a final line with no trailing newline. Write the trailing `\n`.
 
 ### Link previews (OG tags)
-Convention, applied across all 36 routes:
+Convention, applied across all 37 routes:
 - root and `/all` → `Ben's Photography`
 - `/favorites` → `Ben's Favorites`
 - collections → `<place> — Ben's Photography`
@@ -561,10 +563,10 @@ which once would have cut "Ice & Island Lakes" in half.
 **iMessage and other preview fetchers will not render a WebP `og:image`** — the link
 appears with no picture at all. Every route therefore points at a committed JPEG:
 `images/og-<collection-id>.jpg`, plus `images/og-cover-401.jpg` (root and `/all`) and
-`images/og-favorites-oyster.jpg`. 36 files, ~15MB.
+`images/og-favorites-oyster.jpg`. 37 files, ~15MB.
 
 Every route also declares `og:image:width`, `og:image:height` and `og:image:alt`, and the
-declared dimensions must match the file — 24 are landscape **1200×800**, 12 are portrait
+declared dimensions must match the file — 25 are landscape **1200×800**, 12 are portrait
 **800×1200**.
 
 Those 12 are the collections with no landscape photo in them. Cropping a portrait frame to
@@ -604,7 +606,7 @@ None of these are authorised — ask before starting.
 
 - **Backfill `filmSimulation`** for the 138 entries missing it. Explicitly deferred, not
   cancelled.
-- The gallery renders all 285 `<img>` at once. Batched rendering / pagination would help.
+- The gallery renders all 292 `<img>` at once. Batched rendering / pagination would help.
 - 8 tracked `.jpeg` originals (~65MB) in `images/flatirons/` and `images/isabelle-lake/`
   slipped past `.gitignore` before the negation rules settled. `git rm --cached` would
   reclaim real budget.
@@ -628,7 +630,7 @@ None of these are authorised — ask before starting.
 ├── site-config.js              window.SITE_CONFIG
 ├── templates.js                markup generation, replaces #app
 ├── script.js                   ES module, all behaviour
-├── photos.json                 285 photos
+├── photos.json                 292 photos
 ├── style.css                   single stylesheet
 ├── firebase-config.js          Firestore keys (public)
 ├── serve.sh                    python3 -m http.server, default port 8000

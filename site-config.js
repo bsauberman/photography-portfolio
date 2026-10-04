@@ -41,6 +41,7 @@ const SITE_CONFIG = {
     { id: 'crested-butte',  dateLabel: "Sep 4-6 '26",   placeLabel: "Crested Butte, CO",              displayName: "Crested Butte, CO",                 coords: [38.8697, -106.9878], shortLabel: "Crested Butte", regionLabel: "CO", cover: 'images/crested-butte/DSCF3441-cover.webp', cat: 'mountain' },
     { id: 'chihuahua-lake', dateLabel: "Sep 12-13 '26", placeLabel: "Chihuahua Lake, CO",             displayName: "Chihuahua Lake, CO",                coords: [39.6075, -105.8622], shortLabel: "Chihuahua Lake", regionLabel: "Summit County, CO", cover: 'images/chihuahua-lake/DSCF3490-cover.webp', cat: 'mountain' },
     { id: 'willow-lakes',   dateLabel: "Sep 19 '26",    placeLabel: "Willow Lakes - Eagles Nest Wilderness, CO", displayName: "Willow Lakes - Eagles Nest Wilderness, CO", coords: [39.6539, -106.1506], shortLabel: "Willow Lakes", regionLabel: "Eagles Nest Wilderness, CO", cover: 'images/willow-lakes/DSCF3608-cover.webp', cat: 'mountain' },
+    { id: 'mills-haiyaha-dream-emerald-lakes', dateLabel: "Oct 3 '26", placeLabel: "Mills, Haiyaha, Dream & Emerald Lakes - Rocky Mountain NP, CO", displayName: "Mills, Haiyaha, Dream & Emerald Lakes - Rocky Mountain NP, CO", coords: [40.3010, -105.6560], shortLabel: "Mills to Emerald Lake", regionLabel: "Rocky Mountain NP, CO", cover: 'images/mills-haiyaha-dream-emerald-lakes/DSCF3778-cover.webp', cat: 'mountain' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───

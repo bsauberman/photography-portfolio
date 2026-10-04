@@ -457,7 +457,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Photos pinned to the front of Favorites, in this order. Everything else follows
   // the blended recency/spread ordering below.
-  const FAVORITES_LEAD = ['il-meadow', 'h1-iceplant'];
+  const FAVORITES_LEAD = ['sa-snowfield', 'mh-aspens'];
+  // Former leads, held at fixed 0-based slots rather than falling back into the mix.
+  const FAVORITES_PINNED = { 'il-meadow': 7, 'h1-iceplant': 8 };
 
   function interleaveByCollection(items) {
     const groups = {};
@@ -486,7 +488,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Skip when either side is pinned to the lead — the pin wins.
     for (const item of [...result]) {
       if (!item.pairWith) continue;
-      if (FAVORITES_LEAD.includes(item.id) || FAVORITES_LEAD.includes(item.pairWith)) continue;
+      const pinned = id => FAVORITES_LEAD.includes(id) || id in FAVORITES_PINNED;
+      if (pinned(item.id) || pinned(item.pairWith)) continue;
       const itemIdx = result.findIndex(p => p.id === item.id);
       const targetIdx = result.findIndex(p => p.id === item.pairWith);
       if (targetIdx === -1 || itemIdx === -1) continue;
@@ -502,7 +505,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const i = result.findIndex(p => p.id === id);
       if (i !== -1) leads.push(result.splice(i, 1)[0]);
     });
-    return leads.concat(result);
+    result = leads.concat(result);
+
+    // Then drop the pinned photos into their slots, lowest slot first so earlier
+    // insertions don't shift later ones.
+    const pins = Object.entries(FAVORITES_PINNED)
+      .map(([id, slot]) => ({ slot, photo: result.find(p => p.id === id) }))
+      .filter(x => x.photo)
+      .sort((a, b) => a.slot - b.slot);
+    result = result.filter(p => !(p.id in FAVORITES_PINNED));
+    pins.forEach(({ slot, photo }) => result.splice(slot, 0, photo));
+    return result;
   }
 
   filtersContainer.addEventListener('click', (e) => {

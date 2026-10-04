@@ -10,3 +10,4 @@
 # a new filename is how you bust the OG image caches in iMessage/Slack/etc.
 !images/og-*.jpg
 images/highway-1/DSCF9299-*.webp
+images/for_aura/
