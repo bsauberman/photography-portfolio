@@ -786,12 +786,6 @@ body.dark .nav--scrolled {
   transform: scale(1.3);
 }
 
-.map__pin--coast { background: #5a7a8c; }
-.map__pin--boulder { background: #b87333; }
-.map__pin--mountain { background: #6b7d3f; }
-.map__pin--urban { background: #4a4a4a; }
-.map__pin--pnw { background: #3d5e5a; }
-
 .map-popup {
   font-family: var(--font-body);
   min-width: 180px;

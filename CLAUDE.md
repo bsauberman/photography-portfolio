@@ -159,11 +159,10 @@ the panel.
   coords: [39.6539, -106.1506],                              // map pin
   shortLabel:  "Willow Lakes",                               // tile caption + toggle headline
   regionLabel: "Eagles Nest Wilderness, CO",                 // tile line 2 + toggle sub-line
-  cover: 'images/willow-lakes/DSCF3608-cover.webp',           // 400x600 panel tile
-  cat: 'mountain' },                                          // pin colour
+  cover: 'images/willow-lakes/DSCF3608-cover.webp' },        // 400x600 panel tile
 ```
 
-`cat` values: `coast`, `urban`, `boulder`, `mountain`, `pnw`.
+There is no colour/category field — pin colours are assigned automatically (see Map).
 
 **`shortLabel` exists because `placeLabel` averages 30 characters and maxes at 48**
 ("South Arapaho Peak - Indian Peaks Wilderness, CO"). That reads fine in a wide text list
@@ -345,8 +344,13 @@ in-memory count. `firebase-config.js` holds public web API keys (fine to commit;
 controlled by Firestore rules).
 
 ### Map
-Leaflet from unpkg CDN. One pin per collection from `coords`, coloured by `cat`. Dark mode
-inverts the tiles with a CSS `filter`.
+Leaflet from unpkg CDN. One pin per unique `coords` (collections sharing coords share a pin).
+Pin colour comes from `PIN_COLORS` (8 earth tones) in `mapLocations`: walking collections
+oldest-first, each pin takes the colour furthest from any pin already using it, so
+neighbours in the Colorado cluster differ. Order-stable — a new collection never recolours
+existing pins. The old per-collection `cat` field and `.map__pin--<cat>` classes are gone
+(Ben disliked every nearby pin being the same colour). Dark mode inverts the tiles with a
+CSS `filter`.
 
 ---
 

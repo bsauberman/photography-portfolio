@@ -852,17 +852,36 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.textContent = 'Post';
   });
 
+  // Earth tones: terracotta, olive, slate, ochre, teal, umber, clay, moss.
+  const PIN_COLORS = ['#b5603c', '#6b7d3f', '#5a7a8c', '#c49a3a', '#3d5e5a', '#7a5537', '#9c6b7a', '#8a9a5b'];
+
   // Map pins — group collections that share coordinates (e.g. all Boulder-area shoots).
   const mapLocations = (function () {
     const byPlace = new Map();
     (window.SITE_CONFIG?.collections || []).forEach(c => {
       const key = `${c.coords[0].toFixed(3)},${c.coords[1].toFixed(3)}`;
       if (!byPlace.has(key)) {
-        byPlace.set(key, { lat: c.coords[0], lng: c.coords[1], label: c.placeLabel, cat: c.cat, collections: [] });
+        byPlace.set(key, { lat: c.coords[0], lng: c.coords[1], label: c.placeLabel, collections: [] });
       }
       byPlace.get(key).collections.push(c.id);
     });
-    return Array.from(byPlace.values());
+    const locs = Array.from(byPlace.values());
+
+    // Colour by spacing, not by category: each pin takes whichever palette colour is
+    // furthest from any pin already wearing it, so neighbours in a cluster differ.
+    // Walked in config order (oldest first), so adding a collection never recolours
+    // existing pins.
+    const dist = (a, b) => Math.hypot(a.lat - b.lat,
+      (a.lng - b.lng) * Math.cos((a.lat + b.lat) / 2 * Math.PI / 180));
+    locs.forEach((loc, i) => {
+      let best = 0, bestGap = -1;
+      PIN_COLORS.forEach((color, ci) => {
+        const gap = Math.min(Infinity, ...locs.slice(0, i).filter(o => o.color === ci).map(o => dist(o, loc)));
+        if (gap > bestGap) { bestGap = gap; best = ci; }
+      });
+      loc.color = best;
+    });
+    return locs;
   })();
 
   const collectionLabels = (function () {
@@ -910,7 +929,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mapLocations.forEach(loc => {
       const icon = L.divIcon({
         className: '',
-        html: `<div class="map__pin map__pin--${loc.cat}"></div>`,
+        html: `<div class="map__pin" style="background:${PIN_COLORS[loc.color]}"></div>`,
         iconSize: [14, 14],
         iconAnchor: [7, 7],
       });
