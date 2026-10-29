@@ -61,7 +61,7 @@ template websites.
 Both were discussed with Ben and chosen knowingly. Don't "fix" them back:
 - **The collections panel is a uniform grid of cover tiles.** The no-rigid-grids rule
   protects the *gallery*, where the photos are the work. An index is chrome, and
-  uniformity there is what makes 35 collections scannable.
+  uniformity there is what makes 36 collections scannable.
 - **That panel has a drop shadow.** Ben asked for separation directly. An overlay is the
   one place a shadow does real work rather than decoration.
 
@@ -93,7 +93,7 @@ exists before the module runs.
 
 ### Routes
 36 directories, each a 26-line shell whose only job is its own `<head>`:
-35 collections + `/all` + `/favorites`. Plus `index.html` at the root.
+36 collections + `/all` + `/favorites`. Plus `index.html` at the root.
 
 Every route file is identical except `<title>`, the `<meta>`/OG block, and — for
 subdirectories — `<base href="../" />`, which makes all relative paths resolve from the
@@ -109,7 +109,7 @@ footer are on every route** — a collection page is the same page with a filter
 
 ## Data model
 
-### `photos.json` — 292 entries, 47 favorites, 47 with `fileXl`
+### `photos.json` — 298 entries, 48 favorites, 50 with `fileXl`
 
 Canonical key order (keep it; edits are done by string manipulation):
 ```
@@ -135,7 +135,7 @@ camera, filmSimulation, size, favorite
 
 | field | notes |
 |---|---|
-| `id` | Unique. Convention is a short collection prefix + subject (`wl-spires`, `ch-lake`). Prefixes in use: `ap bl bo bp bv cb ch cl cr cw cz el em fl gm h1 il is jp lj mc ml mt ny obj oc op pi sa sb sk sl sp sq t401 tmc vn wl` |
+| `id` | Unique. Convention is a short collection prefix + subject (`wl-spires`, `ch-lake`). Prefixes in use: `ap bl bo bp bv cb ch cl cr cw cz el em fl gm h1 il is jp lj mb mc mh ml mt ny obj oc op pi sa sb sk sl sp sq t401 tmc vn wl` |
 | `file` / `fileFull` / `fileXl` | Explicit paths. **Not derived** from the collection id — see the image-directory mismatch table below. `fileXl` only on landscape frames. |
 | `size` | `tall` (239), `wide` (31), `full` (12), `medium` (2). `wide`/`medium`/`full` are **functionally identical** in CSS — all are `max-width: 100%` with `aspect-ratio: 4416/2944`. Only `tall` differs (`2944/4416`, capped at 560px, pairs up). |
 | `favorite` | Drives `/favorites` **and** hero eligibility. |
@@ -146,7 +146,7 @@ camera, filmSimulation, size, favorite
 The `hero` entry has no `size` key, so **always use `p.size` defensively** or filter
 `!p.hero` first.
 
-### `site-config.js` — 35 collections
+### `site-config.js` — 36 collections
 
 Listed **oldest first**. Order is load-bearing: `interleaveByCollection` derives recency
 from array index, and `collectionGrid()` reverses it so the newest month is at the top of
@@ -267,7 +267,7 @@ dimensions, orientation, timestamp, aperture, shutter, ISO, focal length and fil
 **Photos that have been cropped or re-exported lose the MakerNote.** Those read `None`; the
 convention is to inherit the film sim from the rest of that day's batch and say so.
 
-### Outstanding: 138 of 292 entries have no `filmSimulation`
+### Outstanding: 144 of 298 entries have no `filmSimulation`
 Deferred, not cancelled — Ben said *"push first then we can do this."* The plan: validate
 the parser against entries that already record a value, then backfill and correct.
 Originals still exist locally for most collections.
@@ -470,7 +470,7 @@ console.log('every hero has xl:',pool.every(p=>p.fileXl));
   && python3 -c "s=open('style.css').read(); print('css braces balanced:', s.count('{')==s.count('}'))"
 ```
 
-Expected now: `total: 292 favorites: 47 with xl: 47`, `ordering ok: 291`, hero pool 9,
+Expected now: `total: 298 favorites: 48 with xl: 50`, `ordering ok: 297`, hero pool 9,
 `orphan webp: 10`.
 
 ### Link-preview check
@@ -550,7 +550,7 @@ authoritatively with `git add` then `git diff --cached --name-status`.
 - `while IFS= read` drops a final line with no trailing newline. Write the trailing `\n`.
 
 ### Link previews (OG tags)
-Convention, applied across all 37 routes:
+Convention, applied across all 38 routes:
 - root and `/all` → `Ben's Photography`
 - `/favorites` → `Ben's Favorites`
 - collections → `<place> — Ben's Photography`
@@ -563,10 +563,10 @@ which once would have cut "Ice & Island Lakes" in half.
 **iMessage and other preview fetchers will not render a WebP `og:image`** — the link
 appears with no picture at all. Every route therefore points at a committed JPEG:
 `images/og-<collection-id>.jpg`, plus `images/og-cover-401.jpg` (root and `/all`) and
-`images/og-favorites-oyster.jpg`. 37 files, ~15MB.
+`images/og-favorites-oyster.jpg`. 38 files, ~16MB.
 
 Every route also declares `og:image:width`, `og:image:height` and `og:image:alt`, and the
-declared dimensions must match the file — 25 are landscape **1200×800**, 12 are portrait
+declared dimensions must match the file — 26 are landscape **1200×800**, 12 are portrait
 **800×1200**.
 
 Those 12 are the collections with no landscape photo in them. Cropping a portrait frame to
@@ -606,7 +606,7 @@ None of these are authorised — ask before starting.
 
 - **Backfill `filmSimulation`** for the 138 entries missing it. Explicitly deferred, not
   cancelled.
-- The gallery renders all 292 `<img>` at once. Batched rendering / pagination would help.
+- The gallery renders all 298 `<img>` at once. Batched rendering / pagination would help.
 - 8 tracked `.jpeg` originals (~65MB) in `images/flatirons/` and `images/isabelle-lake/`
   slipped past `.gitignore` before the negation rules settled. `git rm --cached` would
   reclaim real budget.
@@ -630,7 +630,7 @@ None of these are authorised — ask before starting.
 ├── site-config.js              window.SITE_CONFIG
 ├── templates.js                markup generation, replaces #app
 ├── script.js                   ES module, all behaviour
-├── photos.json                 292 photos
+├── photos.json                 298 photos
 ├── style.css                   single stylesheet
 ├── firebase-config.js          Firestore keys (public)
 ├── serve.sh                    python3 -m http.server, default port 8000

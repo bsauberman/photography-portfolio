@@ -42,6 +42,7 @@ const SITE_CONFIG = {
     { id: 'chihuahua-lake', dateLabel: "Sep 12-13 '26", placeLabel: "Chihuahua Lake, CO",             displayName: "Chihuahua Lake, CO",                coords: [39.6075, -105.8622], shortLabel: "Chihuahua Lake", regionLabel: "Summit County, CO", cover: 'images/chihuahua-lake/DSCF3490-cover.webp', cat: 'mountain' },
     { id: 'willow-lakes',   dateLabel: "Sep 19 '26",    placeLabel: "Willow Lakes - Eagles Nest Wilderness, CO", displayName: "Willow Lakes - Eagles Nest Wilderness, CO", coords: [39.6539, -106.1506], shortLabel: "Willow Lakes", regionLabel: "Eagles Nest Wilderness, CO", cover: 'images/willow-lakes/DSCF3608-cover.webp', cat: 'mountain' },
     { id: 'mills-haiyaha-dream-emerald-lakes', dateLabel: "Oct 3 '26", placeLabel: "Mills, Haiyaha, Dream & Emerald Lakes - Rocky Mountain NP, CO", displayName: "Mills, Haiyaha, Dream & Emerald Lakes - Rocky Mountain NP, CO", coords: [40.3010, -105.6560], shortLabel: "Mills to Emerald Lake", regionLabel: "Rocky Mountain NP, CO", cover: 'images/mills-haiyaha-dream-emerald-lakes/DSCF3778-cover.webp', cat: 'mountain' },
+    { id: 'millburn', dateLabel: "Oct 26-29 '26", placeLabel: "Millburn, NJ", displayName: "Millburn, NJ", coords: [40.7410, -74.2930], shortLabel: "Millburn", regionLabel: "New Jersey", cover: 'images/millburn/DSCF4113-cover.webp', cat: 'mountain' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───

@@ -3460,5 +3460,75 @@
     "camera": "f/5, 1/340s, ISO 640",
     "filmSimulation": "Classic Negative",
     "size": "tall"
+  },
+  {
+    "id": "mb-hemlock-falls",
+    "file": "images/millburn/DSCF4113-thumb.webp",
+    "fileFull": "images/millburn/DSCF4113-full.webp",
+    "collection": "millburn",
+    "title": "Maples at Hemlock Falls",
+    "location": "Hemlock Falls - South Mountain Reservation, NJ",
+    "date": "Oct 26 2026",
+    "camera": "f/5.6, 1/640s, ISO 2000",
+    "size": "tall"
+  },
+  {
+    "id": "mb-stone-wall",
+    "file": "images/millburn/DSCF4120-thumb.webp",
+    "fileFull": "images/millburn/DSCF4120-full.webp",
+    "fileXl": "images/millburn/DSCF4120-xl.webp",
+    "collection": "millburn",
+    "title": "Stone Wall in the Reservation",
+    "location": "South Mountain Reservation, NJ",
+    "date": "Oct 26 2026",
+    "camera": "f/5.6, 1/680s, ISO 2000",
+    "size": "wide"
+  },
+  {
+    "id": "mb-stone-steps",
+    "file": "images/millburn/DSCF4125-thumb.webp",
+    "fileFull": "images/millburn/DSCF4125-full.webp",
+    "collection": "millburn",
+    "title": "Stone Steps Under the Maples",
+    "location": "South Mountain Reservation, NJ",
+    "date": "Oct 26 2026",
+    "camera": "f/5.6, 1/640s, ISO 2000",
+    "size": "tall"
+  },
+  {
+    "id": "mb-home",
+    "file": "images/millburn/DSCF4137-thumb.webp",
+    "fileFull": "images/millburn/DSCF4137-full.webp",
+    "fileXl": "images/millburn/DSCF4137-xl.webp",
+    "collection": "millburn",
+    "title": "Home for the Fall",
+    "location": "Millburn, NJ",
+    "date": "Oct 27 2026",
+    "camera": "f/6.4, 1/1400s, ISO 2000",
+    "size": "wide"
+  },
+  {
+    "id": "mb-cooper-window",
+    "file": "images/millburn/DSCF4165-thumb.webp",
+    "fileFull": "images/millburn/DSCF4165-full.webp",
+    "collection": "millburn",
+    "title": "Cooper Yawning On His Perch",
+    "location": "Millburn, NJ",
+    "date": "Oct 29 2026",
+    "camera": "f/5.6, 1/280s, ISO 2000",
+    "size": "tall",
+    "favorite": true
+  },
+  {
+    "id": "mb-cooper-watch",
+    "file": "images/millburn/DSCF4187-thumb.webp",
+    "fileFull": "images/millburn/DSCF4187-full.webp",
+    "fileXl": "images/millburn/DSCF4187-xl.webp",
+    "collection": "millburn",
+    "title": "Cooper Keeping Watch",
+    "location": "Millburn, NJ",
+    "date": "Oct 29 2026",
+    "camera": "f/5.6, 1/220s, ISO 2000",
+    "size": "wide"
   }
 ]
