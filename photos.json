@@ -3928,5 +3928,43 @@
     "filmSimulation": "Classic Negative",
     "size": "wide",
     "favorite": true
+  },
+  {
+    "id": "se-line-2",
+    "file": "images/seoul/DSCF4201-thumb.webp",
+    "fileFull": "images/seoul/DSCF4201-full.webp",
+    "collection": "seoul",
+    "title": "Evening on Line 2",
+    "location": "Seoul, South Korea",
+    "date": "Oct 31 2026",
+    "camera": "f/5.6, 1/300s, ISO 2000",
+    "filmSimulation": "Classic Negative",
+    "size": "tall"
+  },
+  {
+    "id": "se-umbrellas",
+    "file": "images/seoul/DSCF4230-thumb.webp",
+    "fileFull": "images/seoul/DSCF4230-full.webp",
+    "fileXl": "images/seoul/DSCF4230-xl.webp",
+    "collection": "seoul",
+    "title": "Umbrellas Under the Autumn Trees",
+    "location": "Seoul, South Korea",
+    "date": "Nov 1 2026",
+    "camera": "f/5, 1/170s, ISO 2000",
+    "filmSimulation": "Classic Negative",
+    "size": "wide"
+  },
+  {
+    "id": "se-back-bar",
+    "file": "images/seoul/DSCF4240-thumb.webp",
+    "fileFull": "images/seoul/DSCF4240-full.webp",
+    "fileXl": "images/seoul/DSCF4240-xl.webp",
+    "collection": "seoul",
+    "title": "The Back Bar",
+    "location": "Seoul, South Korea",
+    "date": "Nov 1 2026",
+    "camera": "f/2.8, 1/52s, ISO 6400",
+    "filmSimulation": "Classic Negative",
+    "size": "wide"
   }
 ]
