@@ -535,7 +535,7 @@ month headers). Say clearly when that's what happened.
 ## Constraints and gotchas
 
 ### GitHub Pages
-**1GB published-site limit, hard.** Currently **518MB tracked (~51%)**. Every new collection
+**1GB published-site limit, hard.** Currently **~600MB tracked (~60%)** as of Nov 2026. Every new collection
 adds roughly 10–25MB. The xl tier was only approved after correcting an earlier overestimate
 of repo size — don't add a tier without checking the budget.
 
@@ -620,7 +620,7 @@ None of these are authorised — ask before starting.
   "The Ones Watching", "On the Way Up"). Revive by renaming to `series`, or delete.
   `script.js` still has the injection path; it appends into `.filters__modes`.
 - 10 orphan webp files could be deleted.
-- `images/screensavers/` holds full-resolution copies of the 9 hero photos, named by id, for
+- `images/screensavers/` holds full-resolution copies of the 10 hero photos, named by id, for
   desktop wallpaper. Gitignored, local only. Regenerate if the hero pool changes.
 
 ---

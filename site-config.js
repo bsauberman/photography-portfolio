@@ -45,9 +45,9 @@ const SITE_CONFIG = {
     { id: 'millburn', dateLabel: "Oct 26-29 '26", placeLabel: "Millburn, NJ", displayName: "Millburn, NJ", coords: [40.7410, -74.2930], shortLabel: "Millburn", regionLabel: "New Jersey", cover: 'images/millburn/DSCF4165-cover.webp' },
     { id: 'seoul', dateLabel: "Oct 31-Nov 1 '26", placeLabel: "Seoul, South Korea", displayName: "Seoul, South Korea", coords: [37.5665, 126.9780], shortLabel: "Seoul", regionLabel: "South Korea", cover: 'images/seoul/DSCF4201-cover.webp' },
     { id: 'golgulsa', dateLabel: "Nov 2 '26", placeLabel: "Golgulsa Temple - Gyeongju, South Korea", displayName: "Golgulsa Temple - Gyeongju, South Korea", coords: [35.8180, 129.4560], shortLabel: "Golgulsa", regionLabel: "Gyeongju, South Korea", cover: 'images/golgulsa/DSCF4249-cover.webp' },
-    { id: 'gyeongju', dateLabel: "Nov 2-3 '26", placeLabel: "Gyeongju, South Korea", displayName: "Gyeongju, South Korea", coords: [35.8562, 129.2247], shortLabel: "Gyeongju", regionLabel: "South Korea", cover: 'images/gyeongju/DSCF4297-cover.webp' },
-    { id: 'busan', dateLabel: "Nov 3-4 '26", placeLabel: "Busan, South Korea", displayName: "Busan, South Korea", coords: [35.1796, 129.0756], shortLabel: "Busan", regionLabel: "South Korea", cover: 'images/busan/DSCF4436-cover.webp' },
-    { id: 'geoje-hallyeohaesang', dateLabel: "Nov 4 '26", placeLabel: "Geoje & Hallyeohaesang NP, South Korea", displayName: "Geoje & Hallyeohaesang NP, South Korea", coords: [34.8600, 128.5300], shortLabel: "Geoje & Hallyeohaesang", regionLabel: "South Korea", cover: 'images/geoje-and-Hallyeohaesang/DSCF4473-cover.webp' },
+    { id: 'gyeongju', dateLabel: "Nov 2-3 '26", placeLabel: "Gyeongju, South Korea", displayName: "Gyeongju, South Korea", coords: [35.8562, 129.2247], shortLabel: "Gyeongju", regionLabel: "South Korea", cover: 'images/gyeongju/DSCF4347-cover.webp' },
+    { id: 'busan', dateLabel: "Nov 3-4 '26", placeLabel: "Busan, South Korea", displayName: "Busan, South Korea", coords: [35.1796, 129.0756], shortLabel: "Busan", regionLabel: "South Korea", cover: 'images/busan/DSCF4394-cover.webp' },
+    { id: 'geoje-hallyeohaesang', dateLabel: "Nov 4 '26", placeLabel: "Geoje & Hallyeohaesang NP, South Korea", displayName: "Geoje & Hallyeohaesang NP, South Korea", coords: [34.8600, 128.5300], shortLabel: "Geoje & Hallyeohaesang", regionLabel: "South Korea", cover: 'images/geoje-and-Hallyeohaesang/DSCF4447-cover.webp' },
   ],
 
   // ─── Series (curated cross-cutting themes) — currently hidden ───
