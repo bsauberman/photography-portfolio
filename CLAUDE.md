@@ -61,7 +61,7 @@ template websites.
 Both were discussed with Ben and chosen knowingly. Don't "fix" them back:
 - **The collections panel is a uniform grid of cover tiles.** The no-rigid-grids rule
   protects the *gallery*, where the photos are the work. An index is chrome, and
-  uniformity there is what makes 41 collections scannable.
+  uniformity there is what makes 44 collections scannable.
 - **That panel has a drop shadow.** Ben asked for separation directly. An overlay is the
   one place a shadow does real work rather than decoration.
 
@@ -80,7 +80,7 @@ style.css        → single stylesheet, CSS custom properties for theming
 firebase-config.js → Firestore keys for likes + guestbook notes
 ```
 
-**Load order matters** and is identical in all 43 route files:
+**Load order matters** and is identical in all 46 route files:
 ```html
 <script src="site-config.js"></script>   <!-- classic: defines window.SITE_CONFIG -->
 <script src="templates.js"></script>     <!-- classic: runs immediately, replaces #app -->
@@ -92,8 +92,8 @@ firebase-config.js → Firestore keys for likes + guestbook notes
 exists before the module runs.
 
 ### Routes
-42 directories, each a 26-line shell whose only job is its own `<head>`:
-41 collections + `/all` + `/favorites`. Plus `index.html` at the root.
+45 directories, each a 26-line shell whose only job is its own `<head>`:
+44 collections + `/all` + `/favorites`. Plus `index.html` at the root.
 
 Every route file is identical except `<title>`, the `<meta>`/OG block, and — for
 subdirectories — `<base href="../" />`, which makes all relative paths resolve from the
@@ -109,7 +109,7 @@ footer are on every route** — a collection page is the same page with a filter
 
 ## Data model
 
-### `photos.json` — 333 entries, 55 favorites, 59 with `fileXl`
+### `photos.json` — 356 entries, 60 favorites, 65 with `fileXl`
 
 Canonical key order (keep it; edits are done by string manipulation):
 ```
@@ -135,22 +135,25 @@ camera, filmSimulation, size, favorite
 
 | field | notes |
 |---|---|
-| `id` | Unique. Convention is a short collection prefix + subject (`wl-spires`, `ch-lake`). Prefixes in use: `ap bl bo bp bs bv cb ch cl cr cw cz el em fl gg gh gj gm h1 il is jp lj mb mc mh ml mt ny obj oc op pi sa sb se sk sl sp sq t401 tmc vn wl` |
+| `id` | Unique. Convention is a short collection prefix + subject (`wl-spires`, `ch-lake`). Prefixes in use: `ap bl bo bp bs bv cb ch cl cr cw cz el em fl by gg gh gj gm h1 il is jj jp lj mb mc mh ml mt nj ny obj oc op pi sa sb se sk sl sp sq t401 tmc vn wl` |
 | `file` / `fileFull` / `fileXl` | Explicit paths. **Not derived** from the collection id — see the image-directory mismatch table below. `fileXl` only on landscape frames. |
 | `size` | `tall` (273), `wide` (45), `full` (12), `medium` (2). `wide`/`medium`/`full` are **functionally identical** in CSS — all are `max-width: 100%` with `aspect-ratio: 4416/2944`. Only `tall` differs (`2944/4416`, capped at 560px, pairs up). |
 | `favorite` | Drives `/favorites` **and** hero eligibility. |
-| `filmSimulation` | 189 set, 144 missing. See the Fujifilm MakerNote section. |
+| `filmSimulation` | 212 set, 144 missing. See the Fujifilm MakerNote section. |
 | `pairWith` | Rare (2 uses). Forces a specific photo to follow this one in the Favorites ordering. |
 | `hero` | **One vestigial entry**, `id: "hero"`, pointing at `images/hero.webp`. It is excluded everywhere via `photos.filter(p => !p.hero)` and is *not* in the hero rotation. Don't build on it; don't delete `images/hero.webp` though — see below. |
 
 The `hero` entry has no `size` key, so **always use `p.size` defensively** or filter
 `!p.hero` first.
 
-### `site-config.js` — 41 collections
+### `site-config.js` — 44 collections
 
 Listed **oldest first**. Order is load-bearing: `interleaveByCollection` derives recency
 from array index, and `collectionGrid()` reverses it so the newest month is at the top of
 the panel.
+A collection revisited later is placed by its **last** visit (Lake Bled, Seoul), and
+`monthOf()` in `templates.js` files a cross-month label like `"Oct 31-Nov 1 & 7 '26"` under its
+last month, so the panel's month headers stay in order.
 
 ```js
 { id: 'willow-lakes', dateLabel: "Sep 19 '26",
@@ -250,7 +253,7 @@ sips -z 600 400 "$png"
 cwebp -q 80 "$png" -o "images/willow-lakes/DSCF3608-cover.webp"
 ```
 **Pick a `tall` photo as a cover.** Cropping a landscape to 2:3 throws away most of its
-width. All 40 current covers come from tall frames.
+width. All 44 current covers come from tall frames.
 
 ### Reading EXIF + the Fujifilm MakerNote
 `filmSimulation` used to be guessed. It is now readable. The MakerNote layout: `b"FUJIFILM"`
@@ -264,10 +267,12 @@ overrides FilmMode when monochrome, since FilmMode stays 0).
 A working parser was written to `/tmp/fujifilm.py` (scratch — recreate if gone). It prints
 dimensions, orientation, timestamp, aperture, shutter, ISO, focal length and film sim.
 
-**Photos that have been cropped or re-exported lose the MakerNote.** Those read `None`; the
+**Photos that have been cropped or re-exported lose the MakerNote.** So did *every* Nov 5–7 '26
+Korea original (Jeonju, Byeonsan, Naejangsan, Seoul's second visit), uncropped ones included —
+likely a transfer path that strips it. Those read `None`; the
 convention is to inherit the film sim from the rest of that day's batch and say so.
 
-### Outstanding: 144 of 333 entries have no `filmSimulation`
+### Outstanding: 144 of 356 entries have no `filmSimulation`
 Deferred, not cancelled — Ben said *"push first then we can do this."* The plan: validate
 the parser against entries that already record a value, then backfill and correct.
 Originals still exist locally for most collections.
@@ -278,7 +283,7 @@ Originals still exist locally for most collections.
 
 ### Hero rotation — `startHero()`, line ~120
 Pool is `photos.filter(p => p.favorite && (p.size === 'full' || p.size === 'wide'))` —
-currently **10 photos**, all of which have `fileXl`. Landscape favorites are exactly the set
+currently **13 photos**, all of which have `fileXl`. Landscape favorites are exactly the set
 that carries an xl derivative, which is what a full-viewport image wants.
 
 - Two stacked `.hero__image` layers, **neither with a `src`** in the markup. Shipping a
@@ -475,7 +480,7 @@ console.log('every hero has xl:',pool.every(p=>p.fileXl));
   && python3 -c "s=open('style.css').read(); print('css braces balanced:', s.count('{')==s.count('}'))"
 ```
 
-Expected now: `total: 333 favorites: 55 with xl: 59`, `ordering ok: 332`, hero pool 10,
+Expected now: `total: 356 favorites: 60 with xl: 65`, `ordering ok: 355`, hero pool 13,
 `orphan webp: 10`.
 
 ### Link-preview check
@@ -555,7 +560,7 @@ authoritatively with `git add` then `git diff --cached --name-status`.
 - `while IFS= read` drops a final line with no trailing newline. Write the trailing `\n`.
 
 ### Link previews (OG tags)
-Convention, applied across all 44 pages:
+Convention, applied across all 47 pages:
 - root and `/all` → `Ben's Photography`
 - `/favorites` → `Ben's Favorites`
 - collections → `<place> — Ben's Photography`
@@ -568,10 +573,10 @@ which once would have cut "Ice & Island Lakes" in half.
 **iMessage and other preview fetchers will not render a WebP `og:image`** — the link
 appears with no picture at all. Every route therefore points at a committed JPEG:
 `images/og-<collection-id>.jpg`, plus `images/og-cover-401.jpg` (root and `/all`) and
-`images/og-favorites-oyster.jpg`. 43 files, ~17MB.
+`images/og-favorites-oyster.jpg`. 46 files, ~18MB.
 
 Every route also declares `og:image:width`, `og:image:height` and `og:image:alt`, and the
-declared dimensions must match the file — 31 are landscape **1200×800**, 12 are portrait
+declared dimensions must match the file — 34 are landscape **1200×800**, 12 are portrait
 **800×1200**.
 
 Those 12 are the collections with no landscape photo in them. Cropping a portrait frame to
@@ -611,7 +616,7 @@ None of these are authorised — ask before starting.
 
 - **Backfill `filmSimulation`** for the 144 entries missing it. Explicitly deferred, not
   cancelled.
-- The gallery renders all 333 `<img>` at once. Batched rendering / pagination would help.
+- The gallery renders all 356 `<img>` at once. Batched rendering / pagination would help.
 - 8 tracked `.jpeg` originals (~65MB) in `images/flatirons/` and `images/isabelle-lake/`
   slipped past `.gitignore` before the negation rules settled. `git rm --cached` would
   reclaim real budget.
@@ -620,7 +625,7 @@ None of these are authorised — ask before starting.
   "The Ones Watching", "On the Way Up"). Revive by renaming to `series`, or delete.
   `script.js` still has the injection path; it appends into `.filters__modes`.
 - 10 orphan webp files could be deleted.
-- `images/screensavers/` holds full-resolution copies of the 10 hero photos, named by id, for
+- `images/screensavers/` holds full-resolution copies of the 13 hero photos, named by id, for
   desktop wallpaper. Gitignored, local only. Regenerate if the hero pool changes.
 
 ---
@@ -631,11 +636,11 @@ None of these are authorised — ask before starting.
 /
 ├── index.html                  root route
 ├── all/ favorites/             static-filter routes
-├── <40 collection dirs>/       one index.html each, name == collection id
+├── <44 collection dirs>/       one index.html each, name == collection id
 ├── site-config.js              window.SITE_CONFIG
 ├── templates.js                markup generation, replaces #app
 ├── script.js                   ES module, all behaviour
-├── photos.json                 333 photos
+├── photos.json                 356 photos
 ├── style.css                   single stylesheet
 ├── firebase-config.js          Firestore keys (public)
 ├── serve.sh                    python3 -m http.server, default port 8000
@@ -645,8 +650,8 @@ None of these are authorised — ask before starting.
     ├── hero.webp               vestigial — nothing references it but dead JSON
     ├── og-cover-401.jpg        root + /all link preview
     ├── og-favorites-oyster.jpg /favorites link preview
-    ├── og-<collection-id>.jpg  40 link previews, one per collection
+    ├── og-<collection-id>.jpg  44 link previews, one per collection
     ├── screensavers/           gitignored full-res hero copies
-    └── <40 collection dirs>/   *.JPG originals (gitignored)
+    └── <44 collection dirs>/   *.JPG originals (gitignored)
                                 *-thumb/-full/-xl/-cover.webp (committed)
 ```

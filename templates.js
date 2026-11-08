@@ -85,10 +85,12 @@ const templates = (() => {
 
   // "Jun 19-20 '26" / "Aug 11 & 17 '26" -> { month: 6, year: "26" }. Reading the year
   // off the label rather than hardcoding it keeps 2027 trips from reading "'26".
+  // A label spanning months ("Oct 31-Nov 1 & 7 '26") files under its LAST month, since
+  // config order places a collection by its most recent visit.
   function monthOf(dateLabel) {
-    const m = dateLabel.match(/^([A-Za-z]{3})/);
+    const last = (dateLabel.match(/[A-Z][a-z]{2}/g) || []).pop();
     const y = dateLabel.match(/'(\d{2})\s*$/);
-    return { month: m ? MONTH_NUM[m[1]] : null, year: y ? y[1] : '' };
+    return { month: last ? MONTH_NUM[last] : null, year: y ? y[1] : '' };
   }
 
   function collectionGrid() {
