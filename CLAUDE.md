@@ -151,9 +151,9 @@ The `hero` entry has no `size` key, so **always use `p.size` defensively** or fi
 Listed **oldest first**. Order is load-bearing: `interleaveByCollection` derives recency
 from array index, and `collectionGrid()` reverses it so the newest month is at the top of
 the panel.
-A collection revisited later is placed by its **last** visit (Lake Bled, Seoul), and
-`monthOf()` in `templates.js` files a cross-month label like `"Oct 31-Nov 1 & 7 '26"` under its
-last month, so the panel's month headers stay in order.
+A collection is placed by its **first** visit, and `monthOf()` files it under the label's first
+month. Seoul (`"Oct 31-Nov 1 & 7 '26"`) sits with October even though it was revisited on Nov 7 —
+Ben asked for that explicitly. Moving it to the end would split it into a second October header.
 
 ```js
 { id: 'willow-lakes', dateLabel: "Sep 19 '26",
