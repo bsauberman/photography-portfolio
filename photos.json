@@ -4002,8 +4002,7 @@
     "date": "Nov 5 2026",
     "camera": "f/5.6, 1/350s, ISO 2000",
     "filmSimulation": "Classic Negative",
-    "size": "wide",
-    "favorite": true
+    "size": "wide"
   },
   {
     "id": "by-seawall",
@@ -4130,7 +4129,8 @@
     "date": "Nov 6 2026",
     "camera": "f/8, 1/2200s, ISO 2000",
     "filmSimulation": "Classic Negative",
-    "size": "wide"
+    "size": "wide",
+    "favorite": true
   },
   {
     "id": "nj-ridge-stairs",
